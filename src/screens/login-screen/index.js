@@ -185,7 +185,8 @@ const LoginScreen = props => {
                       borderRadius: mvs(10),
                     }}
                     loading={loading}
-                    onPress={handleSubmit}
+                    // onPress={handleSubmit}
+                    onPress={() => navigate('Drawer')}
                     title={t('login')}
                   />
                   <View style={styles.createaccountview}>
