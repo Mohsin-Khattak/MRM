@@ -23,47 +23,6 @@ import {getUserInfo} from 'services/api/auth-api-actions';
 
 type props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
 
-// const Splash = (props: props) => {
-//   const { navigation } = props;
-//   const dispatch = useAppDispatch();
-
-//   React.useEffect(() => { }, []);
-//   React.useEffect(() => {
-//     (async () => {
-//       try {
-//         let screen: any = 'Onboarding';
-//         UTILS.get_current_location(
-//           position => {
-//             dispatch(
-//               setLocation({
-//                 latitude: position?.coords?.latitude,
-//                 longitude: position?.coords?.longitude,
-//               }),
-//             );
-//           },
-//           error => { },
-//         );
-//         UTILS.getItem(STORAGEKEYS.lang).then((lang: any) => {
-//           i18n.changeLanguage(lang);
-//           dispatch(setLanguage(lang ?? 'en'));
-//         });
-
-// UTILS.getItem(STORAGEKEYS.user).then((data: any) => {
-//   if (data) {
-//     const user = JSON.parse(data);
-//     screen = 'Onboarding';
-//     dispatch(setUserInfo(user));
-//   } else {
-//     screen = 'Drawer'
-//   }
-
-//           setTimeout(() => {
-//             navigation?.replace(screen);
-//           }, 2000);
-//         });
-//       } catch (error) { }
-//     })();
-//   }, []);
 const Splash = (props: props) => {
   const {navigation} = props;
   const dispatch = useAppDispatch();
@@ -74,7 +33,7 @@ const Splash = (props: props) => {
   React.useEffect(() => {
     (async () => {
       try {
-        let screen: 'Drawer' = 'Drawer';
+        let screen: any = 'Login';
         UTILS.get_current_location(
           position => {
             dispatch(
@@ -91,24 +50,11 @@ const Splash = (props: props) => {
           dispatch(setLanguage(lang ?? 'en'));
         });
 
-        // UTILS.getItem(STORAGEKEYS.token).then(async (token: any) => {
-        //   if (token) {
-        //     try {
-        //       const res = await getUserInfo();
-        //       console.log('token', token);
-        //       dispatch(setUserInfo(res?.user));
-        //     } catch (error) {
-        //       UTILS.clearStorage();
-        //       console.log('error', error);
-        //     }
-        //   }
         UTILS.getItem(STORAGEKEYS.user).then((data: any) => {
           if (data) {
             const user = JSON.parse(data);
-            // screen = 'Splash';
-            dispatch(setUserInfo(user));
-          } else {
             screen = 'Drawer';
+            dispatch(setUserInfo(user));
           }
           setTimeout(() => {
             navigation?.replace(screen);

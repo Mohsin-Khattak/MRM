@@ -1,221 +1,189 @@
-import {IconButton, PrimaryButton} from 'components/atoms/buttons';
+import * as IMG from 'assets/images';
+import {PrimaryButton} from 'components/atoms/buttons';
 import {Row} from 'components/atoms/row';
-import moment from 'moment';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  Modal,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import * as Progress from 'react-native-progress';
+import CircularProgress from 'react-native-circular-progress-indicator';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/AntDesign';
 import i18n from 'translation';
 import Medium from 'typography/medium-text';
+import Regular from 'typography/regular-text';
 import {colors} from '../../../config/colors';
-import {mvs} from '../../../config/metrices';
-import {MessageTwo} from 'assets/icons';
-
+import {height, mvs} from '../../../config/metrices';
+import {SendIcon, SpecialistLocation} from 'assets/icons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import {ColorSpace} from 'react-native-reanimated';
+import moment from 'moment';
+import {CheckmarkAnimation, CrossModal, OTPAnimation} from 'assets/icons';
+import Bold from 'typography/bold-text';
 const MyOrderCard = ({
   item,
+  backgroundColor,
+  index,
   style,
+  acceptTitle,
+  rejectTitle,
+  onRefreshList,
   onPress = () => {},
-  onMessagePress = () => {},
+  onPressAccept = () => {},
+  onPressReject = () => {},
   onPressDetails = () => {},
-  onPressTracking = () => {},
-
-  chatLoading,
+  onPressCart = () => {},
+  onPressChat = () => {},
+  disabledAccept,
 }) => {
   const {t} = i18n;
+
   return (
     <Row onPress={onPress} style={styles.contentContainerStyleNew}>
-      <View style={{alignSelf: 'center', padding: mvs(10)}}>
-        <Medium
-          label={`${t('Order')} `}
-          fontSize={mvs(16)}
-          color={colors.white}
-        />
-        <Medium
-          label={`#${item?.id} `}
-          fontSize={mvs(16)}
-          color={colors.white}
+      <View
+        style={{
+          width: mvs(60), // Set the width of the dashboard container
+          height: '100%', // Set the height of the dashboard container
+          justifyContent: 'center', // Center horizontally
+          alignItems: 'center',
+        }}>
+        <Bold
+          label={'Dashboard'}
+          fontSize={mvs(30)}
+          color={colors.primary}
+          style={{
+            transform: [{rotate: '-90deg'}],
+            textAlign: 'center',
+
+            width: mvs(300),
+          }}
         />
       </View>
       <View
         style={{
-          backgroundColor: colors.white,
+          backgroundColor: colors.primary,
           flex: 1,
           paddingVertical: mvs(5),
+          borderTopLeftRadius: mvs(20),
+          borderBottomLeftRadius: mvs(20),
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
         <Row
           style={{
-            borderBottomWidth: mvs(1),
-            borderBottomColor: colors.border,
             paddingHorizontal: mvs(10),
-            paddingBottom: mvs(5),
-            alignItems: 'center',
-            flex: 1,
+            paddingVertical: mvs(8),
+            borderRadius: mvs(6),
+            marginTop: mvs(20),
           }}>
-          <View style={{flex: 1}}>
+          <View
+            style={{
+              width: '45%',
+              height: mvs(140),
+              backgroundColor: colors.red,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: mvs(20),
+            }}>
             <Medium
-              label={item?.service?.title ? item?.service?.title : 'N/A'}
-              color={colors.bluecolor}
-              fontSize={mvs(12)}
+              label={'Completed Odrer'}
+              color={colors.white}
+              fontSize={mvs(14)}
+              style={{marginBottom: mvs(14)}}
             />
+            <CircularProgress
+              value={60}
+              radius={mvs(35)}
+              duration={2000}
+              valueSuffix={'%'}
+              progressValueColor={colors.white}
+              activeStrokeColor={colors.primary}
+              activeStrokeWidth={mvs(6)}
+              titleColor={colors.white}
+              titleStyle={{
+                fontWeight: 'bold',
+                fontSize: mvs(12),
+              }}
+              inActiveStrokeColor={colors.black}
+              inActiveStrokeOpacity={0.2}
+              progressValueFontSize={mvs(14)}
+            />
+            {/* <Progress.Circle
+              // formatText={n => n * 20}
+              size={mvs(55)}
+              animated
+              color={colors.primary}
+              unfilledColor={colors.white}
+              borderWidth={mvs(0)}
+              borderColor={colors.primary}
+              progress={0.7}
+              thickness={mvs(5)}
+              showsText
+              textStyle={{
+                fontWeight: 'bold',
+                fontSize: mvs(14),
+              }}
+            /> */}
           </View>
 
-          {item?.driver_id ? (
-            <IconButton
-              loading={item.chatLoading}
-              onPress={onMessagePress}
-              containerStyle={styles.messageContainer}
-              textStyle={styles.messageTextStyle}
-              Icon={<MessageTwo />}
-              title={t('Chat Now')}
+          <View
+            style={{
+              width: '45%',
+              height: mvs(140),
+              backgroundColor: colors.red,
+              // alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: mvs(20),
+
+              marginLeft: mvs(20),
+            }}>
+            <Medium
+              label={'Pending Odrer'}
+              color={colors.white}
+              fontSize={mvs(14)}
+              style={{marginBottom: mvs(14)}}
             />
-          ) : null}
-        </Row>
-
-        <Row
-          style={{
-            paddingHorizontal: mvs(10),
-            paddingVertical: mvs(8),
-            // justifyContent: 'flex-start',
-          }}>
-          <Medium
-            label={t('Name')}
-            fontSize={mvs(12)}
-            color={colors.black}
-            style={{width: mvs(110)}}
-          />
-          <Medium
-            label={`${item?.name}`}
-            fontSize={mvs(12)}
-            color={colors.grey}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row style={{paddingHorizontal: mvs(10), paddingVertical: mvs(8)}}>
-          <Medium
-            style={{width: mvs(110)}}
-            label={t('delivery_time')}
-            fontSize={mvs(12)}
-            color={colors.black}
-          />
-          <Medium
-            label={
-              item?.pickup_date
-                ? moment(item?.pickup_date).format('YYYY-MM-DD')
-                : 'N/A'
-            }
-            numberOfLines={1}
-            fontSize={mvs(12)}
-            color={colors.grey}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row style={{paddingHorizontal: mvs(10), paddingVertical: mvs(8)}}>
-          <Medium
-            label={t('pickup_location')}
-            fontSize={mvs(12)}
-            color={colors.black}
-            style={{width: mvs(110)}}
-          />
-          <Medium
-            label={`${item?.pickup_address}`}
-            fontSize={mvs(12)}
-            color={colors.grey}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row style={{paddingHorizontal: mvs(10), paddingVertical: mvs(8)}}>
-          <Medium
-            label={t('Price')}
-            fontSize={mvs(12)}
-            color={colors.black}
-            style={{width: mvs(110)}}
-          />
-          <Medium
-            label={item?.price ? item?.price : 'N/A'}
-            fontSize={mvs(12)}
-            color={colors.grey}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row
-          style={{
-            paddingHorizontal: mvs(10),
-            paddingVertical: mvs(8),
-            justifyContent: item?.driver?.id ? 'space-between' :'flex-end',
-          }}>
-          {/* <PrimaryButton
-            title={t('accept')}
-            containerStyle={{
-              width: mvs(80),
-              height: mvs(30),
-              backgroundColor: colors.acceptcolor,
-              borderColor: colors.lightGray,
-            }}
-            textStyle={{
-              color: colors.white,
-            }}
-            onPress={onPressAccept}
-          />
-          <PrimaryButton
-            title={t('rejected')}
-            containerStyle={{
-              width: mvs(80),
-              height: mvs(30),
-              backgroundColor: colors.primary,
-
-              ...colors.shadow,
-            }}
-            textStyle={{
-              color: colors.white,
-            }}
-            onPress={onPressReject}
-          /> */}
-
-          {/* <PrimaryButton
-            title={t('Driver Review')}
-            containerStyle={{
-              height: mvs(30),
-              width: '45%',
-              backgroundColor: colors.white,
-              borderWidth: 1,
-              borderColor: colors.primary,
-              ...colors.shadow,
-            }}
-            textStyle={{
-              color: colors.primary,
-            }}
-            onPress={onPressDetails}
-          /> */}
-
-        {item?.driver?.id &&  <PrimaryButton
-            title={t('Tracking')}
-            containerStyle={{
-              width: '45%',
-              height: mvs(30),
-              backgroundColor: colors.white,
-              borderWidth: 1,
-              borderColor: colors.primary,
-              ...colors.shadow,
-            }}
-            textStyle={{
-              color: colors.primary,
-            }}
-            onPress={onPressTracking}
-          />
-          }
-          <PrimaryButton
-            title={t('details')}
-            containerStyle={{
-              width: '45%',
-              height: mvs(30),
-              backgroundColor: colors.white,
-              borderWidth: 1,
-              borderColor: colors.primary,
-              ...colors.shadow,
-            }}
-            textStyle={{
-              color: colors.primary,
-            }}
-            onPress={onPressDetails}
-          />
+            {/* <Progress.Circle
+              // formatText={n => n * 20}
+              size={mvs(55)}
+              animated
+              color={colors.primary}
+              unfilledColor={colors.white}
+              borderWidth={mvs(0)}
+              borderColor={colors.primary}
+              progress={0.7}
+              thickness={mvs(5)}
+              showsText
+              textStyle={{
+                fontWeight: 'bold',
+                fontSize: mvs(14),
+              }}
+            /> */}
+            <CircularProgress
+              value={60}
+              radius={mvs(35)}
+              duration={2000}
+              valueSuffix={'%'}
+              progressValueColor={colors.white}
+              activeStrokeColor={colors.primary}
+              activeStrokeWidth={mvs(6)}
+              titleColor={colors.white}
+              titleStyle={{
+                fontWeight: 'bold',
+                fontSize: mvs(12),
+              }}
+              inActiveStrokeColor={colors.black}
+              inActiveStrokeOpacity={0.2}
+              progressValueFontSize={mvs(14)}
+            />
+          </View>
         </Row>
       </View>
     </Row>
@@ -236,21 +204,23 @@ const styles = StyleSheet.create({
   },
   contentContainerStyleNew: {
     marginVertical: mvs(10),
+    height: mvs(200),
+    width: '100%',
     overflow: 'hidden',
-    borderColor: colors.primary,
-    backgroundColor: colors.primary,
+    // borderColor: colors.primary,
+    backgroundColor: colors.white,
     justifyContent: 'space-between',
-    borderWidth: 1,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    // borderWidth: 1,
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
 
-    elevation: 5,
-    borderRadius: mvs(6),
+    // elevation: 5,
+    // borderRadius: mvs(6),
   },
   row: {alignItems: 'flex-end'},
   bg: {
@@ -284,16 +254,32 @@ const styles = StyleSheet.create({
     borderRadius: mvs(15),
     backgroundColor: colors.red,
   },
-  messageContainer: {
-    height: null,
-    marginLeft: mvs(10),
-    padding: mvs(8),
-    borderWidth: mvs(1),
-    borderColor: colors.primary,
-    // width: '40%',
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  messageTextStyle: {
-    fontSize: mvs(12),
-    lineHeight: mvs(16),
+  modalContent: {
+    width: '80%', // Adjust the width as needed
+    backgroundColor: 'white',
+    padding: mvs(20),
+    height: mvs(300),
+    borderRadius: mvs(10),
+  },
+  textInput: {
+    marginTop: mvs(30),
+    borderWidth: mvs(1),
+    borderColor: colors.black,
+    padding: mvs(10),
+    marginBottom: mvs(10),
+    borderRadius: mvs(10),
+    height: mvs(130),
+  },
+  cross: {
+    padding: mvs(14),
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    top: mvs(-5),
   },
 });

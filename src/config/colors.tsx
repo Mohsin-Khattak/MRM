@@ -4,7 +4,7 @@
 export const colors = {
   placeholder: '#9D9D9D',
   white: '#FFFFFF',
-  primary: '#D31E1E', //'#2962ff', //'#20D994', //'#5586FF,'
+  primary: '#052169', //'#D31E1E', //'#2962ff', //'#20D994', //'#5586FF,'
   lightGray: '#FFFFFFB2',
   placeholder: '#707070',
   border: '#DBDBDB',

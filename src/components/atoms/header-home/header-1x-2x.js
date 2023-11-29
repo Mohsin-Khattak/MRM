@@ -1,19 +1,15 @@
-import { useNavigation } from '@react-navigation/native';
-import { colors } from 'config/colors';
-import { mvs } from 'config/metrices';
-import { useAppSelector } from 'hooks/use-store';
-import { navigate } from 'navigation/navigation-ref';
+import {useNavigation} from '@react-navigation/native';
+import {colors} from 'config/colors';
+import {mvs} from 'config/metrices';
+import {useAppSelector} from 'hooks/use-store';
+import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Regular from 'typography/regular-text';
-import { SearchInput } from '../inputs';
-import { Row } from '../row';
+import {SearchInput} from '../inputs';
+import {Row} from '../row';
 const HeaderX = ({
   style = {},
   mtop = 0,
@@ -37,7 +33,7 @@ const HeaderX = ({
           <MaterialCommunityIcons
             name={'menu'}
             size={mvs(30)}
-            color={colors.white}
+            color={colors.primary}
           />
         </TouchableOpacity>
 
@@ -45,14 +41,14 @@ const HeaderX = ({
           <Ionicons
             name={'notifications'}
             size={mvs(25)}
-            color={colors.white}
+            color={colors.primary}
           />
 
-        {userInfo?.id &&  <View
-            style={styles.notificationContainer}>
-              <Regular fontSize={mvs(10)} label={unreadNotification}/>
-            </View>}
-
+          {userInfo?.id && (
+            <View style={styles.notificationContainer}>
+              <Regular fontSize={mvs(10)} label={unreadNotification} />
+            </View>
+          )}
         </TouchableOpacity>
       </Row>
       {isSearch && (
@@ -81,15 +77,15 @@ const styles = StyleSheet.create({
   },
   back: {},
 
-  notificationContainer:{
+  notificationContainer: {
     backgroundColor: colors.white,
     width: mvs(20),
     height: mvs(20),
     borderRadius: mvs(10),
-    position:'absolute',
-    right:mvs(-10),
-    top:mvs(-10),
-    alignItems:'center',
-    justifyContent:'center'
-  }
+    position: 'absolute',
+    right: mvs(-10),
+    top: mvs(-10),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

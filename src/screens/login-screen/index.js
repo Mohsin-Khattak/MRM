@@ -74,7 +74,7 @@ const LoginScreen = props => {
       );
     } catch (error) {
       console.log('error=>', error);
-    }finally{
+    } finally {
       // setLoading(false);
     }
   };
@@ -112,7 +112,7 @@ const LoginScreen = props => {
             />
             <Formik
               initialValues={initialValues}
-              validationSchema={signinFormValidation}
+              // validationSchema={signinFormValidation}
               onSubmit={handleFormSubmit}>
               {({
                 handleChange,
@@ -158,7 +158,8 @@ const LoginScreen = props => {
                       borderRadius: mvs(10),
                     }}
                     loading={loading}
-                    onPress={handleSubmit}
+                    // onPress={handleSubmit}
+                    onPress={() => navigate('Drawer')}
                     title={t('login')}
                   />
                   <View style={styles.createaccountview}>

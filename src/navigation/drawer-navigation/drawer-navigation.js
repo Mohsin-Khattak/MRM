@@ -1,8 +1,9 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { TabBar } from 'navigation/curvedtabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {TabBar} from 'navigation/curvedtabs';
 import React from 'react';
-import { width } from 'config/metrices';
+import {width} from 'config/metrices';
 import CustomDrawerContent from './drawer-content';
+import HomeTab from 'screens/home-tab';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
@@ -16,7 +17,8 @@ const DrawerNavigation = () => {
         headerShown: false,
       }}
       drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="TabBar" component={TabBar} />
+      <Drawer.Screen name="HomeTab" component={HomeTab} />
+      {/* <Drawer.Screen name="TabBar" component={TabBar} /> */}
     </Drawer.Navigator>
   );
 };

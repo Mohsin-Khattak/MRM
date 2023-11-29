@@ -10,7 +10,14 @@ import {mvs} from 'config/metrices';
 import {useAppDispatch, useAppSelector} from 'hooks/use-store';
 import {navigate} from 'navigation/navigation-ref';
 import React, {useEffect} from 'react';
-import {Alert, I18nManager, Image, RefreshControl, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  I18nManager,
+  Image,
+  RefreshControl,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {getOrderList} from 'services/api/auth-api-actions';
 import {onCreateConveration} from 'services/api/chat-api-actions';
 import i18n from 'translation';
@@ -19,9 +26,8 @@ import styles from './styles';
 import Medium from 'typography/medium-text';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-
 const TotalOrderScreen = props => {
-  const isBack =props?.route?.params?.isBack;
+  // const isBack =props?.route?.params?.isBack;
   const dispatch = useAppDispatch();
   const {userInfo} = useAppSelector(s => s.user);
   const {t} = i18n;
@@ -31,56 +37,19 @@ const TotalOrderScreen = props => {
   const [chatLoading, setChatLoading] = React.useState(false);
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const onMessagePress = async driver_id => {
-    try {
-      setChatLoading(true);
-      const res = await onCreateConveration({
-        receiver_id: driver_id,
-      });
+  // const onRefresh = () => {
+  //   setRefreshing(true);
+  //   setTimeout(() => {
+  //     fetchList();
+  //     setRefreshing(false);
+  //   }, 2000); // Simulated delay for the sake of example, replace this with your actual data fetching logic
+  // };
 
-      navigate('InboxScreen', {
-        conversation_id: res?.conversation_id,
-        receiver_name: res?.receiver_name,
-        receiver_email: res?.receiver_email,
-        receiver_image: res?.receiver_image,
-      });
-    } catch (error) {
-      console.log('Error in create conversion====>', error);
-      Alert.alert('Error', UTILS.returnError(error));
-    } finally {
-      setChatLoading(false);
-    }
-  };
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    setTimeout(() => {
-      fetchList();
-      setRefreshing(false);
-    }, 2000); // Simulated delay for the sake of example, replace this with your actual data fetching logic
-  };
-
-  const fetchList = async () => {
-    try {
-      setLoading(true);
-      const res = await getOrderList(selectedOrder);
-      setData(res);
-    } catch (error) {
-      console.log('Error in post Furniture item====>', error);
-      Alert.alert('Error', UTILS.returnError(error));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchList();
-  }, [selectedOrder]);
   const renderAppointmentItem = ({item, index}) => (
     <MyOrderCard
       item={item}
       onMessagePress={() => onMessagePress(item?.driver_id)}
-      onPressTracking={() => navigate('Tracking',{orderId:item?.id})}
+      onPressTracking={() => navigate('Tracking', {orderId: item?.id})}
       chatLoading={chatLoading}
       onPressDetails={() =>
         props?.navigation?.navigate('OrderDetailsScreen', {orderId: item?.id})
@@ -102,24 +71,30 @@ const TotalOrderScreen = props => {
         style={{backgroundColor: colors.transparent}}
         title={t('total_order_request')}
       /> */}
-      <Row style={styles.headerContainer}>
-         {isBack ? <TouchableOpacity
-            onPress={() => navigate('Home')}>
+      {/* <Row style={styles.headerContainer}>
+        {isBack ? (
+          <TouchableOpacity onPress={() => navigate('Home')}>
             <Icon
               name={I18nManager.isRTL ? 'arrowright' : 'arrowleft'}
               size={mvs(20)}
               color={colors.white}
             />
-          </TouchableOpacity>:<>
-          <View/>
-          </>}
-          <Medium fontSize={mvs(20)} label={t('total_order_request')} style={{
+          </TouchableOpacity>
+        ) : (
+          <>
+            <View />
+          </>
+        )}
+        <Medium
+          fontSize={mvs(20)}
+          label={t('total_order_request')}
+          style={{
             fontSize: mvs(18),
             color: colors.white,
-          }} />
-          <View/>
-        
-      </Row>
+          }}
+        />
+        <View />
+      </Row> */}
 
       <View style={styles.contentContainerStyle}>
         <Row style={{marginBottom: mvs(0)}}>
@@ -203,9 +178,6 @@ const TotalOrderScreen = props => {
           renderItem={renderAppointmentItem}
           ItemSeparatorComponent={itemSeparatorComponent()}
           keyExtractor={(_, index) => index?.toString()}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
         />
       )}
     </View>

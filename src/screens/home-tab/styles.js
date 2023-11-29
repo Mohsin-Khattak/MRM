@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
+    paddingHorizontal: mvs(20),
   },
   lan: {
     height: mvs(120),
@@ -33,6 +34,12 @@ const styles = StyleSheet.create({
     paddingVertical: mvs(20),
     // paddingBottom: mvs(100),
     // margi
+  },
+  contentContainerStyleFlatlist: {
+    paddingVertical: mvs(10),
+    flexGrow: 1,
+    // paddingHorizontal: mvs(20),
+    paddingBottom: mvs(100),
   },
   backgroundimg: {
     width: '100%',

@@ -37,51 +37,51 @@ export const weekDays = [
 
 export const SLIDES_LIST = [
   {
-    image: 'https://getmovers.co.uk/static/media/s1.f9907177.jpg',
-    title: 'quick_search',
-    desc: 'Move Anything to Anywhere… at the cheapest rates!! Start your moving journey now with the United Kingdoms most convenient transport and removal agency.',
-  },
-  {
-    image: 'https://getmovers.co.uk/static/media/5.29deee86.png',
-    title: 'fast_shipping',
-    desc: 'Move Anything to Anywhere… at the cheapest rates!! Start your moving journey now with the United Kingdoms most convenient transport and removal agency.',
-  },
-  {
-    image: 'https://getmovers.co.uk/static/media/6.58041a1b.png',
-    title: 'free_rides',
-    desc: 'Move Anything to Anywhere… at the cheapest rates!! Start your moving journey now with the United Kingdoms most convenient transport and removal agency.',
-  },
-  {
-    image: 'https://getmovers.co.uk/static/media/7.fe4e3dab.png',
-    title: 'free_rides',
-    desc: 'Move Anything to Anywhere… at the cheapest rates!! Start your moving journey now with the United Kingdoms most convenient transport and removal agency.',
-  },
-  {
-    image: 'https://getmovers.co.uk/static/media/8.a16c3c07.png',
-    title: 'free_rides',
-    desc: 'Move Anything to Anywhere… at the cheapest rates!! Start your moving journey now with the United Kingdoms most convenient transport and removal agency.',
-  },
-  {
-    image: 'https://getmovers.co.uk/static/media/9.0ec25ad3.png',
-    title: 'free_rides',
-    desc: 'Move Anything to Anywhere… at the cheapest rates!! Start your moving journey now with the United Kingdoms most convenient transport and removal agency.',
+    completed_Order: '98%',
+    pending_order: '2%',
   },
 ];
-export const ONBOARDING_LIST = [
+export const SALES_ACTIVITY_LIST = [
   {
-    image: IMG.rocket,
-    title: 'quick_search',
-    desc: 'Pick Up Your Order',
+    pckg: '225 Pkgs',
+    name: 'To be Packed',
+  },
+
+  {
+    pckg: '225 Pkgs',
+    name: 'To be Packed dfjk dhfdjks shdf',
+  },
+
+  {
+    pckg: '225 Pkgs',
+    name: 'To be Packed',
+  },
+
+  {
+    pckg: '225 Pkgs',
+    name: 'To be Packed',
+  },
+];
+export const BOOKING_LIST = [
+  {
+    initial: 'AA',
+    price: '22,500$',
+    name: 'Ali Abdullah',
   },
   {
-    image: IMG.vehicle,
-    title: 'fast_shipping',
-    desc: 'Pick Up Your Order',
+    initial: 'AA',
+    price: '22,500$',
+    name: 'Ali Abdullah',
   },
   {
-    image: IMG.mobile,
-    title: 'free_rides',
-    desc: 'Pick Up Your Order',
+    initial: 'AA',
+    price: '22,500$',
+    name: 'Ali Abdullah',
+  },
+  {
+    initial: 'AA',
+    price: '22,500$',
+    name: 'Ali Abdullah',
   },
 ];
 export const SERVICE_LIST = [
