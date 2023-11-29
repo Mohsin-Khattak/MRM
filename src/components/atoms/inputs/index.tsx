@@ -29,7 +29,6 @@ import DropdownModal from 'components/molecules/modals/dropdown-modal';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {t} from 'i18next';
 import {menue} from 'assets/images';
-import StartOrderDropdownModal from 'components/molecules/modals/startorder-dropdown-modal';
 type props = {
   isRequired?: boolean;
   onChangeText: (text: string) => void;
@@ -113,7 +112,7 @@ export const InputPresciption = (props: props) => {
             onPress={() => setSecure(!secure)}>
             <Feather
               size={25}
-              name={secure ? 'eye' : 'eye-off'}
+              name={secure ? 'eye-off' : 'eye'}
               color={colors.black}
             />
           </TouchableOpacity>
@@ -179,7 +178,115 @@ const PrimaryInput = (props: props) => {
             onPress={() => setSecure(!secure)}>
             <Feather
               size={25}
-              name={secure ? 'eye-off' : 'eye'}
+              name={secure ? 'eye' : 'eye-off'}
+              color={colors.black}
+            />
+          </TouchableOpacity>
+        )}
+        {isCalendar && (
+          <TouchableOpacity
+            style={styles.PasswordIcon}
+            // onPress={() => setSecure(!secure)}
+          >
+            <FontAwesome size={20} name={'calendar'} color={colors.primary} />
+          </TouchableOpacity>
+        )}
+      </View>
+      <Regular
+        label={error ? error : ''}
+        style={[styles.errorLabel, errorStyle]}
+      />
+    </View>
+  );
+};
+export const MessageInput = (props: props) => {
+  const {
+    onChangeText,
+    onPress = () => {},
+    value,
+    style,
+    placeholder = 'Write Message',
+    containerStyle,
+    isPassword,
+    keyboardType,
+    error,
+    onBlur = () => {},
+  } = props;
+  return (
+    <>
+      <Row style={[styles.messageContainer, containerStyle]}>
+        <TextInput
+          onBlur={onBlur}
+          keyboardType={keyboardType}
+          value={value}
+          placeholderTextColor={`${colors.black}50`}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          style={[styles.textInput, style]}
+        />
+        {/* <TouchableOpacity style={styles.PasswordIcon} onPress={onPress}>
+          <Entypo size={20} name={'attachment'} color={colors.attachmentgray} />
+        </TouchableOpacity> */}
+      </Row>
+    </>
+  );
+};
+export const TextAreaInput = (props: props) => {
+  const [secure, setSecure] = useState(true);
+  const {language} = useAppSelector(s => s.user);
+  const {
+    onChangeText,
+    value,
+    style,
+    label,
+    placeholder = 'type here',
+    labelStyle,
+    containerStyle,
+    errorStyle,
+    secureTextEntry,
+    isPassword,
+    isCalendar,
+    keyboardType,
+    error,
+    mainContainer,
+    editable = true,
+    onBlur = () => {},
+    onPressIn = () => {},
+    isRequired = false,
+  } = props;
+  return (
+    <View style={[mainContainer]}>
+      {label && (
+        <Regular label={label} style={[styles.labelStyle, labelStyle]}>
+          {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
+        </Regular>
+      )}
+      <View style={[styles.areaContainer, containerStyle]}>
+        <TextInput
+          numberOfLines={4}
+          multiline
+          editable={editable}
+          onBlur={onBlur}
+          onPressIn={onPressIn}
+          keyboardType={keyboardType}
+          secureTextEntry={isPassword && secure}
+          value={value}
+          placeholderTextColor={`${colors.placeholder}`}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          style={[
+            styles.areatextInput,
+            style,
+            {textAlign: I18nManager.isRTL ? 'right' : 'left'},
+          ]}
+        />
+        {isPassword && (
+          <TouchableOpacity
+            style={styles.PasswordIcon}
+            onPress={() => setSecure(!secure)}>
+            <Feather
+              size={25}
+              name={secure ? 'eye' : 'eye-off'}
               color={colors.black}
             />
           </TouchableOpacity>
@@ -239,38 +346,6 @@ export const CommentInput = (props: props) => {
     </>
   );
 };
-export const MessageInput = (props: props) => {
-  const {
-    onChangeText,
-    onPress = () => {},
-    value,
-    style,
-    placeholder = 'Write Message',
-    containerStyle,
-    isPassword,
-    keyboardType,
-    error,
-    onBlur = () => {},
-  } = props;
-  return (
-    <>
-      <Row style={[styles.messageContainer, containerStyle]}>
-        <TextInput
-          onBlur={onBlur}
-          keyboardType={keyboardType}
-          value={value}
-          placeholderTextColor={`${colors.black}50`}
-          onChangeText={onChangeText}
-          placeholder={placeholder}
-          style={[styles.textInput, style]}
-        />
-        <TouchableOpacity style={styles.PasswordIcon} onPress={onPress}>
-          {/* <Entypo size={20} name={'attachment'} color={colors.attachmentgray} /> */}
-        </TouchableOpacity>
-      </Row>
-    </>
-  );
-};
 export const InputWithIcon = (props: props) => {
   const [visible, setVisible] = React.useState(false);
   const {
@@ -281,7 +356,6 @@ export const InputWithIcon = (props: props) => {
     style,
     containerStyle,
     id,
-    placeholder,
     editable,
     error,
     label,
@@ -301,13 +375,7 @@ export const InputWithIcon = (props: props) => {
           onBlur();
         }}
         style={[styles.dropDownContainer, containerStyle]}>
-        <Medium
-          label={
-            items?.find(x => x?.id == id)?.title ||
-            items?.find(x => x?.id == id)?.id ||
-            placeholder
-          }
-        />
+        <Medium label={items?.find(x => x?.id == id)?.title || ''} />
         <Feather size={25} name={'chevron-down'} color={colors.black} />
       </TouchableOpacity>
       <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
@@ -321,56 +389,7 @@ export const InputWithIcon = (props: props) => {
     </>
   );
 };
-export const InputWithIcon2 = (props: props) => {
-  const [visible, setVisible] = React.useState(false);
-  const {
-    items = [],
-    onChangeText,
-    onBlur = () => {},
-    value,
-    style,
-    containerStyle,
-    id,
-    placeholder,
-    editable,
-    error,
-    label,
-    isRequired = false,
-  } = props;
-  const [selectedVehicleType, setSelectedVehicleType] = React.useState(value);
-  return (
-    <>
-      {label && (
-        <Regular label={label} style={styles.labelStyle}>
-          {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
-        </Regular>
-      )}
-      <TouchableOpacity
-        disabled={editable}
-        onPress={() => {
-          setVisible(true);
-          onBlur();
-        }}
-        style={[styles.dropDownContainer, containerStyle]}>
-        <Medium label={selectedVehicleType || placeholder} />
-        <Feather size={25} name={'chevron-down'} color={colors.black} />
-      </TouchableOpacity>
-      <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
-      <StartOrderDropdownModal
-        onClose={() => setVisible(false)}
-        onChangeText={selectedId => {
-          const selectedType =
-            items.find(x => x.id === selectedId)?.vehicle_type || placeholder;
-          setSelectedVehicleType(selectedType);
-          onChangeText(selectedId);
-        }}
-        value={id}
-        visible={visible}
-        items={items || []} // Provide a default empty array
-      />
-    </>
-  );
-};
+
 export const PrimaryPhoneInput = (props: props) => {
   const phoneRef = useRef<PhoneInput>(null);
   const {
@@ -473,6 +492,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: mvs(10),
     backgroundColor: colors.white,
   },
+  areaContainer: {
+    borderBottomWidth: mvs(0.7),
+    borderColor: colors.bluecolor,
+    height: mvs(90),
+    // paddingTop: mvs(7),
+    borderWidth: mvs(1),
+    borderRadius: mvs(20),
+    // borderRadius: mvs(10),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: mvs(10),
+    backgroundColor: colors.white,
+  },
   commentContainer: {
     alignItems: 'flex-start',
     borderWidth: mvs(0.7),
@@ -496,17 +528,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: mvs(10),
     backgroundColor: colors.secondary,
   },
-  messageContainer: {
-    alignItems: 'flex-start',
-    paddingVertical: mvs(7),
-    borderRadius: mvs(10),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: mvs(10),
-    backgroundColor: '#F6F6F6',
-    marginTop: mvs(5),
-    flex: 1,
-  },
   phoneContainer: {
     width: '100%',
     borderWidth: 1,
@@ -525,6 +546,15 @@ const styles = StyleSheet.create({
     height: mvs(40),
     // width: mvs(275),
     padding: mvs(0),
+  },
+  areatextInput: {
+    color: colors.black,
+    textAlignVertical: 'top',
+    fontSize: mvs(12),
+    flex: 1,
+    height: '100%',
+    // width: mvs(275),
+    paddingVertical: mvs(5),
   },
   textInputStyle: {
     color: colors.primary,
@@ -587,5 +617,16 @@ const styles = StyleSheet.create({
     fontSize: mvs(10),
     marginBottom: mvs(10),
     marginHorizontal: mvs(5),
+  },
+  messageContainer: {
+    alignItems: 'flex-start',
+    paddingVertical: mvs(7),
+    borderRadius: mvs(10),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: mvs(10),
+    backgroundColor: '#F6F6F6',
+    marginTop: mvs(5),
+    flex: 1,
   },
 });

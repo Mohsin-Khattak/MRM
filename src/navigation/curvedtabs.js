@@ -1,17 +1,12 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as SVGS from 'assets/icons/tab-icons';
-import {colors} from 'config/colors';
-import {mvs} from 'config/metrices';
-import {useAppSelector} from 'hooks/use-store';
-import {Text, TouchableOpacity, View} from 'react-native';
-import CartScreen from 'screens/cart';
-import AboutUsScreen from 'screens/categories';
-import HistoryScreen from 'screens/history';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { useAppSelector } from 'hooks/use-store';
+import { TouchableOpacity, View } from 'react-native';
 import HomeTab from 'screens/home-tab';
-import ManageVehicleScreen from 'screens/manage-vehicles';
 import MessageHomeScreen from 'screens/messageHome';
-import MyOrderScreen from 'screens/my-order';
-import ShoppingScreen from 'screens/shopping';
+import TotalOrderScreen from 'screens/total-order-request';
 import UserTab from 'screens/user-tab';
 
 function MyTabBar({state, descriptors, navigation}) {
@@ -106,16 +101,11 @@ export const TabBar = () => {
       initialRouteName="Home"
       screenOptions={{headerShown: false}}
       tabBar={props => <MyTabBar {...props} />}>
-      {/* <Tab.Screen name="Search" component={WalletScreen} /> */}
-      {/* <Tab.Screen name="Discovery" component={DiscoveryTab} options={{}} /> */}
       <Tab.Screen name="Home" component={HomeTab} />
-      <Tab.Screen name="Shoppingbag" component={MyOrderScreen} />
-
+      <Tab.Screen name="Shoppingbag" component={TotalOrderScreen} />
       <Tab.Screen name="Message" component={MessageHomeScreen} />
-      <Tab.Screen name="Vehicle" component={ManageVehicleScreen} />
       <Tab.Screen name="Me" component={UserTab} />
-      {/* <Tab.Screen name="Me" component={UserTab} /> */}
-      {/* <Tab.Screen name="Me" component={Me} /> */}
+      
     </Tab.Navigator>
   );
 };

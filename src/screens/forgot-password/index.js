@@ -1,46 +1,28 @@
-import messaging from '@react-native-firebase/messaging';
+import {
+  ForgotPasswordAnimation
+} from 'assets/icons';
 import * as IMG from 'assets/images';
-import {auth_bg} from 'assets/images';
-import {PrimaryButton} from 'components/atoms/buttons';
-import OtpModal from 'components/molecules/modals/otp-modal';
-import {height, mvs, width} from 'config/metrices';
-import {Formik, useFormik} from 'formik';
-import {useAppDispatch} from 'hooks/use-store';
-import {navigate, resetStack} from 'navigation/navigation-ref';
+import { PrimaryButton } from 'components/atoms/buttons';
+import Header1x2x from 'components/atoms/headers/header-1x-2x';
+import PrimaryInput from 'components/atoms/inputs';
+import { KeyboardAvoidScrollview } from 'components/atoms/keyboard-avoid-scrollview/index';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { Formik } from 'formik';
+import { useAppDispatch } from 'hooks/use-store';
+import LottieView from 'lottie-react-native';
+import { navigate } from 'navigation/navigation-ref';
 import React from 'react';
 import {
-  ImageBackground,
-  TouchableOpacity,
-  View,
+  Alert,
   Image,
-  StyleSheet,
-  ScrollView,
+  View
 } from 'react-native';
-import LottieView from 'lottie-react-native';
-import PrimaryInput from 'components/atoms/inputs';
-import {KeyboardAvoidScrollview} from 'components/atoms/keyboard-avoid-scrollview/index';
+import { onForgot } from 'services/api/auth-api-actions';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
-import Medium from 'typography/medium-text';
-import {
-  forgotPasswordValidation,
-  signinFormValidation,
-  updatePasswordValidation,
-} from 'validations';
+import { forgotPasswordValidation } from 'validations';
 import styles from './styles';
-import {colors} from 'config/colors';
-import {Row} from 'components/atoms/row';
-import {
-  Clock,
-  FacBookIcon,
-  ForgotPasswordAnimation,
-  GoogleIcon,
-  LoginAnimation,
-} from 'assets/icons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import {onForgot} from 'services/api/auth-api-actions';
 const ForgotPasswordScreen = props => {
   const dispatch = useAppDispatch();
   const {t} = i18n;
@@ -49,15 +31,6 @@ const ForgotPasswordScreen = props => {
   const initialValues = {
     email: '',
   };
-  const [loading, setLoading] = React.useState(false);
-  // const {values, errors, touched, setFieldValue, setFieldTouched, isValid} =
-  //   useFormik({
-  //     initialValues: initialValues,
-  //     validateOnBlur: true,
-  //     validateOnChange: true,
-  //     validationSchema: signinFormValidation,
-  //     onSubmit: () => {},
-  //   });
   const handleFormSubmit = async values => {
     try {
       setLoading(true);
@@ -67,28 +40,35 @@ const ForgotPasswordScreen = props => {
       navigate('ResetPasswordScreen', {
         ...values,
       });
-      setOtpModalVisible(true);
+      // setOtpModalVisible(true);
     } catch (error) {
+      Alert.alert('error', UTILS.returnError(error));
       console.log('error=>', error);
       setLoading(false);
     }
   };
+  const [loading, setLoading] = React.useState(false);
+
   return (
     <View style={styles.container}>
-      <Image source={IMG.LogoBackground} style={styles.logobackground} />
-      <Header1x2x />
-      <View style={{alignSelf: 'center'}}>
+      <Image
+        resizeMode="cover"
+        source={IMG.signupheader}
+        style={styles.logobackground}
+      />
+      <Header1x2x style={{backgroundColor: colors.transparent}} />
+      <View style={styles.loginlogoview}>
         <Image
-          source={IMG.LoginLogo}
-          resizeMode={'contain'}
-          style={{width: mvs(300), height: mvs(100)}}
+          source={IMG.forgotpasswordimg}
+          resizeMode="cover"
+          style={{width: mvs(280), height: mvs(160)}}
         />
       </View>
 
       <View style={styles.contentContainerStyle}>
-        <KeyboardAvoidScrollview
-          contentContainerStyle={styles.keyboradscrollcontent}>
-          <View style={styles.contentContainerStyleNew}>
+        <View style={styles.contentContainerStyleNew}>
+          <KeyboardAvoidScrollview
+            contentContainerStyle={styles.keyboardcontentcontainer}>
             <Formik
               initialValues={initialValues}
               validationSchema={forgotPasswordValidation}
@@ -128,13 +108,6 @@ const ForgotPasswordScreen = props => {
                     value={values.email}
                   />
 
-                  {/* <PrimaryButton
-              containerStyle={{
-                borderRadius: mvs(10),
-              }}
-              loading={loading}
-              title={t('send')}
-            /> */}
                   <PrimaryButton
                     containerStyle={{
                       borderRadius: mvs(10),
@@ -151,8 +124,8 @@ const ForgotPasswordScreen = props => {
                 </>
               )}
             </Formik>
-          </View>
-        </KeyboardAvoidScrollview>
+          </KeyboardAvoidScrollview>
+        </View>
       </View>
     </View>
   );

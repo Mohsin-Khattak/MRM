@@ -13,6 +13,7 @@ import {OtpInput} from 'components/atoms/otp-input';
 import LottieView from 'lottie-react-native';
 import {onVerifyOtp} from 'services/api/auth-api-actions';
 import {useAppDispatch} from 'hooks/use-store';
+import {UTILS} from 'utils';
 const SignUpModal = ({
   disabled,
   // loading,
@@ -35,6 +36,7 @@ const SignUpModal = ({
         (onClose = () => {
           setShowOtpModal(true);
         }),
+
         // setLoading,
       );
       Alert.alert('Your Account has been created Successfully');

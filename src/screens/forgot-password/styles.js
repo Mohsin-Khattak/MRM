@@ -1,6 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
 import {colors} from 'config/colors';
-import {mvs, width} from 'config/metrices';
+import {height, mvs, width} from 'config/metrices';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,9 +8,13 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.white,
   },
   contentContainerStyle: {
-    // flexGrow: 1,
-    // paddingTop: '50%',
-    paddingHorizontal: mvs(20),
+    // flex: 1,
+    paddingTop: mvs(20),
+    // height: height - 400,
+    flex: 1,
+    // borderWidth: 1,
+    // paddingBottom: mvs(200),
+    // paddingHorizontal: mvs(20),
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20)},
   button: {
@@ -21,10 +25,10 @@ const styles = StyleSheet.create({
     paddingBottom: mvs(Platform?.OS === 'android' ? 20 : 40),
   },
   contentContainerStyleNew: {
-    flexGrow: 1,
     paddingHorizontal: mvs(20),
     marginVertical: mvs(10),
     paddingVertical: mvs(20),
+    marginHorizontal: mvs(20),
     backgroundColor: colors.white,
     justifyContent: 'center',
     shadowColor: '#000',
@@ -57,14 +61,14 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   logobackground: {
-    height: mvs(400),
+    height: mvs(110),
+
     width: width,
     position: 'absolute',
   },
-  keyboradscrollcontent: {
+  keyboardcontentcontainer: {
     paddingHorizontal: mvs(0),
-    flexGrow: 0,
-    paddingBottom: mvs(150),
+    paddingBottom: mvs(20),
   },
   lottiview: {
     justifyContent: 'center',
@@ -73,6 +77,10 @@ const styles = StyleSheet.create({
   forgottext: {
     marginTop: mvs(10),
     marginBottom: mvs(20),
+  },
+  loginlogoview: {
+    alignSelf: 'center',
+    marginTop: '15%',
   },
 });
 export default styles;

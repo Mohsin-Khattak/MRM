@@ -25,7 +25,6 @@ export const pickDocument = async () => {
       copyTo: 'cachesDirectory',
       type: [DocumentPicker.types.allFiles],
     });
-    console.log('Selected File:', result);
     return result;
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {
@@ -41,9 +40,7 @@ const getErrorList = (data: any) => {
   const {message, errors} = data;
   let concatenatedMessages: any = null;
   console.log('errors=>>::', errors);
-  if (typeof errors === 'string') {
-    return errors;
-  }
+
   if (typeof errors === 'object' && Object.keys(errors)?.length) {
     concatenatedMessages = errors
       ? Object.values(message)?.flat()?.join(', ')
@@ -108,13 +105,31 @@ export const UTILS = {
   },
   dialPhone: async (phoneNumber: string) => {
     try {
-      const isSupported = await Linking.canOpenURL(`tel:${phoneNumber}`);
-      console.log('isSupported=>', isSupported);
-      if (isSupported) Linking.openURL(`tel:${phoneNumber}`);
+      // Verify that the phoneNumber is not empty
+      if (!phoneNumber) {
+        console.log('Phone number is empty.');
+        return;
+      }
+      // Define the URL format for both iOS and Android
+      let phoneUrl;
+      if (Platform.OS === 'android') {
+        phoneUrl = `tel:${phoneNumber}`;
+      } else {
+        phoneUrl = `telprompt:${phoneNumber}`;
+      }
+      Linking.openURL(phoneUrl)
+        .then(() => {
+          console.log('Phone dialer opened successfully.');
+        })
+        .catch(error => {
+          console.error('Error opening phone dialer:', error);
+        });
     } catch (error) {
       console.log('error =>', error);
     }
   },
+
+
   getItem: async (key: string) => {
     try {
       const res = await AsyncStorage.getItem(key);
@@ -436,6 +451,7 @@ export const UTILS = {
         // compressImageMaxWidth: 1500,
         // compressImageMaxHeight: 1000,
       });
+      
       const dotIndex = image?.path?.lastIndexOf('.');
       const extension = image?.path.substring(dotIndex + 1);
       return {

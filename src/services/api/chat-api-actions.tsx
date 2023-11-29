@@ -1,12 +1,17 @@
-import {Alert} from 'react-native';
-import {AppDispatch, RootState} from 'store';
-import {UTILS} from 'utils';
-import {getData, postData} from '.';
-import {URLS} from './api-urls';
-import {setConversations} from '../../store/reducers/chat-reducer';
+import { Alert } from 'react-native';
+import { AppDispatch, RootState } from 'store';
+import { UTILS } from 'utils';
+import { getData, postData } from '.';
+import { URLS } from './api-urls';
+import { setConversations } from '../../store/reducers/chat-reducer';
+
+
+
 
 // getConversationsList
-export const getConversationsList = (setLoading: (bool: boolean) => void) => {
+export const getConversationsList = (
+  setLoading: (bool: boolean) => void,
+) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     try {
       const res = await getData(`${URLS.chat.get_conservation}`);
@@ -20,14 +25,14 @@ export const getConversationsList = (setLoading: (bool: boolean) => void) => {
     }
   };
 };
-export const getChatMessages = (id: any) =>
-  getData(`${URLS.chat.get_message}${id}`);
 // export const getChatMessages = (id: any) => getData(`${URLS.chat.get_chat_messages}${id}`)
-// export const onSendMessage = (data: any) => postData(`${URLS.chat.send_message}`, data)
-export const onCreateConveration = (data: any) =>
-  postData(`${URLS.chat.create_conservation}`, data);
 
-export const onSendMessage = (data: any) =>
-  postData(`${URLS.chat.send_message}`, data);
-export const getNewMessage = (id: any, lastMesId: any) =>
-  getData(`${URLS.chat.get_latest_message}${id}/${lastMesId}`);
+export const getChatMessages = (id: any, pageNumber: any,) => {
+  let url = `${URLS.chat.get_chat_messages}${id}?page=${pageNumber}`;
+  return getData(url);
+};
+
+// {{conversation_id}}/{{last_message_id}}
+export const getNewMessage = (id: any, lastMesId: any) => getData(`${URLS.chat.get_latest_message}${id}/${lastMesId}`)
+export const onSendMessage = (data: any) => postData(`${URLS.chat.send_message}`, data)
+export const onCreateConveration = (data: any) => postData(`${URLS.chat.create_conservation}`, data)

@@ -1,37 +1,25 @@
 import messaging from '@react-native-firebase/messaging';
 import * as IMG from 'assets/images';
-import {auth_bg} from 'assets/images';
 import {PrimaryButton} from 'components/atoms/buttons';
-import OtpModal from 'components/molecules/modals/otp-modal';
-import {height, mvs, width} from 'config/metrices';
-import {Formik, useFormik} from 'formik';
-import {useAppDispatch} from 'hooks/use-store';
-import {navigate, resetStack} from 'navigation/navigation-ref';
-import React from 'react';
-import {
-  ImageBackground,
-  TouchableOpacity,
-  View,
-  Image,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
-import LottieView from 'lottie-react-native';
 import PrimaryInput from 'components/atoms/inputs';
 import {KeyboardAvoidScrollview} from 'components/atoms/keyboard-avoid-scrollview/index';
+import OtpModal from 'components/molecules/modals/otp-modal';
+import {colors} from 'config/colors';
+import {mvs} from 'config/metrices';
+import {Formik} from 'formik';
+import {useAppDispatch} from 'hooks/use-store';
+import {navigate} from 'navigation/navigation-ref';
+import React from 'react';
+import {Image, TouchableOpacity, View} from 'react-native';
+import {onLogin} from 'services/api/auth-api-actions';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
-import {signinFormValidation, signupDetailsFormValidation} from 'validations';
-import styles from './styles';
-import {colors} from 'config/colors';
-import {Row} from 'components/atoms/row';
-import {Clock, FacBookIcon, GoogleIcon, LoginAnimation} from 'assets/icons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {onLogin} from 'services/api/auth-api-actions';
+import {signinFormValidation} from 'validations';
 import {requestNotifications} from 'react-native-permissions';
+import styles from './styles';
 const LoginScreen = props => {
+  const isBack = props?.route?.params?.isBack ?? {isBack: false};
   const dispatch = useAppDispatch();
   const {t} = i18n;
   const [otpModalVisible, setOtpModalVisible] = React.useState(false);
@@ -39,31 +27,10 @@ const LoginScreen = props => {
   const initialValues = {
     email: '',
     password: '',
-    // fcm_token: '123456',
-    type: 'Driver',
+    fcm_token: '123456',
+    type: 'User',
   };
   const [loading, setLoading] = React.useState(false);
-  // const {values, errors, touched, setFieldValue, setFieldTouched, isValid} =
-  //   useFormik({
-  //     initialValues: initialValues,
-  //     validateOnBlur: true,
-  //     validateOnChange: true,
-  //     validationSchema: signinFormValidation,
-  //     onSubmit: () => {},
-  //   });
-
-  React.useEffect(() => {
-    async function requestPermission() {
-      const result = await requestNotifications(['alert', 'sound', 'badge']);
-      if (result.status === 'granted') {
-        // Notifications allowed
-      } else {
-        // Notifications not allowed
-      }
-    }
-
-    requestPermission();
-  }, []);
   async function checkApplicationPermission() {
     const authorizationStatus = await messaging().requestPermission();
 
@@ -80,51 +47,57 @@ const LoginScreen = props => {
       return false;
     }
   }
+  React.useEffect(() => {
+    async function requestPermission() {
+      const result = await requestNotifications(['alert', 'sound', 'badge']);
+      if (result.status === 'granted') {
+        // Notifications allowed
+      } else {
+        // Notifications not allowed
+      }
+    }
 
+    requestPermission();
+  }, []);
   const handleFormSubmit = async values => {
     try {
+      // setLoading(true)
       await checkApplicationPermission();
-      let fcmToken = '123456';
+      let fcmToken = '12345';
       try {
-        setLoading(true);
         fcmToken = await messaging().getToken();
       } catch (error) {
         console.log('fcm token error', error);
       }
       dispatch(
-        onLogin(
-          {...values, fcm_token: fcmToken, online_status: '0'},
-          setLoading,
-        ),
+        dispatch(onLogin({...values, fcm_token: fcmToken}, setLoading, isBack)),
       );
     } catch (error) {
       console.log('error=>', error);
-      setLoading(false);
+    }finally{
+      // setLoading(false);
     }
   };
-
   return (
     <View style={styles.container}>
-      <Image source={IMG.LogoBackground} style={styles.imagebackground} />
+      <Image
+        resizeMode="cover"
+        source={IMG.signupheader}
+        style={styles.imagebackground}
+      />
       <View style={styles.loginlogoview}>
         <Image
-          source={IMG.LoginLogo}
-          resizeMode={'contain'}
-          style={{width: mvs(300), height: mvs(100)}}
+          source={IMG.loginimg}
+          resizeMode="cover"
+          style={{width: mvs(200), height: mvs(160)}}
         />
       </View>
 
       <View style={styles.contentContainerStyle}>
-        <KeyboardAvoidScrollview
-          contentContainerStyle={styles.keyboradscrollcontent}>
-          <View style={styles.contentContainerStyleNew}>
+        <View style={styles.contentContainerStyleNew}>
+          <KeyboardAvoidScrollview
+            contentContainerStyle={styles.keyboradscrollcontent}>
             <View style={styles.lottieview}>
-              {/* <LottieView
-                source={LoginAnimation}
-                autoPlay={true}
-                loop={true}
-                style={{width: mvs(100), height: mvs(100)}}
-              /> */}
               <Medium
                 label={t('login')}
                 fontSize={mvs(16)}
@@ -185,8 +158,7 @@ const LoginScreen = props => {
                       borderRadius: mvs(10),
                     }}
                     loading={loading}
-                    // onPress={handleSubmit}
-                    onPress={() => navigate('Drawer')}
+                    onPress={handleSubmit}
                     title={t('login')}
                   />
                   <View style={styles.createaccountview}>
@@ -195,38 +167,21 @@ const LoginScreen = props => {
 
                   <PrimaryButton
                     containerStyle={styles.signupbuttoncontainer}
-                    // loading={loading}
                     onPress={() => navigate('Signup')}
                     title={t('sign_up')}
                   />
                 </>
               )}
             </Formik>
-            {/* <View style={styles.createaccountview}>
-              <Medium label={t('login_with')} />
-            </View> */}
-            {/* <Row style={{marginTop: mvs(10)}}>
-              <TouchableOpacity style={styles.googlebutton}>
-                <Row style={styles.googlefacebookview}>
-                  <GoogleIcon height={mvs(20)} width={mvs(20)} />
-                  <Medium label={t('google')} style={{marginLeft: mvs(10)}} />
-                </Row>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.googlebutton}>
-                <Row style={styles.googlefacebookview}>
-                  <FacBookIcon height={mvs(20)} width={mvs(20)} />
-                  <Medium label={t('facebook')} style={{marginLeft: mvs(10)}} />
-                </Row>
-              </TouchableOpacity>
-            </Row> */}
+
             <OtpModal
               onClose={() => setOtpModalVisible(false)}
               visible={otpModalVisible}
               setValue={setValue}
               value={value}
             />
-          </View>
-        </KeyboardAvoidScrollview>
+          </KeyboardAvoidScrollview>
+        </View>
       </View>
     </View>
   );

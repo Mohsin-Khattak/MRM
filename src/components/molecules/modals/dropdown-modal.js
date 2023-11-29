@@ -45,13 +45,7 @@ const DropdownModal = ({
                 onPress={() => onChangeText(item?.id, onClose())}
                 style={styles.button}>
                 <Medium
-                  label={
-                    item?.title ||
-                    item?.name ||
-                    item?.type ||
-                    item?.id ||
-                    item?.vehicle_type
-                  }
+                  label={item?.title || item?.name || item?.type || item?.id}
                   style={{fontSize: mvs(16)}}
                 />
                 <Icon

@@ -1,6 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
 import {colors} from 'config/colors';
-import {mvs, width} from 'config/metrices';
+import {height, mvs, width} from 'config/metrices';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,9 +8,11 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.white,
   },
   contentContainerStyle: {
-    // flexGrow: 1,
-    paddingTop: '15%',
-    paddingHorizontal: mvs(20),
+    flex: 1,
+    paddingTop: mvs(10),
+    // paddingHorizontal: mvs(20),
+    // borderWidth: 1,
+    // backgroundColor: 'red',
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20)},
   button: {
@@ -22,10 +24,13 @@ const styles = StyleSheet.create({
   },
   contentContainerStyleNew: {
     flexGrow: 1,
+    // borderWidth: 1,
     paddingHorizontal: mvs(20),
+    marginHorizontal: mvs(20),
     marginVertical: mvs(10),
     paddingVertical: mvs(20),
     backgroundColor: colors.white,
+    bottom:mvs(30),
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -57,13 +62,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   imagebackground: {
-    height: mvs(400),
+    height: mvs(110),
+
     width: width,
     position: 'absolute',
+
+    //  width: '100%',
+    // position: 'absolute',
   },
   loginlogoview: {
     alignSelf: 'center',
-    marginTop: mvs(20),
+    marginTop: '25%',
+    // borderWidth: 1,
   },
   lottieview: {
     justifyContent: 'center',

@@ -7,10 +7,10 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import {colors} from 'config/colors';
-import {mvs} from 'config/metrices';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
 import Regular from '../../../typography/regular-text';
-import {Loader} from '../loader';
+import { Loader } from '../loader';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 type props = {
   onPress: () => void;
@@ -22,7 +22,7 @@ type props = {
   containerStyle?: StyleProp<ViewStyle>;
 };
 export const PlusButton = (props: props) => {
-  const {onPress, title, containerStyle} = props;
+  const { onPress, title, containerStyle } = props;
   return (
     <TouchableOpacity
       style={[styles.plusContainer, containerStyle]}
@@ -32,13 +32,13 @@ export const PlusButton = (props: props) => {
   );
 };
 export const PrimaryButton = (props: props) => {
-  const {onPress, title, disabled, loading, textStyle, containerStyle} = props;
+  const { onPress, title, disabled, loading, textStyle, containerStyle } = props;
   return (
     <TouchableOpacity
       disabled={disabled || loading}
       style={[
         styles.primaryContainer,
-        {backgroundColor: `${colors.primary}${disabled ? '50' : ''}`},
+        { backgroundColor: `${colors.primary}${disabled ? '50' : ''}` },
         containerStyle,
       ]}
       onPress={onPress}>
@@ -57,32 +57,33 @@ export const IconButton = (props: props) => {
     disabled,
     loading,
     textStyle,
-    icon = 'user',
+    Icon,
     containerStyle,
   } = props;
   return (
-    <TouchableOpacity
-      disabled={disabled || loading}
-      style={[
-        styles.iconContainer,
-        {backgroundColor: `${colors.primary}${disabled ? '50' : ''}`},
-        containerStyle,
-      ]}
-      onPress={onPress}>
-      <Icon
-        color={colors.white}
-        name={icon}
-        size={30}
-        style={{marginHorizontal: mvs(10)}}
-      />
-      {loading ? (
+    <TouchableOpacity disabled={disabled || loading} style={[styles.iconContainer, { backgroundColor: `${colors.primary}${disabled ? '50' : ''}`, }, containerStyle]} onPress={onPress}>
+
+
+      {Icon}
+      {loading ?
+
+
         <Loader color={colors.white} />
-      ) : (
-        <Regular style={[styles.iconText, textStyle]} label={title} />
-      )}
+        :
+        // <View style={{ flex: 1 }}>
+
+        <Regular numberOfLines={1} style={[styles.iconText, textStyle]} label={title} />
+
+
+
+        // </View>
+      }
+
+
     </TouchableOpacity>
-  );
+  )
 };
+
 
 const styles = StyleSheet.create({
   plusContainer: {

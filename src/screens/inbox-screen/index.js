@@ -1,77 +1,59 @@
-import React from 'react';
-import {
-  Alert,
-  I18nManager,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import CustomFlatList from 'components/atoms/custom-flatlist';
-
-import i18n from 'translation';
-import styles from './styles';
 import * as IMG from 'assets/images';
-import {Row} from 'components/atoms/row';
+import CustomFlatList from 'components/atoms/custom-flatlist';
+import { MessageInput } from 'components/atoms/inputs';
+import { Loader } from 'components/atoms/loader';
+import { Row } from 'components/atoms/row';
+import InboxChatCard from 'components/molecules/inbox-chat-card';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { useAppDispatch, useAppSelector } from 'hooks/use-store';
+import { goBack } from 'navigation/navigation-ref';
+import React from 'react';
+import { Alert, I18nManager, Image, TouchableOpacity, View } from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {colors} from 'config/colors';
-import {ford, forklift} from 'assets/images';
+import { getChatMessages } from 'services/api/chat-api-actions';
+import i18n from 'translation';
 import Bold from 'typography/bold-text';
 import Regular from 'typography/regular-text';
-import {MessageInput} from 'components/atoms/inputs';
-import Feather from 'react-native-vector-icons/Feather';
-
-import {mvs} from 'config/metrices';
-import {useAppDispatch, useAppSelector} from 'hooks/use-store';
-import {goBack} from 'navigation/navigation-ref';
-import Medium from 'typography/medium-text';
-import InboxChatCard from 'components/molecules/inbox-chat-card';
-import {getChatMessages, onSendMessage} from 'services/api/chat-api-actions';
-import {UTILS} from 'utils';
-import {Loader} from 'components/atoms/loader';
+import { UTILS } from 'utils';
+import { onSendMessage } from './../../services/api/chat-api-actions';
+import styles from './styles';
 const InboxScreen = props => {
-  const {info, id, title, email, image} = props?.route?.params || {};
-  // const {id} = props?.route?.params || {};
-  console.log('info', id, info, title, email, image);
-  const dispatch = useAppDispatch();
+  const {info, conversation_id, receiver_name, receiver_email, receiver_image} =
+    props?.route?.params || {};
   const user = useAppSelector(s => s?.user);
   const userInfo = user?.userInfo;
+  const dispatch = useAppDispatch();
   const {t} = i18n;
+
   const [messages, setMessages] = React.useState([]);
+
+  // const lastMesId = Math.max(...messages.map(item => item.id), 0);
+
   const [message, setMessage] = React.useState('');
   const [loading, setLoading] = React.useState(true);
-  // const featuredCategories = [
-  //   {
-  //     id: 1,
-  //   },
-  //   {
-  //     id: 2,
-  //     me: true,
-  //   },
-  //   {
-  //     id: 3,
-  //   },
-  //   {
-  //     id: 3,
-  //     me: true,
-  //   },
-  //   {
-  //     id: 3,
-  //     me: false,
-  //   },
-  //   {
-  //     id: 3,
-  //     me: true,
-  //   },
-  //   {
-  //     id: 3,
-  //     me: false,
-  //   },
-  // ];
+  const [pageLoading, setPageLoading] = React.useState(false);
+  const [pageNumber, setPageNumber] = React.useState(1);
   const getMessages = async () => {
     try {
-      const res = await getChatMessages(info?.id || id);
-      setMessages(res?.data || []);
+      const result = await getChatMessages(
+        info?.id || conversation_id,
+        pageNumber,
+      );
+      const res = result?.data;
+      // console.log('res cehck-==', res);
+      // setMessages(res?.data || []);
+      setMessages(preMessages =>
+        pageNumber > 1
+          ? {
+              ...res,
+              data: preMessages?.data
+                ? [...preMessages?.data, ...res?.data]
+                : [...res?.data],
+            }
+          : res,
+      );
       setLoading(false);
     } catch (error) {
       console.log('error', error);
@@ -80,21 +62,36 @@ const InboxScreen = props => {
       setLoading(false);
     }
   };
+  const handleLoadMore = () => {
+    const lastPage = Math.ceil(
+      (messages?.meta?.total || 0) / messages?.meta?.per_page,
+    );
+    if (!pageLoading && pageNumber < lastPage) {
+      setPageNumber(prevPageNumber => prevPageNumber + 1);
+    }
+  };
+  // React.useEffect(() => {
+  //   if (pageNumber > 0 && !pageLoading) {
+  //     getMessages(setPageLoading);
+  //   }
+  // }, [pageNumber]);
   React.useEffect(() => {
     //Implementing the setInterval method
     const interval = setInterval(() => {
-      getMessages();
+      if (pageNumber > 0 && !pageLoading) {
+        getMessages(setPageLoading);
+      }
     }, 15000);
 
     //Clearing the interval
     return () => clearInterval(interval);
-  }, []);
+  }, [pageNumber]);
 
   const sendMessage = async () => {
     try {
       if (!message?.trim()) return;
       await onSendMessage({
-        conversation_id: info?.id || id,
+        conversation_id: info?.id || conversation_id,
         message: message,
       });
       await getMessages();
@@ -107,7 +104,8 @@ const InboxScreen = props => {
       setLoading(false);
     }
   };
-  const featuredProduct = ({item}) => (
+
+  const renderItem = ({item}) => (
     <InboxChatCard item={{...item, me: userInfo?.id === item?.user_id}} />
   );
   return (
@@ -132,19 +130,19 @@ const InboxScreen = props => {
             <Image
               borderRadius={mvs(10)}
               source={
-                info?.receiver_image
-                  ? {uri: info.receiver_image}
-                  : image
-                  ? {uri: image}
-                  : IMG.Drawerman
+                info?.receiver_image || receiver_image
+                  ? {uri: info?.receiver_image || receiver_image}
+                  : IMG.messagelogo
               }
-              // source={IMG.messagelogo}
               style={styles.backGroundImage}
             />
           </View>
           <View style={{paddingHorizontal: mvs(10), flex: 1}}>
-            <Bold label={info?.receiver_name || title} />
-            <Regular numberOfLines={1} label={info?.receiver_email || email} />
+            <Bold label={info?.receiver_name || receiver_name} />
+            <Regular
+              numberOfLines={1}
+              label={info?.receiver_email || receiver_email}
+            />
           </View>
         </Row>
       </View>
@@ -152,10 +150,13 @@ const InboxScreen = props => {
         <Loader />
       ) : (
         <CustomFlatList
+          ListFooterComponent={pageLoading && <Loader />}
+          onEndReached={handleLoadMore} // Load more when reaching the end of the list
+          onEndReachedThreshold={0.5} // Load more when the user reaches the last 50% of the list
           inverted
           showsVerticalScrollIndicator={false}
           data={messages || []}
-          renderItem={featuredProduct}
+          renderItem={renderItem}
           contentContainerStyle={{
             paddingBottom: mvs(20),
             paddingHorizontal: mvs(20),
@@ -170,7 +171,7 @@ const InboxScreen = props => {
           paddingBottom: mvs(20),
         }}>
         <MessageInput value={message} onChangeText={setMessage} />
-        <TouchableOpacity style={styles.sendIcon} onPress={sendMessage}>
+        <TouchableOpacity onPress={sendMessage} style={styles.sendIcon}>
           <Feather name={'send'} size={25} color={colors.white} />
         </TouchableOpacity>
       </Row>

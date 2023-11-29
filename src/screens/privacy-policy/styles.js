@@ -1,6 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
 import {colors} from 'config/colors';
-import {height, mvs} from 'config/metrices';
+import {height, mvs, width} from 'config/metrices';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
     // paddingTop: '50%',
     height: height - 220,
     paddingHorizontal: mvs(20),
+    // marginTop: mvs(30),
+    marginVertical: mvs(50),
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20)},
   button: {
@@ -57,6 +59,12 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+  },
+  logobackground: {
+    height: mvs(110),
+
+    width: width,
+    position: 'absolute',
   },
 });
 export default styles;

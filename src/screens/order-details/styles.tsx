@@ -1,17 +1,21 @@
 import {StyleSheet} from 'react-native';
-import {mvs} from 'config/metrices';
+import {mvs, width} from 'config/metrices';
 import {colors} from 'config/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
   },
   contentContainerStyle: {
     // flexGrow: 1,
     // paddingVertical: mvs(30),
     paddingHorizontal: mvs(20),
     paddingBottom: mvs(30),
+    flex: 1,
+    backgroundColor: colors.primary,
+    borderTopRightRadius: mvs(10),
+    borderTopLeftRadius: mvs(10),
   },
   contentContainerStyleFlatlist: {
     // paddingVertical: mvs(5),
@@ -38,22 +42,37 @@ const styles = StyleSheet.create({
     paddingHorizontal: mvs(5),
   },
   acceptbutton: {
-    backgroundColor: colors.acceptcolor,
+    backgroundColor: colors.white,
     // marginTop: mvs(5),
     borderRadius: mvs(10),
-    width: '35%',
+    // width: '45%',
   },
   rejectbutton: {
-    // backgroundColor: colors.white,
-    // marginTop: mvs(20),
-    // borderRadius: mvs(10),
-    // width: '25%',
-  },
-  phonebutton: {
-    backgroundColor: colors.grey,
+    backgroundColor: colors.white,
     // marginTop: mvs(20),
     borderRadius: mvs(10),
-    width: '25%',
+    width: '45%',
+  },
+  logobackground: {
+    height: mvs(110),
+    width: width,
+    // position: 'absolute',
+  },
+  mapContainer: {
+    height: mvs(250),
+    padding: mvs(5),
+    marginHorizontal: mvs(20),
+    marginVertical: mvs(10),
+    borderWidth: mvs(1),
+    borderColor: colors.primary,
+    borderRadius: mvs(10),
+  },
+  anyinstructionContainer: {
+    padding: mvs(10),
+    backgroundColor: colors.gray,
+    width: '100%',
+    borderRadius: mvs(5),
+    marginTop: mvs(5),
   },
 });
 export default styles;

@@ -1,59 +1,25 @@
-import * as IMG from 'assets/images';
-import {PrimaryButton} from 'components/atoms/buttons';
+import {IconButton, PrimaryButton} from 'components/atoms/buttons';
 import {Row} from 'components/atoms/row';
+import moment from 'moment';
 import React from 'react';
-import {
-  Image,
-  ImageBackground,
-  Modal,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/AntDesign';
+import {StyleSheet, View} from 'react-native';
 import i18n from 'translation';
 import Medium from 'typography/medium-text';
-import Regular from 'typography/regular-text';
 import {colors} from '../../../config/colors';
 import {mvs} from '../../../config/metrices';
-import {SendIcon, SpecialistLocation} from 'assets/icons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {ColorSpace} from 'react-native-reanimated';
-import moment from 'moment';
-import {CheckmarkAnimation, CrossModal, OTPAnimation} from 'assets/icons';
+import {MessageTwo} from 'assets/icons';
+
 const MyOrderCard = ({
   item,
-  backgroundColor,
-  index,
   style,
-  acceptTitle,
-  rejectTitle,
-  onRefreshList,
   onPress = () => {},
-  onPressAccept = () => {},
-  onPressReject = () => {},
+  onMessagePress = () => {},
   onPressDetails = () => {},
-  onPressCart = () => {},
-  onPressChat = () => {},
-  disabledAccept,
-}) => {
-  // console.log(';iteem user id', item);
-  const {t} = i18n;
-  const [isAccepted, setIsAccepted] = React.useState(false);
-  // const [isRejectInputVisible, setIsRejectInputVisible] = React.useState(false);
-  // const [rejectReason, setRejectReason] = React.useState('');
-  const handleAccept = () => {
-    setIsAccepted(true);
-    onPressAccept(item?.id, 1);
-    // onRefreshList(); // Pass 1 to represent acceptance
-  };
+  onPressTracking = () => {},
 
-  const handleReject = () => {
-    onPressReject(item?.id, 0);
-    // onRefreshList(); // Pass 0 to represent rejection
-  };
+  chatLoading,
+}) => {
+  const {t} = i18n;
   return (
     <Row onPress={onPress} style={styles.contentContainerStyleNew}>
       <View style={{alignSelf: 'center', padding: mvs(10)}}>
@@ -63,7 +29,7 @@ const MyOrderCard = ({
           color={colors.white}
         />
         <Medium
-          label={`#${item?.id || 'N/A'} `}
+          label={`#${item?.id} `}
           fontSize={mvs(16)}
           color={colors.white}
         />
@@ -78,53 +44,29 @@ const MyOrderCard = ({
           style={{
             borderBottomWidth: mvs(1),
             borderBottomColor: colors.border,
-            marginHorizontal: mvs(10),
-            marginVertical: mvs(10),
+            paddingHorizontal: mvs(10),
+            paddingBottom: mvs(5),
+            alignItems: 'center',
+            flex: 1,
           }}>
-          <Medium
-            label={item?.service?.title}
-            // label={
-            //   item?.pickup_date
-            //     ? moment(item.pickup_date).format('DD-MM-YYYY')
-            //     : 'N/A'
-            // }
-            color={colors.bluecolor}
-            fontSize={mvs(14)}
-            style={{
-              width: mvs(130),
-              // marginLeft: mvs(10),
-              // paddingBottom: mvs(5),
-            }}
-            numberOfLines={2}
-          />
-          {['start', 'accepted', 'delivered'].includes(item?.status) && (
-            <TouchableOpacity onPress={onPressChat}>
-              <Row
-                style={{
-                  width: mvs(100),
-                  height: mvs(40),
-                  backgroundColor: colors.primary,
-                  borderColor: colors.lightGray,
-                  marginBottom: mvs(10),
-                  borderRadius: mvs(5),
-                  alignSelf: 'center',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <SendIcon
-                  // width={mvs(15)}
-                  // height={mvs(20)}
-                  style={{marginLeft: mvs(5)}}
-                />
-                <Regular
-                  label={t('chat_now')}
-                  fontSize={mvs(12)}
-                  color={colors.white}
-                  style={{marginRight: mvs(5)}}
-                />
-              </Row>
-            </TouchableOpacity>
-          )}
+          <View style={{flex: 1}}>
+            <Medium
+              label={item?.service?.title ? item?.service?.title : 'N/A'}
+              color={colors.bluecolor}
+              fontSize={mvs(12)}
+            />
+          </View>
+
+          {item?.driver_id ? (
+            <IconButton
+              loading={item.chatLoading}
+              onPress={onMessagePress}
+              containerStyle={styles.messageContainer}
+              textStyle={styles.messageTextStyle}
+              Icon={<MessageTwo />}
+              title={t('Chat Now')}
+            />
+          ) : null}
         </Row>
 
         <Row
@@ -140,7 +82,7 @@ const MyOrderCard = ({
             style={{width: mvs(110)}}
           />
           <Medium
-            label={`${item?.name || 'N/A'}`}
+            label={`${item?.name}`}
             fontSize={mvs(12)}
             color={colors.grey}
             style={{flex: 1}}
@@ -149,17 +91,16 @@ const MyOrderCard = ({
         <Row style={{paddingHorizontal: mvs(10), paddingVertical: mvs(8)}}>
           <Medium
             style={{width: mvs(110)}}
-            label={t('phone')}
+            label={t('delivery_time')}
             fontSize={mvs(12)}
             color={colors.black}
           />
           <Medium
-            label={item?.phone || 'N/A'}
-            // label={
-            //   item?.pickup_date
-            //     ? moment(item.pickup_date).format('DD-MM-YYYY')
-            //     : 'N/A'
-            // }
+            label={
+              item?.pickup_date
+                ? moment(item?.pickup_date).format('YYYY-MM-DD')
+                : 'N/A'
+            }
             numberOfLines={1}
             fontSize={mvs(12)}
             color={colors.grey}
@@ -174,7 +115,7 @@ const MyOrderCard = ({
             style={{width: mvs(110)}}
           />
           <Medium
-            label={`${item?.pickup_address || 'N/A'}`}
+            label={`${item?.pickup_address}`}
             fontSize={mvs(12)}
             color={colors.grey}
             style={{flex: 1}}
@@ -182,78 +123,88 @@ const MyOrderCard = ({
         </Row>
         <Row style={{paddingHorizontal: mvs(10), paddingVertical: mvs(8)}}>
           <Medium
-            label={t('price')}
+            label={t('Price')}
             fontSize={mvs(12)}
             color={colors.black}
             style={{width: mvs(110)}}
           />
           <Medium
-            label={`${item?.price || 'N/A'}`}
+            label={item?.price ? item?.price : 'N/A'}
             fontSize={mvs(12)}
             color={colors.grey}
             style={{flex: 1}}
           />
         </Row>
-
-        <Row style={{paddingHorizontal: mvs(10), paddingVertical: mvs(8)}}>
-          {/* {isAccepted ? ( */}
+        <Row
+          style={{
+            paddingHorizontal: mvs(10),
+            paddingVertical: mvs(8),
+            justifyContent: item?.driver?.id ? 'space-between' :'flex-end',
+          }}>
           {/* <PrimaryButton
-              title={t('accepted')}
-              containerStyle={{
-                width: mvs(80),
-                height: mvs(30),
-                backgroundColor: colors.acceptcolor,
-                borderColor: colors.lightGray,
-              }}
-              textStyle={{
-                color: colors.white,
-              }}
-              disabled // Disable the button
-            /> */}
-          {/* ) : (
-            <> */}
-          <PrimaryButton
-            title={acceptTitle}
-            // title={t('accept')}
+            title={t('accept')}
             containerStyle={{
-              width: mvs(90),
+              width: mvs(80),
               height: mvs(30),
               backgroundColor: colors.acceptcolor,
               borderColor: colors.lightGray,
             }}
             textStyle={{
               color: colors.white,
-              fontSize: mvs(12),
             }}
             onPress={onPressAccept}
-            disabled={disabledAccept}
-            // onPressAccept
-            // onPress={handleAccept}
           />
-          {item?.status === 'accepted' ||
-          item?.status === 'start' ||
-          item?.status === 'delivered' ? null : ( // Do not render the "Reject" button when status is "accepted"
-            <PrimaryButton
-              title={t('reject')}
-              containerStyle={{
-                width: mvs(80),
-                height: mvs(30),
-                backgroundColor: colors.primary,
-                ...colors.shadow,
-              }}
-              textStyle={{
-                color: colors.white,
-              }}
-              onPress={onPressReject}
-              // onPress={() => setIsRejectInputVisible(true)}
-            />
-          )}
-          {/* </> */}
-          {/* )} */}
+          <PrimaryButton
+            title={t('rejected')}
+            containerStyle={{
+              width: mvs(80),
+              height: mvs(30),
+              backgroundColor: colors.primary,
+
+              ...colors.shadow,
+            }}
+            textStyle={{
+              color: colors.white,
+            }}
+            onPress={onPressReject}
+          /> */}
+
+          {/* <PrimaryButton
+            title={t('Driver Review')}
+            containerStyle={{
+              height: mvs(30),
+              width: '45%',
+              backgroundColor: colors.white,
+              borderWidth: 1,
+              borderColor: colors.primary,
+              ...colors.shadow,
+            }}
+            textStyle={{
+              color: colors.primary,
+            }}
+            onPress={onPressDetails}
+          /> */}
+
+        {item?.driver?.id &&  <PrimaryButton
+            title={t('Tracking')}
+            containerStyle={{
+              width: '45%',
+              height: mvs(30),
+              backgroundColor: colors.white,
+              borderWidth: 1,
+              borderColor: colors.primary,
+              ...colors.shadow,
+            }}
+            textStyle={{
+              color: colors.primary,
+            }}
+            onPress={onPressTracking}
+          />
+          }
           <PrimaryButton
             title={t('details')}
             containerStyle={{
-              width: mvs(80),
+              width: '45%',
               height: mvs(30),
               backgroundColor: colors.white,
               borderWidth: 1,
@@ -267,38 +218,6 @@ const MyOrderCard = ({
           />
         </Row>
       </View>
-      {/* {isRejectInputVisible && (
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={isRejectInputVisible}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <TouchableOpacity
-                onPress={() => setIsRejectInputVisible(false)}
-                style={styles.cross}>
-                <CrossModal height={mvs(30)} width={mvs(30)} />
-              </TouchableOpacity>
-              <TextInput
-                style={styles.textInput}
-                placeholder="Enter rejection reason"
-                value={rejectReason}
-                onChangeText={text => setRejectReason(text)}
-                multiline={true} // Allow multiline input
-                numberOfLines={6} // Set the number of lines you want to display
-                textAlignVertical="top"
-              />
-              <PrimaryButton
-                title="Confirm Reject"
-                onPress={() => {
-                  onPressReject(item?.id, 0, rejectReason); // Pass the reason to onPressReject
-                  setIsRejectInputVisible(false); // Close the modal
-                }}
-              />
-            </View>
-          </View>
-        </Modal>
-      )} */}
     </Row>
   );
 };
@@ -365,32 +284,16 @@ const styles = StyleSheet.create({
     borderRadius: mvs(15),
     backgroundColor: colors.red,
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    width: '80%', // Adjust the width as needed
-    backgroundColor: 'white',
-    padding: mvs(20),
-    height: mvs(300),
-    borderRadius: mvs(10),
-  },
-  textInput: {
-    marginTop: mvs(30),
+  messageContainer: {
+    height: null,
+    marginLeft: mvs(10),
+    padding: mvs(8),
     borderWidth: mvs(1),
-    borderColor: colors.black,
-    padding: mvs(10),
-    marginBottom: mvs(10),
-    borderRadius: mvs(10),
-    height: mvs(130),
+    borderColor: colors.primary,
+    // width: '40%',
   },
-  cross: {
-    padding: mvs(14),
-    alignSelf: 'flex-end',
-    position: 'absolute',
-    top: mvs(-5),
+  messageTextStyle: {
+    fontSize: mvs(12),
+    lineHeight: mvs(16),
   },
 });

@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 type Props = {
   conversation_list: any[];
@@ -14,9 +14,11 @@ export const chatSlice = createSlice({
     setConversations: (state, action) => {
       state.conversation_list = action.payload;
     },
-  },
+  }
 });
 // Action creators are generated for each case reducer function
-export const {setConversations} = chatSlice.actions;
+export const {
+  setConversations,
+} = chatSlice.actions;
 
 export default chatSlice.reducer;

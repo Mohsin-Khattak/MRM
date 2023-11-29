@@ -1,19 +1,16 @@
-import {CheckmarkAnimation, CrossModal, OTPAnimation} from 'assets/icons';
-import {Loader} from 'components/atoms/loader';
-import {ModalWrapper} from 'components/atoms/modal-wrapper';
-import {colors} from 'config/colors';
-import {t} from 'i18next';
-import {navigate} from 'navigation/navigation-ref';
+import { CrossModal, OTPAnimation } from 'assets/icons';
+import { Loader } from 'components/atoms/loader';
+import { ModalWrapper } from 'components/atoms/modal-wrapper';
+import { OtpInput } from 'components/atoms/otp-input';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { useAppDispatch } from 'hooks/use-store';
+import { t } from 'i18next';
+import LottieView from 'lottie-react-native';
 import React from 'react';
-import {Alert, StyleSheet, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Medium from 'typography/medium-text';
-import {mvs} from 'config/metrices';
-import {OtpInput} from 'components/atoms/otp-input';
-import LottieView from 'lottie-react-native';
-import {onVerifyOtp} from 'services/api/auth-api-actions';
-import {useAppDispatch} from 'hooks/use-store';
-import {UTILS} from 'utils';
 const ForgotOtpModal = ({
   disabled,
   loading,

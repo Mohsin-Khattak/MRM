@@ -15,7 +15,19 @@ export {default as GoogleIcon} from './google.svg';
 export {default as FacBookIcon} from './facebook.svg';
 export {default as HoemSVG} from './homearrow.svg';
 export {default as FileSVG} from './file.svg';
-export {default as SendIcon} from './message.svg';
+export {default as RecentOrder} from './recent-order.svg';
+export {default as FurnitureSVG} from './furniture.svg';
+export {default as HomeremovalsSVG} from './home-removals.svg';
+export {default as CarSVG} from './car.svg';
+export {default as BikeSVG} from './bike.svg';
+export {default as PianoSVG} from './piano.svg';
+export {default as ParcelSVG} from './parcel.svg';
+export {default as SpecialistSVG} from './specialist.svg';
+export {default as VehilcepartsSVG} from './vehilce-parts.svg';
+export {default as OfficeremovalsSVG} from './office-removals.svg';
+export {default as MessageTwo} from './messagetwo.svg';
+export {default as StarFill} from './starFill.svg';
+export {default as StarEmpty} from './starEmpty.svg';
 
 // Lottie Files
 export {default as LoginAnimation} from './Login.json';

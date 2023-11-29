@@ -23,10 +23,9 @@ const styles = StyleSheet.create({
     marginLeft: mvs(20),
   },
   backGroundImage: {
-    width: mvs(55),
-    height: mvs(55),
-    resizeMode: 'cover',
-    // marginTop: mvs(10),
+    width: mvs(45),
+    height: mvs(30),
+    marginTop: mvs(10),
   },
   sendIcon: {
     width: mvs(50),
@@ -37,11 +36,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // backGroundImage: {
-  //   width: mvs(20),
-  //   height: mvs(18),
-  //   borderWidth: 1,
-  //   // marginTop: mvs(10),
-  // },
+  backGroundImage: {
+    width: mvs(55),
+    height: mvs(55),
+    borderWidth: 1,
+    // marginTop: mvs(10),
+  },
 });
 export default styles;

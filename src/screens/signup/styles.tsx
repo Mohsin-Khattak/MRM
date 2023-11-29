@@ -8,11 +8,13 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.white,
   },
   contentContainerStyle: {
+    flex: 1,
     // flexGrow: 1,
     // paddingTop: '50%',
     // borderWidth: 1,
     // paddingBottom: mvs(200),
     paddingHorizontal: mvs(20),
+    bottom:mvs(30)
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20)},
   button: {
@@ -60,14 +62,15 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   logobackground: {
-    height: mvs(400),
+    height: mvs(110),
+
     width: width,
     position: 'absolute',
   },
   keyboardcontentcontainer: {
     paddingHorizontal: mvs(0),
     flexGrow: 0,
-    paddingBottom: mvs(200),
+    paddingBottom: mvs(20),
   },
   boldtext: {
     marginTop: mvs(10),
@@ -84,6 +87,18 @@ const styles = StyleSheet.create({
 
     borderColor: colors.bluecolor,
     borderWidth: 1,
+  },
+  // imagebackground: {
+  //   // flex: 1,
+  //   //  width: '100%',
+  //   position: 'absolute',
+  //   width:mvs(382)
+  //   // height:mvs(180)
+  //   height:mvs(180)
+  // },
+  loginlogoview: {
+    alignSelf: 'center',
+    marginTop: '15%',
   },
 });
 export default styles;

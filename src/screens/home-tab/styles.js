@@ -38,20 +38,5 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  notificationbadge: {
-    backgroundColor: colors.bluecolor,
-    // borderWidth: 1,
-    borderColor: colors.white,
-    position: 'absolute',
-    alignSelf: 'flex-end',
-    top: mvs(-2),
-    right: mvs(12),
-    // padding: mvs(3),
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: mvs(17),
-    width: mvs(20),
-    borderRadius: mvs(10),
-  },
 });
 export default styles;

@@ -19,7 +19,7 @@ const GoogleSearchBar = ({
   placeholder = 'Enter an address',
   back,
   filter = false,
-  countrySlug = ['uk', 'pk'],
+  countrySlug = ['uk','pk'],
   ...props
 }: any) => {
   const autoCompleteRef = React.useRef<any>(null);
@@ -35,14 +35,14 @@ const GoogleSearchBar = ({
         query={
           countrySlug
             ? {
-                key: 'AIzaSyCHIlIvmsXf-sllfpXK0Q-1dV7uzgyFvfw',
+                key: 'AIzaSyCbFQqjZgQOWRMuQ_RpXU0kGAUIfJhDw98',
                 language: 'en',
                 components: countrySlug
-                  .map(country => `country:${country}`)
-                  .join('|'),
+                .map(country => `country:${country}`)
+                .join('|'),
               }
             : {
-                key: 'AIzaSyCHIlIvmsXf-sllfpXK0Q-1dV7uzgyFvfw',
+                key: 'AIzaSyCbFQqjZgQOWRMuQ_RpXU0kGAUIfJhDw98',
                 language: 'en',
               }
         }
@@ -125,13 +125,14 @@ export default GoogleSearchBar;
 const styles = StyleSheet.create({
   mainContainer: {
     // flex: 1,
-    width: width - mvs(20),
-    backgroundColor: colors.white,
+    width: width - mvs(40),
+    backgroundColor: colors.transparent,
     alignSelf: 'center',
     borderRadius: mvs(10),
     paddingHorizontal: mvs(20),
     flexDirection: 'row',
     minHeight: mvs(38),
+    marginBottom: mvs(20),
   },
   left: {
     // position: 'absolute',

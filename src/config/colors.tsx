@@ -16,6 +16,7 @@ export const colors = {
   // black: '#706561',
   red: '#ff0707',
   grey: '#707070',
+  attachmentgray: '#B4B4B4',
   gray: '#ECECEC',
   green: '#0DC183',
   transparent: 'transparent',

@@ -1,6 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
 import {colors} from 'config/colors';
-import {mvs, width} from 'config/metrices';
+import {height, mvs, width} from 'config/metrices';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,8 +9,11 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     // flexGrow: 1,
-    // paddingTop: '50%',
-    paddingHorizontal: mvs(20),
+    flex: 1,
+    paddingTop: mvs(10),
+    marginHorizontal: mvs(20),
+    // height: height - 300,
+    // paddingHorizontal: mvs(20),
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20), color: colors.bluecolor},
   txt2: {marginBottom: mvs(10), fontSize: mvs(20), color: colors.primary},
@@ -58,14 +61,14 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   logobackground: {
-    height: mvs(400),
+    height: mvs(110),
+
     width: width,
     position: 'absolute',
   },
   keyboardcontentcontainer: {
     paddingHorizontal: mvs(0),
-    flexGrow: 0,
-    paddingBottom: mvs(150),
+    paddingBottom: mvs(20),
   },
   lottiview: {
     justifyContent: 'center',
@@ -74,6 +77,10 @@ const styles = StyleSheet.create({
   resetpasswordtext: {
     marginTop: mvs(10),
     marginBottom: mvs(20),
+  },
+  loginlogoview: {
+    alignSelf: 'center',
+    marginTop: '15%',
   },
 });
 export default styles;

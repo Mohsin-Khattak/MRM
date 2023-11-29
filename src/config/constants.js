@@ -1,3 +1,14 @@
+import {
+  BikeSVG,
+  CarSVG,
+  FurnitureSVG,
+  HomeremovalsSVG,
+  OfficeremovalsSVG,
+  ParcelSVG,
+  PianoSVG,
+  SpecialistSVG,
+  VehilcepartsSVG,
+} from 'assets/icons';
 import * as IMG from 'assets/images';
 import moment from 'moment';
 import {navigate} from 'navigation/navigation-ref';
@@ -75,25 +86,147 @@ export const ONBOARDING_LIST = [
 ];
 export const SERVICE_LIST = [
   {
-    icon: IMG.HomeCartTool,
-    title: 'My Order',
-    screenName: 'MyOrderScreen',
+    icon: FurnitureSVG,
+    title: 'Furniture & Other Items',
+    desc: 'Table,Sofa,fridges',
+    screenName: 'WhereToMoveScreen',
   },
   {
-    icon: IMG.HomeVehicleTool,
-    title: 'Manage Vehicle',
-    screenName: 'ManageVehicleScreen',
+    icon: HomeremovalsSVG,
+    title: 'Home Removals',
+    desc: 'All Home removal items',
+    screenName: 'FurnitureItemsScreen',
   },
 
   {
-    icon: IMG.HomehistoryTool,
-    title: 'History',
-    screenName: 'HistoryScreen',
+    icon: CarSVG,
+    title: 'Cars & Vehicles',
+    desc: 'Ford Focus, Toyota,Corolla',
+    screenName: 'FurnitureItemsScreen',
   },
   {
-    icon: IMG.homeProfile,
-    title: 'Profile',
-    screenName: 'UserTab',
+    icon: BikeSVG,
+    title: 'Mototbikes',
+    desc: 'Cruiser,Sportsstar',
+    screenName: 'FurnitureItemsScreen',
+  },
+  {
+    icon: PianoSVG,
+    title: 'Pianos',
+    desc: 'Upright, Grands,Kryboard',
+    screenName: 'FurnitureItemsScreen',
+  },
+  {
+    icon: ParcelSVG,
+    title: 'Parcel & Packages',
+    desc: 'off all size and shape',
+    screenName: 'FurnitureItemsScreen',
+  },
+  {
+    icon: SpecialistSVG,
+    title: 'Specialits & Antiques',
+    desc: 'Glass cabintes & Ornamnets',
+    screenName: 'FurnitureItemsScreen',
+  },
+  {
+    icon: VehilcepartsSVG,
+    title: 'Vehilce Parts',
+    desc: 'Engines,Tyres,Car Cover',
+    screenName: 'FurnitureItemsScreen',
+  },
+  {
+    icon: OfficeremovalsSVG,
+    title: 'Office Removals',
+    desc: 'Desks ,Computers,Chairs',
+    screenName: 'FurnitureItemsScreen',
+  },
+];
+
+export const FORM_DATA = [
+  {
+    type: 'select',
+    required: true,
+    label: 'Please Select Pickup Floor',
+    placeholder: 'Please Select Pickup Floor',
+    className: 'form-control',
+    name: 'select-1691432809321-0',
+    multiple: true,
+    column: '1',
+    is_enable_chart: false,
+    chart_type: 'bar',
+    values: [
+      {label: 'Ground Floor', value: 'Ground Floor', selected: false},
+      {label: '1st Floor', value: '1st Floor', selected: false},
+      {label: '2nd Floor', value: '2nd Floor', selected: false},
+      {label: 'Ground Floor', value: 'Ground Floor', selected: false},
+      {label: '1st Floor', value: '1st Floor', selected: false},
+      {label: '2nd Floor', value: '2nd Floor', selected: false},
+      {label: 'Ground Floor', value: 'Ground Floor', selected: false},
+      {label: '1st Floor', value: '1st Floor', selected: false},
+      {label: '2nd Floor', value: '2nd Floor', selected: false},
+      {label: 'Ground Floor', value: 'Ground Floor', selected: false},
+      {label: '1st Floor', value: '1st Floor', selected: false},
+      {label: '2nd Floor', value: '2nd Floor', selected: false},
+    ],
+  },
+  {
+    type: 'select',
+    required: true,
+    label: 'Please Select gender',
+    placeholder: 'Please Select Dropoff Floor',
+    className: 'form-control',
+    name: 'select-1691432923817',
+    multiple: false,
+    column: '1',
+    is_enable_chart: false,
+    chart_type: 'bar',
+    values: [
+      {label: 'male', value: 'male', selected: true},
+      {label: 'female', value: 'female', selected: false},
+    ],
+  },
+  {
+    type: 'select',
+    required: true,
+    label: 'Please Select Dropoff Floor',
+    placeholder: 'Please Select Dropoff Floor',
+    className: 'form-control getNumber',
+    name: 'select-1691433084311',
+    multiple: false,
+    column: '2',
+    is_enable_chart: true,
+    chart_type: 'bar',
+    values: [
+      {label: 'Ground Floor', value: 'Ground Floor', selected: false},
+      {label: '1st Floor', value: '1st Floor', selected: false},
+      {label: '2nd Floor', value: '2nd Floor', selected: false},
+    ],
+  },
+  {
+    type: 'select',
+    required: true,
+    label: 'Please Select Dropoff Floor',
+    placeholder: 'Please Select Dropoff Floor',
+    className: 'form-control getNumber',
+    name: 'select-1691433098194',
+    multiple: false,
+    column: '2',
+    is_enable_chart: false,
+    chart_type: 'bar',
+    values: [
+      {label: 'Ground Floor', value: 'Ground Floor', selected: true},
+      {label: '1st Floor', value: '1st Floor', selected: false},
+      {label: '2nd Floor', value: '2nd Floor', selected: false},
+    ],
+  },
+  {
+    type: 'textarea',
+    required: false,
+    label: 'Any other item please input details:',
+    className: 'form-control',
+    name: 'textarea-1691433058421-0',
+    subtype: 'textarea',
+    column: '1',
   },
 ];
 export const MANAGE_CAR_LIST = [
@@ -132,7 +265,6 @@ export const ORDER_LIST = [
     pickup_location:
       'Pickup Location paddingVertical: mvs(8)paddingVertical: mvs(8)',
     service_type: 'SERVICE TYPE',
-    type: 'New',
   },
   {
     Order_no: '123',
@@ -141,7 +273,6 @@ export const ORDER_LIST = [
     delivery_time: moment().format(DATE_FORMAT.yyyy_mm_dd),
     pickup_location: 'Pickup Location',
     service_type: 'SERVICE TYPE',
-    type: 'processing',
   },
   {
     Order_no: '123',
@@ -150,7 +281,6 @@ export const ORDER_LIST = [
     delivery_time: moment().format(DATE_FORMAT.yyyy_mm_dd),
     pickup_location: 'Pickup Location',
     service_type: 'SERVICE TYPE',
-    type: 'delieverd',
   },
   {
     Order_no: '123',
@@ -159,7 +289,6 @@ export const ORDER_LIST = [
     delivery_time: moment().format(DATE_FORMAT.yyyy_mm_dd),
     pickup_location: 'Pickup Location',
     service_type: 'SERVICE TYPE',
-    type: 'New',
   },
 ];
 export const RECENT_ORDER_LIST = [
@@ -229,23 +358,6 @@ export const ITEM_DETAILS_LIST = [
   {
     item_name: 'SMART TV (Less than 30 inch',
     quantity: '1',
-  },
-];
-export const NOTIFICATION_LIST = [
-  {
-    title: 'message',
-    desc: 'Moving is pretty complicated; however, these four items can make your moving experience even worse!',
-    date: moment().format(DATE_FORMAT.yyyy_mm_dd),
-  },
-  {
-    title: 'message',
-    desc: 'Moving is pretty complicated; however, these four items can make your moving experience even worse!',
-    date: moment().format(DATE_FORMAT.yyyy_mm_dd),
-  },
-  {
-    title: 'message',
-    desc: 'Moving is pretty complicated; however, these four items can make your moving experience even worse!',
-    date: moment().format(DATE_FORMAT.yyyy_mm_dd),
   },
 ];
 export const ABOUT_US_LIST = [

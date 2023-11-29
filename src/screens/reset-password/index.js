@@ -1,57 +1,37 @@
-import messaging from '@react-native-firebase/messaging';
 import * as IMG from 'assets/images';
-import {auth_bg} from 'assets/images';
-import {PrimaryButton} from 'components/atoms/buttons';
+import { PrimaryButton } from 'components/atoms/buttons';
 
-import {height, mvs, width} from 'config/metrices';
-import {Formik, useFormik} from 'formik';
-import {useAppDispatch} from 'hooks/use-store';
-import {navigate, resetStack} from 'navigation/navigation-ref';
+import {
+  PasswordChangedAnimation,
+  ResetYourPasswordAnimation
+} from 'assets/icons';
+import Header1x2x from 'components/atoms/headers/header-1x-2x';
+import PrimaryInput from 'components/atoms/inputs';
+import { KeyboardAvoidScrollview } from 'components/atoms/keyboard-avoid-scrollview/index';
+import ForgotOtpModal from 'components/molecules/modals/forgot-otp-modal';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { Formik } from 'formik';
+import { useAppDispatch } from 'hooks/use-store';
+import LottieView from 'lottie-react-native';
+import { navigate } from 'navigation/navigation-ref';
 import React from 'react';
 import {
-  ImageBackground,
-  TouchableOpacity,
-  View,
-  Image,
-  StyleSheet,
-  ScrollView,
   Alert,
+  Image,
+  View
 } from 'react-native';
-import LottieView from 'lottie-react-native';
-import PrimaryInput from 'components/atoms/inputs';
-import {KeyboardAvoidScrollview} from 'components/atoms/keyboard-avoid-scrollview/index';
+import { onUpdatePassword } from 'services/api/auth-api-actions';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
-import {
-  signinFormValidation,
-  signupDetailsFormValidation,
-  updatePasswordValidation,
-} from 'validations';
+import { UTILS } from 'utils';
+import { updatePasswordValidation } from 'validations';
 import styles from './styles';
-import {colors} from 'config/colors';
-import {Row} from 'components/atoms/row';
-import {
-  Clock,
-  FacBookIcon,
-  ForgotPasswordAnimation,
-  GoogleIcon,
-  LoginAnimation,
-  PasswordChangedAnimation,
-  ResetYourPasswordAnimation,
-} from 'assets/icons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import PasswordChangedModal from 'components/molecules/modals/SignUp-modal';
-import SignUpModal from 'components/molecules/modals/SignUp-modal';
-import ForgotOtpModal from 'components/molecules/modals/forgot-otp-modal';
-import {onUpdatePassword} from 'services/api/auth-api-actions';
-import {UTILS} from 'utils';
+
 const ResetPasswordScreen = props => {
   const dispatch = useAppDispatch();
   const {values} = props?.route?.params;
-  console.log('values props', props?.route?.params);
   const {t} = i18n;
   const [otpModalVisible, setOtpModalVisible] = React.useState(false);
   const [isPasswordChanged, setIsPasswordChanged] = React.useState(false);
@@ -60,9 +40,10 @@ const ResetPasswordScreen = props => {
     // email: '',
     password: '',
     confirm_password: '',
-    type: 'Driver',
+    type: 'User',
   };
   const [loading, setLoading] = React.useState(false);
+
   const [verifyloading, setVerifyLoading] = React.useState(false);
   const [data, setData] = React.useState({});
 
@@ -78,11 +59,14 @@ const ResetPasswordScreen = props => {
         otp: value,
         ...props?.route?.params,
       });
-      console.log('res==>', res);
-      if (res?.status == true) {
+
+      if(res?.status === true)
+      {
         setOtpModalVisible(false);
         setIsPasswordChanged(true);
       }
+
+
       console.log(res);
     } catch (error) {
       Alert.alert('Error', UTILS.returnError(error));
@@ -93,13 +77,17 @@ const ResetPasswordScreen = props => {
   };
   return (
     <View style={styles.container}>
-      <Image source={IMG.LogoBackground} style={styles.logobackground} />
-      <Header1x2x />
-      <View style={{alignSelf: 'center'}}>
+      <Image
+        resizeMode="cover"
+        source={IMG.signupheader}
+        style={styles.logobackground}
+      />
+      <Header1x2x style={{backgroundColor: colors.transparent}} />
+      <View style={styles.loginlogoview}>
         <Image
-          source={IMG.LoginLogo}
-          resizeMode={'contain'}
-          style={{width: mvs(300), height: mvs(100)}}
+          source={IMG.resetpasswordimg}
+          resizeMode="cover"
+          style={{width: mvs(140), height: mvs(140)}}
         />
       </View>
 
@@ -222,7 +210,6 @@ const ResetPasswordScreen = props => {
           </View>
         </KeyboardAvoidScrollview>
       </View>
-
       <ForgotOtpModal
         email={props?.route?.params?.email}
         onClose={() => setOtpModalVisible(false)}

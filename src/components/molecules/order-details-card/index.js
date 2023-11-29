@@ -1,24 +1,11 @@
-import * as IMG from 'assets/images';
-import {PrimaryButton} from 'components/atoms/buttons';
 import {Row} from 'components/atoms/row';
 import React from 'react';
-import {
-  Image,
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/AntDesign';
+import {StyleSheet, View} from 'react-native';
 import i18n from 'translation';
 import Medium from 'typography/medium-text';
 import Regular from 'typography/regular-text';
 import {colors} from '../../../config/colors';
-import {mvs, width} from '../../../config/metrices';
-import {SpecialistLocation} from 'assets/icons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {ColorSpace} from 'react-native-reanimated';
+import {mvs} from '../../../config/metrices';
 import moment from 'moment';
 const LabelValue = ({label, value, containerStyle, labelStyle, valueStyle}) => (
   <Row style={containerStyle}>
@@ -33,7 +20,6 @@ const LabelValue = ({label, value, containerStyle, labelStyle, valueStyle}) => (
       label={value}
       fontSize={mvs(12)}
       color={colors.white}
-      numberOfLines={5}
     />
   </Row>
 );
@@ -71,14 +57,12 @@ const OrderDetailsCard = ({
           borderBottomWidth: mvs(1),
           borderBottomColor: colors.white,
         }}
-        label={`${t('Order')}: #${item?.id} `}
-        // value={moment(item?.pickup_date).format('DD-MM-YYYY')}
-        value={`${t('delivery_date')}: ${
-          item?.pickup_date
-            ? moment(item.pickup_date).format('DD-MM-YYYY')
+        label={`${t('Odrer Id')}:  #${item?.id ? item?.id : 'N/A'} `}
+        value={
+          item?.created_at
+            ? moment(item?.created_at).format('YYYY-MM-DD')
             : 'N/A'
-        }`}
-        // value={moment(item?.pickup_date).format('DD-MM-YYYY')}
+        }
       />
       {/* <View
         style={{
@@ -91,7 +75,7 @@ const OrderDetailsCard = ({
           paddingVertical: mvs(8),
         }}
         label={t('Name')}
-        value={item?.name || 'N/A'}
+        value={item?.user?.name}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />
@@ -101,7 +85,7 @@ const OrderDetailsCard = ({
           paddingVertical: mvs(8),
         }}
         label={t('delivery_time')}
-        value={item?.duration || 'N/A'}
+        value={item?.duration}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />
@@ -111,17 +95,7 @@ const OrderDetailsCard = ({
           paddingVertical: mvs(8),
         }}
         label={t('pickup_location')}
-        value={item?.pickup_address || 'N/A'}
-        labelStyle={{flex: 1}}
-        valueStyle={{flex: 1}}
-      />
-      <LabelValue
-        containerStyle={{
-          // paddingHorizontal: mvs(10),
-          paddingVertical: mvs(8),
-        }}
-        label={t('dropoff_location')}
-        value={item?.dropoff_address || 'N/A'}
+        value={item?.pickup_address}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />
@@ -132,26 +106,6 @@ const OrderDetailsCard = ({
         }}
         label={t('service_type')}
         value={item?.service?.title}
-        labelStyle={{flex: 1}}
-        valueStyle={{flex: 1}}
-      />
-      <LabelValue
-        containerStyle={{
-          // paddingHorizontal: mvs(10),
-          paddingVertical: mvs(8),
-        }}
-        label={t('price')}
-        value={item?.price}
-        labelStyle={{flex: 1}}
-        valueStyle={{flex: 1}}
-      />
-      <LabelValue
-        containerStyle={{
-          // paddingHorizontal: mvs(10),
-          paddingVertical: mvs(8),
-        }}
-        label={t('phone')}
-        value={item?.phone || 'N/A'}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />

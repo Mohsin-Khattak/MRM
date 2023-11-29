@@ -8,7 +8,6 @@ import styles from './styles';
 
 const InboxChatCard = ({item, style, onPress, loading}) => {
   const me = item.me;
-
   return (
     <View
       onPress={onPress}
@@ -18,7 +17,7 @@ const InboxChatCard = ({item, style, onPress, loading}) => {
           {
             borderBottomRightRadius: me ? mvs(0) : mvs(23),
             borderBottomLeftRadius: me ? mvs(23) : mvs(0),
-            opacity: me ? 0.7 : 1,
+            opacity: me ? 0.5 : 1,
           },
           styles.innerContainer,
         ]}>

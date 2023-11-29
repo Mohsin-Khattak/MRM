@@ -31,7 +31,6 @@ const LabelValue = ({label, value, containerStyle, labelStyle, valueStyle}) => (
       style={valueStyle}
       label={value}
       fontSize={mvs(12)}
-      numberOfLines={5}
       // color={colors.gray}
     />
   </Row>
@@ -61,15 +60,14 @@ const RecentOrderCard = ({
           // backgroundColor: 'red',
         }}>
         <Medium
-          label={item?.service?.title || 'N/A'}
-          // label={`${t('Odrer')}: #${item?.id} `}
+          label={`${t('Odrer')}: #${item?.Order_no} `}
           fontSize={mvs(14)}
           color={colors.bluecolor}
         />
         <PrimaryButton
-          title={t('completed')}
+          title={item?.status}
           containerStyle={{
-            width: mvs(90),
+            width: mvs(70),
             height: mvs(30),
             backgroundColor: colors.acceptcolor,
 
@@ -103,7 +101,7 @@ const RecentOrderCard = ({
           paddingVertical: mvs(8),
         }}
         label={t('Name')}
-        value={item?.user_details?.name || 'N/A'}
+        value={item?.name}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />
@@ -113,7 +111,7 @@ const RecentOrderCard = ({
           paddingVertical: mvs(8),
         }}
         label={t('delivery_time')}
-        value={item?.pickup_date || 'N/A'}
+        value={item?.delivery_time}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />
@@ -123,7 +121,7 @@ const RecentOrderCard = ({
           paddingVertical: mvs(8),
         }}
         label={t('pickup_location')}
-        value={item?.pickup_address}
+        value={item?.pickup_location}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />
@@ -132,18 +130,8 @@ const RecentOrderCard = ({
           paddingHorizontal: mvs(4),
           paddingVertical: mvs(8),
         }}
-        label={t('Order')}
-        value={`#${item?.id} ` || 'N/A'}
-        labelStyle={{flex: 1}}
-        valueStyle={{flex: 1}}
-      />
-      <LabelValue
-        containerStyle={{
-          paddingHorizontal: mvs(4),
-          paddingVertical: mvs(8),
-        }}
-        label={t('price')}
-        value={`USD ${item?.driver_price} ` || 'N/A'}
+        label={t('service_type')}
+        value={item?.service_type}
         labelStyle={{flex: 1}}
         valueStyle={{flex: 1}}
       />

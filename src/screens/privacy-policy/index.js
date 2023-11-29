@@ -1,93 +1,57 @@
-import messaging from '@react-native-firebase/messaging';
 import * as IMG from 'assets/images';
-import {auth_bg} from 'assets/images';
 import {PrimaryButton} from 'components/atoms/buttons';
-import OtpModal from 'components/molecules/modals/otp-modal';
-import {height, mvs, width} from 'config/metrices';
-import {useFormik} from 'formik';
-import {useAppDispatch} from 'hooks/use-store';
-import {navigate, resetStack} from 'navigation/navigation-ref';
-import React from 'react';
-import {
-  ImageBackground,
-  TouchableOpacity,
-  View,
-  Image,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
-import LottieView from 'lottie-react-native';
-import PrimaryInput from 'components/atoms/inputs';
+import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import {KeyboardAvoidScrollview} from 'components/atoms/keyboard-avoid-scrollview/index';
+import {colors} from 'config/colors';
+import {mvs} from 'config/metrices';
+import React from 'react';
+import {Alert, Image, View} from 'react-native';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
-import Medium from 'typography/medium-text';
-import {signinFormValidation} from 'validations';
-import styles from './styles';
-import {colors} from 'config/colors';
-import {Row} from 'components/atoms/row';
-import {
-  Clock,
-  FacBookIcon,
-  ForgotPasswordAnimation,
-  GoogleIcon,
-  LoginAnimation,
-} from 'assets/icons';
-import HtmlView from '../../components/atoms/render-html';
-
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import Regular from 'typography/regular-text';
-import {getPrivacyPolicy} from 'services/api/auth-api-actions';
+import styles from './styles';
+import {UTILS} from 'utils';
+import {getPrivacy} from 'services/api/auth-api-actions';
 import {Loader} from 'components/atoms/loader';
+import HtmlView from './../../components/atoms/render-html/index';
 const PrivacyPolicyScreen = props => {
-  const dispatch = useAppDispatch();
   const {t} = i18n;
-  const [otpModalVisible, setOtpModalVisible] = React.useState(false);
-  const [term, setTerm] = React.useState({});
 
   const [loading, setLoading] = React.useState(false);
-  React.useEffect(() => {
-    getList();
-  }, []);
-  const getList = async () => {
+  const [data, setData] = React.useState({});
+  const fetchPrivacy = async () => {
     try {
       setLoading(true);
-      const res = await getPrivacyPolicy();
-      setTerm(res);
-
-      console.log(res);
+      const res = await getPrivacy();
+      setData(res);
     } catch (error) {
-      setLoading(false);
+      console.log('Term Privacy get error', error);
+      Alert.alert('Error', UTILS?.returnError(error));
     } finally {
       setLoading(false);
     }
   };
+  React.useEffect(() => {
+    fetchPrivacy();
+  }, []);
+
   return (
     <View style={styles.container}>
       {/* <View style={styles.container}> */}
       <Image
-        source={IMG.LogoBackground}
-        style={{
-          height: mvs(400),
-          width: width,
-          position: 'absolute',
-        }}
+        resizeMode="cover"
+        source={IMG.signupheader}
+        style={styles.logobackground}
       />
-      <Header1x2x />
-      <View style={{alignSelf: 'center'}}>
-        <Image
-          source={IMG.LoginLogo}
-          resizeMode={'contain'}
-          style={{width: mvs(300), height: mvs(100)}}
-        />
-      </View>
+      <Header1x2x
+        style={{backgroundColor: colors.transparent}}
+        title={t('return_policy & private_policy')}
+      />
 
-      <View style={styles.contentContainerStyle}>
-        {loading ? (
-          <Loader />
-        ) : (
+      {loading ? (
+        <Loader />
+      ) : (
+        <View style={styles.contentContainerStyle}>
           <View style={styles.contentContainerStyleNew}>
             <KeyboardAvoidScrollview
               contentContainerStyle={{
@@ -102,29 +66,11 @@ const PrivacyPolicyScreen = props => {
                 style={{alignSelf: 'center', marginBottom: mvs(10)}}
               />
 
-              {/* <Regular
-              label={
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum'
-              }
-              fontSize={mvs(14)}
-              color={colors.black}
-              style={{textAlign: 'justify'}}
-              numberOfLines={60}
-            /> */}
-              <HtmlView html={term} />
+              <HtmlView html={data} />
             </KeyboardAvoidScrollview>
-            {/* <PrimaryButton
-            containerStyle={{
-              borderRadius: mvs(10),
-              marginTop: mvs(10),
-            }}
-            loading={loading}
-            // onPress={() => navigate('ResetPasswordScreen')}
-            title={t('back')}
-          /> */}
           </View>
-        )}
-      </View>
+        </View>
+      )}
     </View>
   );
 };

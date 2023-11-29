@@ -1,18 +1,13 @@
-import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import SwiperCard from 'components/atoms/swiper';
-import ServiceCard from 'components/molecules/service-card';
-import {ABOUT_US_LIST, SERVICE_LIST} from 'config/constants';
-import {mvs} from 'config/metrices';
-import {useAppDispatch, useAppSelector} from 'hooks/use-store';
-import React from 'react';
-import {Image, View} from 'react-native';
-import i18n from 'translation';
-import Bold from 'typography/bold-text';
-import Medium from 'typography/medium-text';
-import styles from './styles';
-import HomeSwiper from 'components/molecules/home-swiper';
 import CustomFlatList from 'components/atoms/custom-flatlist';
+import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import AboutUsCard from 'components/molecules/about-us-card';
+import { ABOUT_US_LIST } from 'config/constants';
+import { mvs } from 'config/metrices';
+import { useAppDispatch, useAppSelector } from 'hooks/use-store';
+import React from 'react';
+import { View } from 'react-native';
+import i18n from 'translation';
+import styles from './styles';
 const CategoriesScreen = props => {
   const user = useAppSelector(s => s?.user);
   const userInfo = user?.userInfo;

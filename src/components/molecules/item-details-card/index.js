@@ -1,24 +1,15 @@
-import * as IMG from 'assets/images';
-import {PrimaryButton} from 'components/atoms/buttons';
-import {Row} from 'components/atoms/row';
+import { PrimaryButton } from 'components/atoms/buttons';
+import { Row } from 'components/atoms/row';
 import React from 'react';
 import {
-  Image,
-  ImageBackground,
   StyleSheet,
-  TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/AntDesign';
 import i18n from 'translation';
 import Medium from 'typography/medium-text';
 import Regular from 'typography/regular-text';
-import {colors} from '../../../config/colors';
-import {mvs, width} from '../../../config/metrices';
-import {SpecialistLocation} from 'assets/icons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {ColorSpace} from 'react-native-reanimated';
+import { colors } from '../../../config/colors';
+import { mvs } from '../../../config/metrices';
 const LabelValue = ({label, value, containerStyle, labelStyle, valueStyle}) => (
   <Row style={containerStyle}>
     <Medium
@@ -40,8 +31,6 @@ const ItemDetailsCard = ({
   backgroundColor,
   index,
   style,
-  selectedLabel,
-  quantity,
   onPress = () => {},
   onPressAccept = () => {},
   onPressReject = () => {},
@@ -61,12 +50,11 @@ const ItemDetailsCard = ({
         <Regular
           // style={{width: width / 3}}
           style={{flex: 1}}
-          label={`${item?.label} (${item?.name})`} // Display the selected label here
+          label={`${item?.label} (${item?.name})`}
           fontSize={mvs(9)}
           color={colors.white}
-          numberOfLines={2}
         />
-        {item?.quantity && (
+       {item?.quantity && (
           <PrimaryButton
             disabled={true}
             title={item?.quantity || 0}

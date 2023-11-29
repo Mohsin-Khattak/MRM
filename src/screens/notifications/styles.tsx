@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {mvs} from 'config/metrices';
-import {colors} from 'config/colors';
+import { StyleSheet } from 'react-native';
+import { mvs } from 'config/metrices';
+import { colors } from 'config/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,15 +22,6 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     backgroundColor: colors.white,
     borderRadius: mvs(10),
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
   },
   notificationicon: {
     width: mvs(35),

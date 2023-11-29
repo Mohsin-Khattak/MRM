@@ -8,19 +8,18 @@ type Props = {
     longitude: number;
   };
   notifications: any[];
-
+  wallet: any;
   unreadNotification: number;
   countries: any[];
-  vehicle_types: any[];
 };
 const initialState: Props = {
   userInfo: null,
   language: 'en',
   location: undefined,
   notifications: [],
-  countries: [],
+  wallet: {},
   unreadNotification: 0,
-  vehicle_types: [],
+  countries: [],
 };
 
 export const userSlice = createSlice({
@@ -39,22 +38,21 @@ export const userSlice = createSlice({
     reset: (state, action) => {
       state = initialState;
     },
-    setNotifications: (state, action) => {
-      state.notifications = action.payload;
-      state.unreadNotification = action.payload?.filter(
-        (x: any) => x?.is_read === '0',
-      )?.length;
-    },
     setCountries: (state, action) => {
       state.countries = action.payload;
     },
-    setVehcileTypes: (state, action) => {
-      state.vehicle_types = action.payload;
+    setNotifications: (state, action) => {
+      state.notifications = action.payload;
+      state.unreadNotification = action.payload?.filter(
+        (x: any) => x?.is_read==='0',
+      )?.length;
+    },
+    setWallet: (state, action) => {
+      state.wallet = action.payload;
     },
     resetUser: (state, action) => {
       return initialState;
     },
-
     // demoAsync: (state, action) => {
     //   state.userInfo = action.payload
     // },
@@ -64,12 +62,12 @@ export const userSlice = createSlice({
 export const {
   setUserInfo,
   reset,
-  resetUser,
   setLanguage,
   setLocation,
   setNotifications,
-  setVehcileTypes,
+  setWallet,
   setCountries,
+  resetUser,
   // demoAsync
 } = userSlice.actions;
 

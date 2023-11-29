@@ -28,41 +28,42 @@ const ServiceCard = ({
   onPressCart = () => {},
 }) => {
   const {t} = i18n;
-
+  const Icon = item.icon;
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[styles.container, {backgroundColor}]}>
-      {/* <ImageBackground
-        source={{uri: `${item?.image}`}}
-        imageStyle={styles.imgStyle}
-        style={styles.bg}> */}
       <View style={styles.bg}>
-        {/* <LinearGradient
-          style={styles.grd}
-          colors={[
-            `${colors.black}30`,
-            `${colors.black}70`,
-            `${colors.black}50`,
-          ]}> */}
         <View
           style={{
             alignSelf: 'center',
             justifyContent: 'center',
             alignItems: 'center',
-
             flex: 1,
+            padding: mvs(10),
           }}>
           <Image
-            source={item?.icon}
-            style={{height: mvs(36), width: mvs(36), resizeMode: 'contain'}}
+            source={
+              item?.icon ? {uri: `${item?.icon}`} : IMG.serviceAntiqueicon
+            }
+            resizeMode="cover"
+            style={{height: mvs(36), width: mvs(36)}}
           />
-          <Medium
-            label={item?.title}
-            color={colors.primary}
-            fontSize={mvs(16)}
-            style={{marginTop: mvs(5)}}
-          />
+          {/* <Icon height={mvs(36)} width={mvs(36)} /> */}
+          <View style={{flex: 1}}>
+            <Medium
+              label={item?.title}
+              numberOfLines={2}
+              color={colors.primary}
+              fontSize={mvs(14)}
+              style={{marginTop: mvs(5), textAlign: 'center'}}
+            />
+            <Regular
+              label={item?.desc}
+              fontSize={mvs(12)}
+              style={{textAlign: 'center'}}
+            />
+          </View>
         </View>
         {/* </LinearGradient> */}
       </View>

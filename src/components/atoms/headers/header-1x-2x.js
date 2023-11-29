@@ -24,6 +24,7 @@ const HeaderX = ({
   isSearch = false,
   isMenu = false,
   placeholder = 'Search here',
+  color,
   ...props
 }) => {
   const navigation = useNavigation();
@@ -32,11 +33,6 @@ const HeaderX = ({
       <Row style={{alignItems: 'center'}}>
         {back ? (
           <TouchableOpacity
-            // style={{
-            //   backgroundColor: colors.white,
-            //   padding: mvs(5),
-            //   borderRadius: mvs(7),
-            // }}
             onPress={() => navigation?.goBack()}>
             <Icon
               name={I18nManager.isRTL ? 'arrowright' : 'arrowleft'}

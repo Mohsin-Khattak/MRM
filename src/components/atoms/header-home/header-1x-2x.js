@@ -1,30 +1,19 @@
-import {useNavigation} from '@react-navigation/native';
-import {colors} from 'config/colors';
-import {mvs} from 'config/metrices';
+import { useNavigation } from '@react-navigation/native';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { useAppSelector } from 'hooks/use-store';
+import { navigate } from 'navigation/navigation-ref';
 import React from 'react';
 import {
-  Alert,
-  I18nManager,
-  Image,
   StyleSheet,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Medium from 'typography/medium-text';
-import {Row} from '../row';
-import {SearchInput} from '../inputs';
-import {HoemSVG} from 'assets/icons';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {t} from 'i18next';
-import {getStatusChange} from 'services/api/auth-api-actions';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {STORAGEKEYS} from 'config/constants';
-import {setUserInfo} from 'store/reducers/user-reducer';
-import {UTILS} from 'utils';
-import {useAppDispatch, useAppSelector} from 'hooks/use-store';
+import Regular from 'typography/regular-text';
+import { SearchInput } from '../inputs';
+import { Row } from '../row';
 const HeaderX = ({
   style = {},
   mtop = 0,
@@ -33,77 +22,14 @@ const HeaderX = ({
   onChangeText = t => {},
   isSearch = false,
   isMenu = false,
+  unreadNotification,
   placeholder = 'Search here',
   ...props
 }) => {
-  const user = useAppSelector(s => s?.user);
-  const userInfo = user?.userInfo;
-  console.log('user', userInfo?.online_status);
-  const language = user?.language;
-  const dispatch = useAppDispatch();
   const navigation = useNavigation();
   const [isOnline, setIsOnline] = React.useState(true);
-  const status = userInfo?.online_status;
-  // const ChangeStatus = async () => {
-  //   try {
-  //     const newStatus = userInfo?.online_status === 0 ? 1 : 0;
-  //     const res = await getStatusChange(newStatus); // Pass the status value
-  //     console.log(res);
-  //     await AsyncStorage.setItem(STORAGEKEYS?.user, JSON.stringify(res?.user));
-  //     dispatch(setUserInfo(res?.user));
-  //     console.log(' resp==========>', res?.user);
-  //   } catch (error) {
-  //     console.log('Error===>', UTILS.returnError(error));
-  //     Alert.alert('Error-===============>', error);
-  //   }
-  // };
-  const ChangeStatus = async () => {
-    try {
-      // Toggle the online_status between 0 and 1
-      const newStatus = userInfo?.online_status === '0' ? '1' : '0';
-
-      // Make the API call with the new status
-      const res = await getStatusChange(newStatus);
-
-      // Update the userInfo with the new status
-      const updatedUserInfo = {...userInfo, online_status: newStatus};
-
-      // Update user info in AsyncStorage and Redux store
-      await AsyncStorage.setItem(
-        STORAGEKEYS.user,
-        JSON.stringify(updatedUserInfo),
-      );
-      dispatch(setUserInfo(updatedUserInfo));
-
-      console.log(' resp==========>', res);
-    } catch (error) {
-      console.log('Error:', UTILS.returnError(error));
-      Alert.alert('Error', UTILS.returnError(error));
-    }
-  };
-  const showAlert = () => {
-    const statusMessage =
-      userInfo?.online_status === '0'
-        ? 'Are you sure you want to go online?'
-        : 'Are you sure you want to go offline?';
-
-    Alert.alert(
-      'Change Status',
-      statusMessage,
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: ChangeStatus,
-        },
-      ],
-      {cancelable: false},
-    );
-  };
-
+  const user = useAppSelector(s => s?.user);
+  const userInfo = user?.userInfo;
   return (
     <View style={[styles.container, style]}>
       <Row style={{alignItems: 'center', justifyContent: 'space-between'}}>
@@ -114,71 +40,20 @@ const HeaderX = ({
             color={colors.white}
           />
         </TouchableOpacity>
-        <View
-          style={{
-            padding: mvs(2),
-            // borderRadius: mvs(16),
-            // borderWidth: 2,
-            borderRadius: mvs(20),
-            backgroundColor: colors.white,
-          }}>
-          {userInfo?.online_status === '0' ? (
-            <TouchableOpacity
-              // onPress={() => setIsOnline(true)}
-              // onPress={() => ChangeStatus()}
-              onPress={() => showAlert()}
-              style={{
-                backgroundColor: colors.white,
-                height: mvs(35),
-                width: mvs(115),
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: mvs(16),
-              }}>
-              <Row style={{alignItems: 'center'}}>
-                <FontAwesome6
-                  name="circle-arrow-right"
-                  size={mvs(25)}
-                  color={colors.homegreen}
-                />
-                <Medium
-                  label={t('go_online')}
-                  fontSize={mvs(14)}
-                  style={{marginLeft: mvs(10)}}
-                  color={colors.homegreen}
-                />
-              </Row>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              // onPress={() => setIsOnline(false)}
-              // onPress={() => ChangeStatus()}
-              onPress={() => showAlert()}
-              style={{
-                backgroundColor: colors.primary,
-                height: mvs(35),
-                width: mvs(115),
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: mvs(16),
-              }}>
-              <Row style={{alignItems: 'center'}}>
-                <Medium
-                  label={t('back_offline')}
-                  fontSize={mvs(12)}
-                  style={{marginLeft: mvs(10)}}
-                  color={colors.white}
-                />
-                <AntDesign
-                  name="arrowright"
-                  size={mvs(18)}
-                  color={colors.white}
-                  style={{marginLeft: mvs(5)}}
-                />
-              </Row>
-            </TouchableOpacity>
-          )}
-        </View>
+
+        <TouchableOpacity onPress={() => navigate('Notifications')}>
+          <Ionicons
+            name={'notifications'}
+            size={mvs(25)}
+            color={colors.white}
+          />
+
+        {userInfo?.id &&  <View
+            style={styles.notificationContainer}>
+              <Regular fontSize={mvs(10)} label={unreadNotification}/>
+            </View>}
+
+        </TouchableOpacity>
       </Row>
       {isSearch && (
         <SearchInput
@@ -205,4 +80,16 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   back: {},
+
+  notificationContainer:{
+    backgroundColor: colors.white,
+    width: mvs(20),
+    height: mvs(20),
+    borderRadius: mvs(10),
+    position:'absolute',
+    right:mvs(-10),
+    top:mvs(-10),
+    alignItems:'center',
+    justifyContent:'center'
+  }
 });
