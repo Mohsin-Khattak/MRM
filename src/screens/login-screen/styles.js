@@ -24,13 +24,14 @@ const styles = StyleSheet.create({
   },
   contentContainerStyleNew: {
     flexGrow: 1,
+    // marginTop: mvs(100),
     // borderWidth: 1,
     paddingHorizontal: mvs(20),
     marginHorizontal: mvs(20),
     marginVertical: mvs(10),
     paddingVertical: mvs(20),
     backgroundColor: colors.white,
-    bottom:mvs(30),
+    bottom: mvs(30),
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-    borderRadius: mvs(6),
+    borderRadius: mvs(14),
   },
   googlebutton: {
     backgroundColor: colors.white,
@@ -85,11 +86,11 @@ const styles = StyleSheet.create({
     paddingBottom: mvs(150),
   },
   loginmoverstext: {
-    marginTop: mvs(10),
+    marginTop: mvs(5),
     marginBottom: mvs(20),
   },
   forgotpasswordview: {
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
     marginBottom: mvs(15),
   },
   createaccountview: {

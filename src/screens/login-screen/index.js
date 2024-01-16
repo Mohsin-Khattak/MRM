@@ -98,18 +98,24 @@ const LoginScreen = props => {
           <KeyboardAvoidScrollview
             contentContainerStyle={styles.keyboradscrollcontent}>
             <View style={styles.lottieview}>
-              <Medium
+              {/* <Medium
                 label={t('login')}
                 fontSize={mvs(16)}
                 color={colors.black}
+              /> */}
+              <Image
+                source={IMG.Logo}
+                resizeMode={'contain'}
+                style={{width: mvs(120), height: mvs(120)}}
+              />
+              <Bold
+                label={'Login Account'}
+                color={colors.primary}
+                fontSize={mvs(20)}
+                style={styles.loginmoverstext}
               />
             </View>
-            <Bold
-              label={t('login_to_movers')}
-              color={colors.bluecolor}
-              fontSize={mvs(16)}
-              style={styles.loginmoverstext}
-            />
+
             <Formik
               initialValues={initialValues}
               // validationSchema={signinFormValidation}
@@ -132,6 +138,21 @@ const LoginScreen = props => {
                     onChangeText={handleChange('email')}
                     onBlur={handleBlur('email')}
                     value={values.email}
+                    containerStyle={{
+                      borderRadius: mvs(8),
+                      borderWidth: 1,
+                      borderColor: colors.gray,
+
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 3.84,
+
+                      elevation: 5,
+                    }}
                   />
                   <PrimaryInput
                     isPassword
@@ -141,7 +162,21 @@ const LoginScreen = props => {
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
                     value={values.password}
-                    containerStyle={{marginBottom: 0}}
+                    containerStyle={{
+                      marginBottom: 0,
+                      borderRadius: mvs(8),
+                      borderWidth: 1,
+                      borderColor: colors.gray,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 3.84,
+
+                      elevation: 5,
+                    }}
                     errorStyle={{marginBottom: 0}}
                   />
                   <TouchableOpacity
@@ -150,26 +185,20 @@ const LoginScreen = props => {
                     <Medium
                       label={t('forgot_password?')}
                       style={{textDecorationLine: 'underline'}}
-                      color={colors.bluecolor}
+                      color={colors.primary}
                     />
                   </TouchableOpacity>
                   <PrimaryButton
                     containerStyle={{
-                      borderRadius: mvs(10),
+                      borderRadius: mvs(6),
+                      width: '60%',
+                      alignSelf: 'center',
                     }}
                     loading={loading}
                     // onPress={handleSubmit}
                     onPress={() => navigate('Drawer')}
                     title={t('login')}
-                  />
-                  <View style={styles.createaccountview}>
-                    <Medium label={t('or_create_a_new_account')} />
-                  </View>
-
-                  <PrimaryButton
-                    containerStyle={styles.signupbuttoncontainer}
-                    onPress={() => navigate('Signup')}
-                    title={t('sign_up')}
+                    fontSize={mvs(18)}
                   />
                 </>
               )}
