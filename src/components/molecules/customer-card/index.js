@@ -81,7 +81,7 @@ const CustomerCard = ({
             width: '90%',
             alignSelf: 'center',
             flex: 1,
-            borderRadius: mvs(7),
+            borderRadius: mvs(12),
             backgroundColor: colors.white,
           }}>
           <Medium
@@ -97,7 +97,7 @@ const CustomerCard = ({
             marginVertical: mvs(10),
             width: '90%',
             alignSelf: 'center',
-            borderRadius: mvs(7),
+            borderRadius: mvs(12),
             flex: 1,
             backgroundColor: colors.white,
           }}>
