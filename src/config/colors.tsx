@@ -4,7 +4,7 @@
 export const colors = {
   placeholder: '#9D9D9D',
   white: '#FFFFFF',
-  primary: '#052169', //'#D31E1E', //'#2962ff', //'#20D994', //'#5586FF,'
+  primary: '#17234c', //'#052169', //'#D31E1E', //'#2962ff', //'#20D994', //'#5586FF,'
   lightGray: '#FFFFFFB2',
   placeholder: '#707070',
   border: '#DBDBDB',
@@ -14,7 +14,7 @@ export const colors = {
   homecard1: '#00ACDD11',
   homecard2: '#D31E1E12',
   // black: '#706561',
-  red: '#ff0707',
+  red: '#f04b4c', // '#ff0707',
   grey: '#707070',
   attachmentgray: '#B4B4B4',
   gray: '#ECECEC',

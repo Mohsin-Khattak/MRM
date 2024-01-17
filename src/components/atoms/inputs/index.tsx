@@ -456,7 +456,7 @@ export const SearchInput = (props: props) => {
         disabled={disabledSearch}
         style={styles.searchIcon}
         onPress={() => {}}>
-        <Feather size={mvs(22)} name={'search'} color={colors.grey} />
+        <Feather size={mvs(22)} name={'search'} color={colors.red} />
       </TouchableOpacity>
       <TextInput
         editable={editable}
@@ -464,7 +464,7 @@ export const SearchInput = (props: props) => {
         keyboardType={keyboardType}
         value={value}
         placeholder={placeholder}
-        placeholderTextColor={`${colors.grey}`}
+        placeholderTextColor={`${colors.white}`}
         onChangeText={onChangeText}
         style={[styles.searchTextInput, style]}
       />
@@ -472,7 +472,8 @@ export const SearchInput = (props: props) => {
         disabled={disabledSearch}
         style={styles.searchIcon}
         onPress={() => {}}>
-        <Image source={menue} style={{height: mvs(15), width: mvs(25)}} />
+        <Entypo name={'circle-with-cross'} size={mvs(25)} color={colors.red} />
+        {/* <Image source={menue} style={{height: mvs(15), width: mvs(25)}} /> */}
       </TouchableOpacity>
     </View>
   );
@@ -589,10 +590,11 @@ const styles = StyleSheet.create({
   searchContainer: {
     height: mvs(52),
     borderRadius: mvs(15),
+    // width: '80%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: mvs(16.5),
-    backgroundColor: colors.white,
+    backgroundColor: colors.primary,
     alignItems: 'center',
     // ...colors.shadow,
   },
@@ -603,7 +605,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   searchTextInput: {
-    color: colors.black,
+    color: colors.white,
     textAlignVertical: 'center',
     height: mvs(36),
     fontSize: mvs(14),

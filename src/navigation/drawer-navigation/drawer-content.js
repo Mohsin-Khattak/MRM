@@ -1,3 +1,4 @@
+import {useIsFocused} from '@react-navigation/native';
 import * as IMG from 'assets/images';
 import DrawerHomeCard from 'components/molecules/drawer-home-card';
 import {colors} from 'config/colors';
@@ -13,6 +14,23 @@ const CustomDrawerContent = props => {
   const user = useAppSelector(s => s?.user);
   const userInfo = user?.userInfo;
   const dispatch = useAppDispatch();
+  const [activeScreen, setActiveScreen] = React.useState('HomeTab');
+  const isFocus = useIsFocused();
+
+  React.useEffect(() => {
+    if (isFocus) {
+      setActiveScreen(null);
+    }
+  }, [isFocus]);
+  const handleCardPress = screenName => {
+    if (activeScreen === screenName) {
+      // Deselect the active screen if pressed again
+      setActiveScreen(null);
+    } else {
+      setActiveScreen(screenName);
+      navigate(screenName);
+    }
+  };
   return (
     <View style={styles.drawerContainer}>
       <View style={styles.header}>
@@ -29,7 +47,7 @@ const CustomDrawerContent = props => {
         <Medium
           label={userInfo?.name || 'Guest Mode'}
           fontSize={mvs(18)}
-          color={colors.black}
+          color={colors.white}
           style={{marginTop: mvs(6)}}
         />
         {/* <Medium
@@ -41,60 +59,69 @@ const CustomDrawerContent = props => {
       </View>
       <ScrollView style={styles.scrololstyle}>
         <DrawerHomeCard
-          onPress={() => navigate('Me')}
-          icon1={IMG.userDarwer}
-          label1={t('my_profile')}
+          onPress={() => handleCardPress('HomeTab')}
+          activeIcon={IMG.HomeActive}
+          inactiveIcon={IMG.HomeSimple}
+          label1={'Home'}
+          screenName={'HomeTab'}
+          isActive={activeScreen === 'HomeTab'}
           containerStyle={styles.helpStyle}
         />
-        {/* <DrawerHomeCard
-          onPress={() => navigate('ManageVehicleScreen')}
-          icon1={IMG.manageVehicleDrawer}
-          label1={t('manage_vehicle')}
-          br={8}
-          containerStyle={styles.helpStyle}
-        /> */}
 
         <DrawerHomeCard
-          onPress={() => navigate('MessageHomeScreen')}
-          icon1={IMG.documentDrawer}
-          label1={t('chat_screen')}
-          // br={8}
+          onPress={() => handleCardPress('EditProfileScreen')}
+          activeIcon={IMG.OrderActive}
+          inactiveIcon={IMG.OrderSimple}
+          label1={'Order'}
+          screenName={'EditProfileScreen'}
+          isActive={activeScreen === 'EditProfileScreen'}
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard
-          onPress={() => navigate('EditProfileScreen')}
-          icon1={IMG.editprofileimg}
-          label1={t('edit_profile')}
+          onPress={() => handleCardPress('Notifications')}
+          activeIcon={IMG.RecoveryActive}
+          inactiveIcon={IMG.Recovery}
+          screenName={'Notifications'}
+          label1={'Recovery'}
+          isActive={activeScreen === 'Notifications'}
+          containerStyle={styles.helpStyle}
+        />
+
+        <DrawerHomeCard
+          onPress={() => handleCardPress('HelpUs')}
+          activeIcon={IMG.TrackingActive}
+          inactiveIcon={IMG.TrackingSimple}
+          label1={'Tracking'}
+          screenName={'HelpUs'}
+          isActive={activeScreen === 'HelpUs'}
+          containerStyle={styles.helpStyle}
+        />
+        <DrawerHomeCard
+          onPress={() => handleCardPress('CustomerScreen')}
+          activeIcon={IMG.CustomerActive}
+          inactiveIcon={IMG.Customer}
+          label1={'Customer'}
+          screenName={'CustomerScreen'}
+          isActive={activeScreen === 'CustomerScreen'}
+          containerStyle={styles.helpStyle}
+        />
+        <DrawerHomeCard
+          onPress={() => handleCardPress('ForgotPasswordScreen')}
+          activeIcon={IMG.ReportActive}
+          inactiveIcon={IMG.Report}
+          label1={'Report'}
+          screenName={'ForgotPasswordScreen'}
+          isActive={activeScreen === 'ForgotPasswordScreen'}
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard
           onPress={() => navigate('HelpUs')}
-          icon1={IMG.help}
-          label1={t('Help Us')}
+          activeIcon={IMG.SignoutActive}
+          inactiveIcon={IMG.SignoutSimple}
+          label1={'Sign Out'}
           containerStyle={styles.helpStyle}
         />
-        {/* <DrawerHomeCard
-          onPress={() => navigate('WhereToMoveScreen')}
-          icon1={IMG.settings}
-          label1={t('where_to_move')}
-          containerStyle={styles.helpStyle}
-        /> */}
       </ScrollView>
-
-      {userInfo && (
-        <DrawerHomeCard
-          // onPress={() => props?.navigation?.toggleDrawer()}
-          onPress={() =>
-            userInfo
-              ? dispatch(onLogoutPress())
-              : props?.navigation?.navigate('Login')
-          }
-          icon1={IMG.drawerLogoutIcon}
-          label1={t('logout')}
-          br={8}
-          containerStyle={styles.helpStyle}
-        />
-      )}
     </View>
   );
 };
@@ -102,15 +129,18 @@ export default CustomDrawerContent;
 const styles = StyleSheet.create({
   drawerContainer: {
     flex: 1,
-    backgroundColor: colors.white,
+    // backgroundColor: colors.primary,
+    // borderTopRightRadius: mvs(40),
+    // borderBottomRightRadius: mvs(40),
   },
   header: {
-    height: mvs(260),
-    width: width - 60,
+    height: '30%',
+    // width: width - 60,
+    width: '100%',
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: mvs(1),
+    // borderBottomWidth: mvs(1),
     borderColor: colors.border,
     // backgroundColor: colors.primary,
   },
@@ -152,7 +182,8 @@ const styles = StyleSheet.create({
   scrololstyle: {
     flexGrow: 1,
     paddingVertical: mvs(10),
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     borderBottomColor: colors.border,
+    marginBottom: mvs(10),
   },
 });

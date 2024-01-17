@@ -84,6 +84,33 @@ export const BOOKING_LIST = [
     name: 'Ali Abdullah',
   },
 ];
+export const CUSTOMER_LIST = [
+  {
+    name: 'Ali Abdullah',
+    phone: '12345678910',
+    address: 'address asahn kajs ausiu askla, ',
+  },
+  {
+    name: 'Ali Abdullah',
+    phone: '12345678910',
+    address: 'address asahn kajs ausiu askla ',
+  },
+  {
+    name: 'Ali Abdullah',
+    phone: '12345678910',
+    address: 'address asahn kajs ausiu askla ',
+  },
+  {
+    name: 'Ali Abdullah',
+    phone: '12345678910',
+    address: 'address asahn kajs ausiu askla ',
+  },
+  {
+    name: 'Ali Abdullah',
+    phone: '12345678910',
+    address: 'address asahn kajs ausiu askla ',
+  },
+];
 export const SERVICE_LIST = [
   {
     icon: FurnitureSVG,

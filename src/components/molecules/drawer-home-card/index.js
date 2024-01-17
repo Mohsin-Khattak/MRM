@@ -10,30 +10,65 @@ import Medium from 'typography/medium-text';
 const DrawerHomeCard = ({
   icon1,
   icon2,
+  inactiveIcon,
+  activeIcon,
   label1,
   label2,
+  screenName,
   br = 0,
   containerStyle,
   onPress = () => {},
+  isActive = false,
 }) => {
+  // const isActive = screenName;
+  // const [isActive, setIsActive] = React.useState(false);
+
+  // const handlePress = () => {
+  //   setIsActive(!isActive);
+  //   onPress();
+  // };
+  const handlePress = () => {
+    if (!isActive) {
+      onPress(screenName);
+      // Additional logic to navigate to the corresponding screen
+      // You may use navigation or some other mechanism to handle navigation
+    }
+  };
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity
+      style={{
+        backgroundColor: isActive ? colors.white : colors.primary,
+        borderTopRightRadius: mvs(50),
+        borderBottomRightRadius: mvs(50),
+        width: '100%',
+        paddingVertical: mvs(8),
+      }}
+      onPress={handlePress}>
       <Row
         style={[
           styles.homeContainer,
           containerStyle,
           {
             borderRadius: mvs(br),
+            // backgroundColor: isActive ? colors.white : colors.primary,
+            // borderTopRightRadius: mvs(20),
+            // borderBottomRightRadius: mvs(20),
+            width: '80%',
+            // paddingVertical: mvs(20),
           },
         ]}>
         <Row>
-          {icon1 && (
-            <Image source={icon1} style={styles.img} resizeMode="contain" />
+          {activeIcon && inactiveIcon && (
+            <Image
+              source={isActive ? activeIcon : inactiveIcon}
+              style={styles.img}
+              resizeMode="contain"
+            />
           )}
-          <Medium
+          <Bold
             label={label1}
             fontSize={mvs(18)}
-            color={colors.black}
+            color={isActive ? colors.primary : colors.white}
             style={{marginLeft: mvs(10)}}
           />
         </Row>
@@ -66,13 +101,14 @@ const styles = StyleSheet.create({
   },
   img: {height: mvs(25), width: mvs(25), marginRight: mvs(16)},
   homeContainer: {
-    backgroundColor: colors.white,
-    height: mvs(48),
-    width: width - 100,
-    marginHorizontal: mvs(17),
-    paddingHorizontal: mvs(17.5),
+    // paddingVertical: mvs(30),
+    // backgroundColor: colors.white,
+    // height: mvs(48),
+    // width: width - 100,
+    // marginHorizontal: mvs(17),
+    // paddingHorizontal: mvs(17.5),
 
     alignItems: 'center',
-    marginBottom: mvs(30),
+    marginBottom: mvs(10),
   },
 });

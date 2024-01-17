@@ -4,12 +4,13 @@ import {mvs} from 'config/metrices';
 import {useAppSelector} from 'hooks/use-store';
 import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Regular from 'typography/regular-text';
 import {SearchInput} from '../inputs';
 import {Row} from '../row';
+import * as IMG from 'assets/images';
 const HeaderX = ({
   style = {},
   mtop = 0,
@@ -30,10 +31,14 @@ const HeaderX = ({
     <View style={[styles.container, style]}>
       <Row style={{alignItems: 'center', justifyContent: 'space-between'}}>
         <TouchableOpacity onPress={() => navigation?.toggleDrawer()}>
-          <MaterialCommunityIcons
+          {/* <MaterialCommunityIcons
             name={'menu'}
             size={mvs(30)}
             color={colors.primary}
+          /> */}
+          <Image
+            source={IMG.MenuHome}
+            style={{width: mvs(25), height: mvs(25), resizeMode: 'contain'}}
           />
         </TouchableOpacity>
 

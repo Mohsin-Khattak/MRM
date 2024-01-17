@@ -4,7 +4,9 @@ import {colors} from 'config/colors';
 import * as React from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import AddCustomerScreen from 'screens/add-customer';
 import CategoriesScreen from 'screens/categories';
+import CustomerScreen from 'screens/customer';
 import EditProfileScreen from 'screens/edit-profile';
 import ForgotPasswordScreen from 'screens/forgot-password';
 import FurnitureItemsScreen from 'screens/furniture-items';
@@ -103,6 +105,11 @@ export const RootNavigator = () => {
           <Stack.Screen
             name="MessageHomeScreen"
             component={MessageHomeScreen}
+          />
+          <Stack.Screen name="CustomerScreen" component={CustomerScreen} />
+          <Stack.Screen
+            name="AddCustomerScreen"
+            component={AddCustomerScreen}
           />
 
           <Stack.Screen name="ShoppingScreen" component={ShoppingScreen} />

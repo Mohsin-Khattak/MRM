@@ -9,16 +9,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import * as IMG from 'assets/images';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Medium from 'typography/medium-text';
 import {Row} from '../row';
 import {SearchInput} from '../inputs';
+import Bold from 'typography/bold-text';
 const HeaderX = ({
   style = {},
   mtop = 0,
+  onPressadd = () => {},
   title,
   back = true,
+  add = false,
   homeback = false,
   onChangeText = t => {},
   isSearch = false,
@@ -32,12 +37,11 @@ const HeaderX = ({
     <View style={[styles.container, style]}>
       <Row style={{alignItems: 'center'}}>
         {back ? (
-          <TouchableOpacity
-            onPress={() => navigation?.goBack()}>
-            <Icon
+          <TouchableOpacity onPress={() => navigation?.goBack()}>
+            <AntDesign
               name={I18nManager.isRTL ? 'arrowright' : 'arrowleft'}
               size={mvs(20)}
-              color={colors.white}
+              color={colors.primary}
             />
           </TouchableOpacity>
         ) : (
@@ -48,16 +52,15 @@ const HeaderX = ({
               borderRadius: mvs(7),
             }}
             onPress={() => navigation?.toggleDrawer()}>
-            <MaterialCommunityIcons
-              name={'menu'}
-              size={mvs(20)}
-              color={colors.black}
+            <Image
+              source={IMG.MenuHome}
+              style={{width: mvs(25), height: mvs(25), resizeMode: 'contain'}}
             />
           </TouchableOpacity>
         )}
 
         {title ? (
-          <Medium fontSize={mvs(20)} label={title} style={[styles.title]} />
+          <Bold fontSize={mvs(20)} label={title} style={[styles.title]} />
         ) : (
           <Image
             source={{
@@ -66,7 +69,31 @@ const HeaderX = ({
             style={{width: mvs(60), height: mvs(30), resizeMode: 'cover'}}
           />
         )}
-        <View style={styles.empty} />
+        {add ? (
+          <TouchableOpacity onPress={onPressadd}>
+            <FontAwesome
+              name={'plus'}
+              // name={I18nManager.isRTL ? 'arrowright' : 'arrowleft'}
+              size={mvs(20)}
+              color={colors.red}
+            />
+          </TouchableOpacity>
+        ) : (
+          // <TouchableOpacity
+          //   style={{
+          //     backgroundColor: colors.white,
+          //     padding: mvs(5),
+          //     borderRadius: mvs(7),
+          //   }}
+          //   onPress={() => navigation?.toggleDrawer()}>
+          //   <Image
+          //     source={IMG.MenuHome}
+          //     style={{width: mvs(25), height: mvs(25), resizeMode: 'contain'}}
+          //   />
+          // </TouchableOpacity>
+          <View style={styles.empty} />
+        )}
+        {/*  */}
       </Row>
       {isSearch && (
         <SearchInput
@@ -104,8 +131,8 @@ const styles = StyleSheet.create({
     width: mvs(10),
   },
   title: {
-    fontSize: mvs(18),
-    color: colors.white,
+    fontSize: mvs(20),
+    color: colors.primary,
   },
   back: {},
 });

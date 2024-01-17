@@ -1,9 +1,10 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {TabBar} from 'navigation/curvedtabs';
 import React from 'react';
-import {width} from 'config/metrices';
+import {mvs, width} from 'config/metrices';
 import CustomDrawerContent from './drawer-content';
 import HomeTab from 'screens/home-tab';
+import {colors} from 'config/colors';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
@@ -12,7 +13,10 @@ const DrawerNavigation = () => {
       screenOptions={{
         drawerStyle: {
           // backgroundColor: '#c6cbef',
-          width: width - 60,
+          width: '60%',
+          backgroundColor: colors.primary,
+          borderTopRightRadius: mvs(40),
+          borderBottomRightRadius: mvs(40),
         },
         headerShown: false,
       }}

@@ -8,11 +8,15 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.white,
   },
   contentContainerStyle: {
-    flex: 1,
-    paddingTop: mvs(10),
-    // paddingHorizontal: mvs(20),
+    // flexGrow: 1,
+    // paddingTop: '50%',
     // borderWidth: 1,
-    // backgroundColor: 'red',
+    // paddingBottom: mvs(200),
+    paddingHorizontal: mvs(20),
+  },
+  forgotpasswordview: {
+    alignSelf: 'flex-start',
+    marginBottom: mvs(15),
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20)},
   button: {
@@ -22,16 +26,22 @@ const styles = StyleSheet.create({
     bottom: 0,
     paddingBottom: mvs(Platform?.OS === 'android' ? 20 : 40),
   },
+  lottieview: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loginmoverstext: {
+    marginTop: mvs(5),
+    marginBottom: mvs(20),
+  },
   contentContainerStyleNew: {
     flexGrow: 1,
-    // marginTop: mvs(100),
-    // borderWidth: 1,
+    height: '60%',
     paddingHorizontal: mvs(20),
-    marginHorizontal: mvs(20),
     marginVertical: mvs(10),
     paddingVertical: mvs(20),
-    backgroundColor: colors.white,
-    bottom: mvs(30),
+    backgroundColor: '#f6fafb',
+
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -42,7 +52,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-    borderRadius: mvs(14),
+    borderRadius: mvs(40),
   },
   googlebutton: {
     backgroundColor: colors.white,
@@ -62,49 +72,36 @@ const styles = StyleSheet.create({
 
     elevation: 5,
   },
-  imagebackground: {
-    height: mvs(110),
-
+  logobackground: {
+    height: '70%',
+    // height: mvs(500),
+    borderBottomLeftRadius: mvs(40),
+    borderBottomRightRadius: mvs(40),
+    backgroundColor: colors.primary,
     width: width,
-    position: 'absolute',
 
-    //  width: '100%',
-    // position: 'absolute',
+    position: 'absolute',
   },
-  loginlogoview: {
-    alignSelf: 'center',
-    marginTop: '25%',
-    // borderWidth: 1,
-  },
-  lottieview: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  keyboradscrollcontent: {
+  keyboardcontentcontainer: {
     paddingHorizontal: mvs(0),
     flexGrow: 0,
-    paddingBottom: mvs(150),
+    paddingBottom: mvs(60),
   },
-  loginmoverstext: {
-    marginTop: mvs(5),
+  boldtext: {
+    marginTop: mvs(10),
     marginBottom: mvs(20),
   },
-  forgotpasswordview: {
-    alignSelf: 'flex-start',
-    marginBottom: mvs(15),
+  IAgreeView: {
+    flex: 1,
+    paddingHorizontal: mvs(8),
+    textAlign: 'center',
   },
-  createaccountview: {
-    alignSelf: 'center',
-    marginTop: mvs(20),
-  },
-  signupbuttoncontainer: {
-    backgroundColor: colors.bluecolor,
-    marginTop: mvs(20),
-    borderRadius: mvs(10),
-  },
-  googlefacebookview: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  genderbuttoncontainer: {
+    width: mvs(88),
+    height: mvs(39),
+
+    borderColor: colors.bluecolor,
+    borderWidth: 1,
   },
 });
 export default styles;
