@@ -19,6 +19,7 @@ import {
   CUSTOMERWISE_RECOVERY_LIST,
   CUSTOMER_LIST,
   SALES_ACTIVITY_LIST,
+  SALES_REPORT_LIST,
   SLIDES_LIST,
 } from 'config/constants';
 import {mvs} from 'config/metrices';
@@ -43,7 +44,7 @@ import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
 import {UTILS} from 'utils';
 import styles from './styles';
-const CustomerWiseRecoveryScreen = props => {
+const ReportScreen = props => {
   const user = useAppSelector(s => s?.user);
   const isFocus = useIsFocused();
   const unreadNotification = user?.unreadNotification;
@@ -129,68 +130,69 @@ const CustomerWiseRecoveryScreen = props => {
         add={false}
         onPressadd={() => navigate('AddCustomerScreen')}
         back={true}
-        title={'Customerwise Recovery'}
+        title={'Sales Report'}
         unreadNotification={unreadNotification}
         style={{backgroundColor: colors.transparent}}
       />
-      {/* <View style={{paddingHorizontal: mvs(20), marginBottom: mvs(20)}}>
-        <SearchInput />
-      </View> */}
+      <View style={{paddingHorizontal: mvs(20)}}>
+        <View
+          style={{
+            paddingHorizontal: mvs(10),
+            marginVertical: mvs(5),
+            paddingVertical: mvs(10),
+            // flex: 1,
+            backgroundColor: colors.primary,
+            borderRadius: mvs(10),
+          }}>
+          <Row
+            style={{
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <View
+              style={{
+                width: '35%',
+                // alignItems: 'center',
+              }}>
+              <Medium label={'Items'} fontSize={mvs(18)} color={colors.red} />
+            </View>
+            <View
+              style={{
+                width: '30%',
+                // alignItems: 'center',
+              }}>
+              <Medium
+                label={'Unit Sold'}
+                fontSize={mvs(18)}
+                color={colors.red}
+              />
+            </View>
+            <View
+              style={{
+                width: '35%',
+                // alignItems: 'center',
+              }}>
+              <Medium
+                label={'Sales Amount'}
+                fontSize={mvs(18)}
+                color={colors.red}
+              />
+            </View>
+          </Row>
+        </View>
+      </View>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.body}>
-          <View
-            style={{
-              marginVertical: mvs(10),
-              paddingVertical: mvs(10),
-              overflow: 'hidden',
-              // paddingVertical: mvs(8),
-              // borderColor: colors.primary,
-              paddingHorizontal: mvs(5),
-              backgroundColor: colors.primary,
-              justifyContent: 'space-between',
-              borderWidth: 1,
-              borderColor: colors.primary,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-              borderRadius: mvs(20),
-            }}>
-            <View style={{paddingHorizontal: mvs(20), paddingVertical: mvs(8)}}>
-              <Bold label={'Summary'} fontSize={mvs(24)} color={colors.red} />
-            </View>
-            <Row style={{paddingHorizontal: mvs(20), paddingVertical: mvs(5)}}>
-              <Medium
-                label={'Total Sales'}
-                color={colors.white}
-                fontSize={mvs(16)}
-              />
-              <Medium label={'10000'} color={colors.white} fontSize={mvs(16)} />
-            </Row>
-            <Row style={{paddingHorizontal: mvs(20), paddingVertical: mvs(5)}}>
-              <Medium
-                label={'Total Recovery'}
-                color={colors.white}
-                fontSize={mvs(16)}
-              />
-              <Medium label={'10000'} color={colors.white} fontSize={mvs(16)} />
-            </Row>
-            <Row style={{paddingHorizontal: mvs(20), paddingVertical: mvs(5)}}>
-              <Medium
-                label={'Total Balance'}
-                color={colors.white}
-                fontSize={mvs(16)}
-              />
-              <Medium label={'10000'} color={colors.white} fontSize={mvs(16)} />
-            </Row>
-          </View>
           <View style={{paddingVertical: mvs(20)}}>
-            <View style={{paddingHorizontal: mvs(10), marginVertical: mvs(5)}}>
+            {/* <View
+              style={{
+                paddingHorizontal: mvs(10),
+                marginVertical: mvs(5),
+                paddingVertical: mvs(10),
+                flex: 1,
+                backgroundColor: colors.primary,
+                borderRadius: mvs(10),
+              }}>
               <Row
                 style={{
                   justifyContent: 'space-between',
@@ -198,53 +200,39 @@ const CustomerWiseRecoveryScreen = props => {
                 }}>
                 <View
                   style={{
+                    width: '35%',
+                    // alignItems: 'center',
+                  }}>
+                  <Medium
+                    label={'Items'}
+                    fontSize={mvs(18)}
+                    color={colors.red}
+                  />
+                </View>
+                <View
+                  style={{
                     width: '30%',
-                    alignItems: 'center',
-                    borderRightWidth: 2,
+                    // alignItems: 'center',
                   }}>
                   <Medium
-                    label={'Customer'}
+                    label={'Unit Sold'}
                     fontSize={mvs(18)}
                     color={colors.red}
                   />
                 </View>
                 <View
                   style={{
-                    width: '25%',
-                    alignItems: 'center',
-                    borderRightWidth: 2,
+                    width: '35%',
+                    // alignItems: 'center',
                   }}>
                   <Medium
-                    label={'Sales'}
-                    fontSize={mvs(18)}
-                    color={colors.red}
-                  />
-                </View>
-                <View
-                  style={{
-                    width: '25%',
-                    alignItems: 'center',
-                    borderRightWidth: 2,
-                  }}>
-                  <Medium
-                    label={'Recovery'}
-                    fontSize={mvs(18)}
-                    color={colors.red}
-                  />
-                </View>
-                <View
-                  style={{
-                    width: '25%',
-                    alignItems: 'center',
-                  }}>
-                  <Medium
-                    label={'Balance'}
+                    label={'Sales Amount'}
                     fontSize={mvs(18)}
                     color={colors.red}
                   />
                 </View>
               </Row>
-            </View>
+            </View> */}
             <View
               style={{
                 paddingHorizontal: mvs(10),
@@ -252,7 +240,7 @@ const CustomerWiseRecoveryScreen = props => {
                 borderBottomWidth: 1,
                 paddingBottom: mvs(10),
               }}>
-              {CUSTOMERWISE_RECOVERY_LIST?.map((item, index) => (
+              {SALES_REPORT_LIST?.map((item, index) => (
                 <Row
                   style={{
                     justifyContent: 'space-between',
@@ -261,14 +249,29 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <View
                     style={{
+                      width: '35%',
+                      borderRightWidth: 2,
+                      borderColor: colors.red,
+                      paddingHorizontal: mvs(4),
+                      paddingVertical: mvs(4),
+                    }}>
+                    <Medium
+                      label={item?.item}
+                      fontSize={mvs(12)}
+                      color={colors.primary}
+                      numberOfLines={2}
+                    />
+                  </View>
+                  <View
+                    style={{
                       width: '30%',
                       borderRightWidth: 2,
-                      borderColor: colors.red,
                       paddingHorizontal: mvs(4),
+                      borderColor: colors.red,
                       paddingVertical: mvs(4),
                     }}>
                     <Medium
-                      label={item?.name}
+                      label={item?.unit}
                       fontSize={mvs(12)}
                       color={colors.primary}
                       numberOfLines={2}
@@ -276,42 +279,14 @@ const CustomerWiseRecoveryScreen = props => {
                   </View>
                   <View
                     style={{
-                      width: '25%',
-                      borderRightWidth: 2,
+                      width: '35%',
+                      // borderRightWidth: 2,
                       paddingHorizontal: mvs(4),
                       borderColor: colors.red,
                       paddingVertical: mvs(4),
                     }}>
                     <Medium
-                      label={item?.sales}
-                      fontSize={mvs(12)}
-                      color={colors.primary}
-                      numberOfLines={2}
-                    />
-                  </View>
-                  <View
-                    style={{
-                      width: '25%',
-                      borderRightWidth: 2,
-                      paddingHorizontal: mvs(4),
-                      borderColor: colors.red,
-                      paddingVertical: mvs(4),
-                    }}>
-                    <Medium
-                      label={item?.recovery}
-                      fontSize={mvs(12)}
-                      color={colors.primary}
-                      numberOfLines={2}
-                    />
-                  </View>
-                  <View
-                    style={{
-                      width: '25%',
-                      paddingHorizontal: mvs(4),
-                      paddingVertical: mvs(4),
-                    }}>
-                    <Medium
-                      label={item?.balance}
+                      label={item?.amount}
                       fontSize={mvs(12)}
                       color={colors.primary}
                       numberOfLines={2}
@@ -328,7 +303,7 @@ const CustomerWiseRecoveryScreen = props => {
                 }}>
                 <View
                   style={{
-                    width: '30%',
+                    width: '35%',
                     alignItems: 'center',
                     borderRightWidth: 2,
                   }}>
@@ -341,7 +316,7 @@ const CustomerWiseRecoveryScreen = props => {
                 </View>
                 <View
                   style={{
-                    width: '25%',
+                    width: '30%',
                     alignItems: 'center',
                     borderRightWidth: 2,
                   }}>
@@ -354,21 +329,9 @@ const CustomerWiseRecoveryScreen = props => {
                 </View>
                 <View
                   style={{
-                    width: '25%',
+                    width: '35%',
                     alignItems: 'center',
-                    borderRightWidth: 2,
-                  }}>
-                  <Medium
-                    label={'500'}
-                    fontSize={mvs(18)}
-                    color={colors.red}
-                    numberOfLines={2}
-                  />
-                </View>
-                <View
-                  style={{
-                    width: '25%',
-                    alignItems: 'center',
+                    // borderRightWidth: 2,
                   }}>
                   <Medium
                     label={'500'}
@@ -385,4 +348,4 @@ const CustomerWiseRecoveryScreen = props => {
     </View>
   );
 };
-export default CustomerWiseRecoveryScreen;
+export default ReportScreen;

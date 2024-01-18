@@ -7,6 +7,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import AddCustomerScreen from 'screens/add-customer';
 import AddRecoveryScreen from 'screens/add-recovery';
 import CategoriesScreen from 'screens/categories';
+import CreateOrderScreen from 'screens/create-order';
 import CustomerScreen from 'screens/customer';
 import CustomerWiseRecoveryScreen from 'screens/customer-wise-recovery';
 import EditProfileScreen from 'screens/edit-profile';
@@ -22,12 +23,14 @@ import {
   default as MessageHomeScreen,
   default as MesssageHomeScreen,
 } from 'screens/messageHome';
+import MyOrderScreenScreen from 'screens/my-order';
 import Notifications from 'screens/notifications';
 import Onboarding from 'screens/on-boarding';
 import OrderDetailsScreen from 'screens/order-details';
 import OurServicesScreen from 'screens/our-services';
 import PrivacyPolicyScreen from 'screens/privacy-policy';
 import RecoveryScreen from 'screens/recovery';
+import ReportScreen from 'screens/report-screen';
 import ResetPasswordScreen from 'screens/reset-password';
 import Search from 'screens/search';
 import ShoppingScreen from 'screens/shopping';
@@ -119,9 +122,18 @@ export const RootNavigator = () => {
             name="TrackingOrderScreen"
             component={TrackingOrderScreen}
           />
+          <Stack.Screen
+            name="CreateOrderScreen"
+            component={CreateOrderScreen}
+          />
 
           <Stack.Screen name="ShoppingScreen" component={ShoppingScreen} />
           <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
+          <Stack.Screen name="ReportScreen" component={ReportScreen} />
+          <Stack.Screen
+            name="MyOrderScreenScreen"
+            component={MyOrderScreenScreen}
+          />
           <Stack.Screen
             name="AddRecoveryScreen"
             component={AddRecoveryScreen}

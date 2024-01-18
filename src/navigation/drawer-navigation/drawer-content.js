@@ -69,12 +69,12 @@ const CustomDrawerContent = props => {
         />
 
         <DrawerHomeCard
-          onPress={() => handleCardPress('EditProfileScreen')}
+          onPress={() => handleCardPress('MyOrderScreenScreen')}
           activeIcon={IMG.OrderActive}
           inactiveIcon={IMG.OrderSimple}
           label1={'Order'}
-          screenName={'EditProfileScreen'}
-          isActive={activeScreen === 'EditProfileScreen'}
+          screenName={'MyOrderScreenScreen'}
+          isActive={activeScreen === 'MyOrderScreenScreen'}
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard
@@ -106,12 +106,12 @@ const CustomDrawerContent = props => {
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard
-          onPress={() => handleCardPress('ForgotPasswordScreen')}
+          onPress={() => handleCardPress('ReportScreen')}
           activeIcon={IMG.ReportActive}
           inactiveIcon={IMG.Report}
           label1={'Report'}
-          screenName={'ForgotPasswordScreen'}
-          isActive={activeScreen === 'ForgotPasswordScreen'}
+          screenName={'ReportScreen'}
+          isActive={activeScreen === 'ReportScreen'}
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard

@@ -111,6 +111,242 @@ export const CUSTOMER_LIST = [
     address: 'address asahn kajs ausiu askla ',
   },
 ];
+export const ORDER_ITEMS = [
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+];
+export const MY_ORDER_PROCESSING_LIST = [
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'processing',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'shipped',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'processing',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'shipped',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'shipped',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'processing',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'processing',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'processing',
+  },
+];
+export const MY_ORDER_SHIPPED_LIST = [
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'shipped',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'shipped',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'shipped',
+  },
+  {
+    order_id: '24535',
+    name: 'Ali Abdullah',
+    date: '17-01-24',
+    price: '25000 Rs',
+    status: 'shipped',
+  },
+];
+export const SALES_REPORT_LIST = [
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+  {
+    item: 'Ali Abdullah ',
+    unit: '500',
+    amount: '200000 Rs',
+  },
+];
+export const CUSTOMERWISE_RECOVERY_LIST = [
+  {
+    name: 'Ali Abdullah ',
+    sales: '1200000',
+    recovery: '1670000',
+    balance: '2121212',
+  },
+  {
+    name: 'Ali Abdullah',
+    sales: '1200000',
+    recovery: '1670000',
+    balance: '21212112',
+  },
+  {
+    name: 'Ali Abdullah',
+    sales: '1200000',
+    recovery: '1670000',
+    balance: '21212112',
+  },
+  {
+    name: 'Ali Abdullah',
+    sales: '1200000',
+    recovery: '1670000',
+    balance: '21212112',
+  },
+  {
+    name: 'Ali Abdullah',
+    sales: '1200000',
+    recovery: '1670000',
+    balance: '21212112',
+  },
+];
 export const RECOVERY_LIST = [
   {
     name: 'Customer Name',
