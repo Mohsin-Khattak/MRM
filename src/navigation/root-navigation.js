@@ -5,8 +5,10 @@ import * as React from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AddCustomerScreen from 'screens/add-customer';
+import AddRecoveryScreen from 'screens/add-recovery';
 import CategoriesScreen from 'screens/categories';
 import CustomerScreen from 'screens/customer';
+import CustomerWiseRecoveryScreen from 'screens/customer-wise-recovery';
 import EditProfileScreen from 'screens/edit-profile';
 import ForgotPasswordScreen from 'screens/forgot-password';
 import FurnitureItemsScreen from 'screens/furniture-items';
@@ -25,6 +27,7 @@ import Onboarding from 'screens/on-boarding';
 import OrderDetailsScreen from 'screens/order-details';
 import OurServicesScreen from 'screens/our-services';
 import PrivacyPolicyScreen from 'screens/privacy-policy';
+import RecoveryScreen from 'screens/recovery';
 import ResetPasswordScreen from 'screens/reset-password';
 import Search from 'screens/search';
 import ShoppingScreen from 'screens/shopping';
@@ -34,6 +37,7 @@ import Splash from 'screens/splash';
 import TermsandConditionsScreen from 'screens/terms-and-conditions';
 import TotalOrderScreen from 'screens/total-order-request';
 import Tracking from 'screens/tracking';
+import TrackingOrderScreen from 'screens/tracking-order';
 import WhereToMoveScreen from 'screens/where-to-move';
 import {horizontalAnimation} from '../utils';
 import DrawerNavigation from './drawer-navigation/drawer-navigation';
@@ -111,8 +115,21 @@ export const RootNavigator = () => {
             name="AddCustomerScreen"
             component={AddCustomerScreen}
           />
+          <Stack.Screen
+            name="TrackingOrderScreen"
+            component={TrackingOrderScreen}
+          />
 
           <Stack.Screen name="ShoppingScreen" component={ShoppingScreen} />
+          <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
+          <Stack.Screen
+            name="AddRecoveryScreen"
+            component={AddRecoveryScreen}
+          />
+          <Stack.Screen
+            name="CustomerWiseRecoveryScreen"
+            component={CustomerWiseRecoveryScreen}
+          />
 
           <Stack.Screen
             name="WhereToMoveScreen"

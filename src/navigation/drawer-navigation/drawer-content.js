@@ -78,22 +78,22 @@ const CustomDrawerContent = props => {
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard
-          onPress={() => handleCardPress('Notifications')}
+          onPress={() => handleCardPress('RecoveryScreen')}
           activeIcon={IMG.RecoveryActive}
           inactiveIcon={IMG.Recovery}
-          screenName={'Notifications'}
+          screenName={'RecoveryScreen'}
           label1={'Recovery'}
-          isActive={activeScreen === 'Notifications'}
+          isActive={activeScreen === 'RecoveryScreen'}
           containerStyle={styles.helpStyle}
         />
 
         <DrawerHomeCard
-          onPress={() => handleCardPress('HelpUs')}
+          onPress={() => handleCardPress('TrackingOrderScreen')}
           activeIcon={IMG.TrackingActive}
           inactiveIcon={IMG.TrackingSimple}
           label1={'Tracking'}
-          screenName={'HelpUs'}
-          isActive={activeScreen === 'HelpUs'}
+          screenName={'TrackingOrderScreen'}
+          isActive={activeScreen === 'TrackingOrderScreen'}
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard
@@ -112,6 +112,15 @@ const CustomDrawerContent = props => {
           label1={'Report'}
           screenName={'ForgotPasswordScreen'}
           isActive={activeScreen === 'ForgotPasswordScreen'}
+          containerStyle={styles.helpStyle}
+        />
+        <DrawerHomeCard
+          onPress={() => handleCardPress('CustomerWiseRecoveryScreen')}
+          activeIcon={IMG.ReportActive}
+          inactiveIcon={IMG.Report}
+          label1={'Custoemrwise recovery'}
+          screenName={'CustomerWiseRecoveryScreen'}
+          isActive={activeScreen === 'CustomerWiseRecoveryScreen'}
           containerStyle={styles.helpStyle}
         />
         <DrawerHomeCard

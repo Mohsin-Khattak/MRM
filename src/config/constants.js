@@ -111,6 +111,44 @@ export const CUSTOMER_LIST = [
     address: 'address asahn kajs ausiu askla ',
   },
 ];
+export const RECOVERY_LIST = [
+  {
+    name: 'Customer Name',
+    price: '50,000 Rs',
+    balance: 'Balance',
+    date: '25-12-2024',
+  },
+  {
+    name: 'Customer Name',
+    price: '50,000 Rs',
+    balance: 'Balance',
+    date: '25-12-2024',
+  },
+  {
+    name: 'Customer Name',
+    price: '50,000 Rs',
+    balance: 'Balance',
+    date: '25-12-2024',
+  },
+  {
+    name: 'Customer Name',
+    price: '50,000 Rs',
+    balance: 'Balance',
+    date: '25-12-2024',
+  },
+  {
+    name: 'Customer Name',
+    price: '50,000 Rs',
+    balance: 'Balance',
+    date: '25-12-2024',
+  },
+  {
+    name: 'Customer Name',
+    price: '50,000 Rs',
+    balance: 'Balance',
+    date: '25-12-2024',
+  },
+];
 export const SERVICE_LIST = [
   {
     icon: FurnitureSVG,

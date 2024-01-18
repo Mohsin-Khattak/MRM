@@ -375,7 +375,9 @@ export const InputWithIcon = (props: props) => {
           onBlur();
         }}
         style={[styles.dropDownContainer, containerStyle]}>
-        <Medium label={items?.find(x => x?.id == id)?.title || ''} />
+        <Medium
+          label={items?.find(x => x?.id == id)?.title || 'Select Customer'}
+        />
         <Feather size={25} name={'chevron-down'} color={colors.black} />
       </TouchableOpacity>
       <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
@@ -570,7 +572,7 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     alignSelf: 'flex-start',
-    color: colors.primary,
+    color: colors.white,
     marginBottom: mvs(3),
     paddingHorizontal: mvs(5),
   },

@@ -30,7 +30,7 @@ const DropdownModal = ({
         <Medium
           numberOfLines={2}
           style={styles.pick}
-          label={t('select_vehicle_type')}
+          label={'Select Customer'}
         />
         <ScrollView
           contentContainerStyle={{

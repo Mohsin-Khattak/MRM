@@ -196,6 +196,7 @@ const LoginScreen = props => {
                         containerStyle={{
                           borderRadius: mvs(6),
                           width: '60%',
+                          height: mvs(50),
                           alignSelf: 'center',
                         }}
                         loading={loading}

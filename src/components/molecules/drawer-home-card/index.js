@@ -3,7 +3,7 @@ import React from 'react';
 import {Row} from 'components/atoms/row';
 import {colors} from 'config/colors';
 import {mvs, width} from 'config/metrices';
-import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
 
@@ -65,12 +65,14 @@ const DrawerHomeCard = ({
               resizeMode="contain"
             />
           )}
+          {/* <View style={{width: '90%', backgroundColor: colors.red}}> */}
           <Bold
             label={label1}
             fontSize={mvs(18)}
             color={isActive ? colors.primary : colors.white}
             style={{marginLeft: mvs(10)}}
           />
+          {/* </View> */}
         </Row>
         {
           <Row style={{marginRight: mvs(22)}}>
