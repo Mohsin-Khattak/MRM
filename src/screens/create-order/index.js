@@ -220,7 +220,7 @@ const CreateOrderScreen = props => {
                           />
                           <Medium
                             label={'Add item'}
-                            color={colors.red}
+                            color={colors.primary}
                             fontSize={mvs(12)}
                             style={{marginLeft: mvs(6)}}
                           />

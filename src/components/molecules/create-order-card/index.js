@@ -50,7 +50,16 @@ const CreateOrderCard = ({
   onPressCart = () => {},
 }) => {
   const {t} = i18n;
+  const [quantity, setQuantity] = React.useState(1);
+  const handleIncrement = () => {
+    setQuantity(prevQuantity => prevQuantity + 1);
+  };
 
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(prevQuantity => prevQuantity - 1);
+    }
+  };
   return (
     <View>
       <View onPress={onPress} style={styles.contentContainerStyleNew}>
@@ -66,22 +75,26 @@ const CreateOrderCard = ({
             style={{
               alignItems: 'center',
               justifyContent: 'space-between',
-              width: '20%',
+              width: '25%',
               marginTop: mvs(10),
               marginRight: mvs(10),
               // paddingHorizontal: mvs(20),
             }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleDecrement()}>
               <Entypo
-                name="circle-with-plus"
+                name="circle-with-minus"
                 size={mvs(16)}
                 color={colors.red}
               />
             </TouchableOpacity>
-            <Medium label={'1'} color={colors.primary} fontSize={mvs(14)} />
-            <TouchableOpacity>
+            <Medium
+              label={quantity.toString()}
+              color={colors.primary}
+              fontSize={mvs(14)}
+            />
+            <TouchableOpacity onPress={() => handleIncrement()}>
               <Entypo
-                name="circle-with-minus"
+                name="circle-with-plus"
                 size={mvs(16)}
                 color={colors.red}
               />
