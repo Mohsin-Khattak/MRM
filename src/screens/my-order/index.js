@@ -144,7 +144,7 @@ const MyOrderScreenScreen = props => {
               width: '45%',
               height: mvs(39),
               backgroundColor:
-                selectedOrder === 'processing' ? colors.primary : colors.white,
+                selectedOrder === 'processing' ? colors.red : colors.white,
               borderColor: colors.lightGray,
               borderWidth: 1,
               ...colors.shadow,
@@ -167,7 +167,7 @@ const MyOrderScreenScreen = props => {
               width: '45%',
               height: mvs(39),
               backgroundColor:
-                selectedOrder === 'shipped' ? colors.primary : colors.white,
+                selectedOrder === 'shipped' ? colors.red : colors.white,
               borderColor: colors.lightGray,
               borderWidth: 1,
               ...colors.shadow,
