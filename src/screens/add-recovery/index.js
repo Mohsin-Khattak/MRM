@@ -242,6 +242,79 @@ const AddRecoveryScreen = props => {
                       }}>
                       <View
                         style={{
+                          // backgroundColor: 'red',
+                          width: '45%',
+                          height: mvs(40),
+                        }}>
+                        <Medium
+                          label={'Upload Reciept'}
+                          fontSize={mvs(14)}
+                          color={colors.white}
+                          numberOfLines={2}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          // backgroundColor: 'red',
+                          width: '40%',
+                          height: mvs(40),
+                        }}>
+                        <Medium
+                          label={'Upload Bank Deposit Slip'}
+                          fontSize={mvs(14)}
+                          color={colors.white}
+                          numberOfLines={2}
+                        />
+                      </View>
+                    </Row>
+                    <Row
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        paddingVertical: mvs(10),
+                      }}>
+                      <TouchableOpacity
+                        style={{
+                          width: '45%',
+                          height: mvs(40),
+                          backgroundColor: colors.white,
+                          borderRadius: mvs(6),
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          alignSelf: 'center',
+                          // marginTop: mvs(20),
+                        }}>
+                        <Medium
+                          label={'Upload'}
+                          color={colors.primary}
+                          fontSize={mvs(16)}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={{
+                          width: '45%',
+                          height: mvs(40),
+                          backgroundColor: colors.white,
+                          borderRadius: mvs(6),
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          alignSelf: 'center',
+                          // marginTop: mvs(20),
+                        }}>
+                        <Medium
+                          label={'Upload'}
+                          color={colors.primary}
+                          fontSize={mvs(16)}
+                        />
+                      </TouchableOpacity>
+                    </Row>
+                    {/* <Row
+                      style={{
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}>
+                      <View
+                        style={{
                           alignItems: 'center',
                           justifyContent: 'ceter',
                           width: '45%',
@@ -275,14 +348,14 @@ const AddRecoveryScreen = props => {
                           justifyContent: 'center',
                           width: '45%',
                         }}>
-                        {/* <View style={{width: mvs(120), marginBottom: mvs(10)}}> */}
+
                         <Medium
                           label={'Upload Bank Slip:'}
                           color={colors.white}
                           fontSize={mvs(16)}
                           numberOfLines={2}
                         />
-                        {/* </View> */}
+
                         <TouchableOpacity
                           style={{
                             width: '100%',
@@ -301,7 +374,7 @@ const AddRecoveryScreen = props => {
                           />
                         </TouchableOpacity>
                       </View>
-                    </Row>
+                    </Row> */}
                     <Row
                       style={{
                         justifyContent: 'space-between',

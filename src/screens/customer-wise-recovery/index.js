@@ -206,6 +206,7 @@ const CustomerWiseRecoveryScreen = props => {
                     label={'Customer'}
                     fontSize={mvs(18)}
                     color={colors.red}
+                    numberOfLines={2}
                   />
                 </View>
                 <View
@@ -218,6 +219,7 @@ const CustomerWiseRecoveryScreen = props => {
                     label={'Sales'}
                     fontSize={mvs(18)}
                     color={colors.red}
+                    numberOfLines={2}
                   />
                 </View>
                 <View
@@ -230,6 +232,7 @@ const CustomerWiseRecoveryScreen = props => {
                     label={'Recovery'}
                     fontSize={mvs(18)}
                     color={colors.red}
+                    numberOfLines={2}
                   />
                 </View>
                 <View
@@ -241,6 +244,7 @@ const CustomerWiseRecoveryScreen = props => {
                     label={'Balance'}
                     fontSize={mvs(18)}
                     color={colors.red}
+                    numberOfLines={2}
                   />
                 </View>
               </Row>

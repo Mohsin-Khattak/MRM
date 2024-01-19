@@ -176,6 +176,7 @@ const ReportScreen = props => {
                 label={'Sales Amount'}
                 fontSize={mvs(18)}
                 color={colors.red}
+                numberOfLines={2}
               />
             </View>
           </Row>
