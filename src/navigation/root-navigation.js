@@ -10,6 +10,7 @@ import CategoriesScreen from 'screens/categories';
 import CreateOrderScreen from 'screens/create-order';
 import CustomerScreen from 'screens/customer';
 import CustomerWiseRecoveryScreen from 'screens/customer-wise-recovery';
+import EditOrderScreen from 'screens/edit-order';
 import EditProfileScreen from 'screens/edit-profile';
 import ForgotPasswordScreen from 'screens/forgot-password';
 import FurnitureItemsScreen from 'screens/furniture-items';
@@ -126,6 +127,7 @@ export const RootNavigator = () => {
             name="CreateOrderScreen"
             component={CreateOrderScreen}
           />
+          <Stack.Screen name="EditOrderScreen" component={EditOrderScreen} />
 
           <Stack.Screen name="ShoppingScreen" component={ShoppingScreen} />
           <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />

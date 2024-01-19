@@ -50,7 +50,9 @@ import {UTILS} from 'utils';
 import styles from './styles';
 import CreateOrderCard from 'components/molecules/create-order-card';
 import CartModal from 'components/molecules/modals/cart-modal';
-const CreateOrderScreen = props => {
+import EditOrderCard from 'components/molecules/edit-order-card';
+import EditCartModal from 'components/molecules/modals/edit-cart-modal';
+const EditOrderScreen = props => {
   const user = useAppSelector(s => s?.user);
   const isFocus = useIsFocused();
   const unreadNotification = user?.unreadNotification;
@@ -144,7 +146,7 @@ const CreateOrderScreen = props => {
     />
   );
   const renderAppointmentItem = ({item, index}) => (
-    <CreateOrderCard item={item} />
+    <EditOrderCard item={item} />
   );
 
   return (
@@ -156,7 +158,7 @@ const CreateOrderScreen = props => {
       <Header1x2x
         add={false}
         back={true}
-        title={'Create Order'}
+        title={'Edit Order'}
         unreadNotification={unreadNotification}
         style={{backgroundColor: colors.transparent}}
       />
@@ -293,18 +295,18 @@ const CreateOrderScreen = props => {
           }}
           loading={loading}
           // onPress={handleSubmit}
-          title={'Add Order'}
+          title={'Update Order'}
           fontSize={mvs(22)}
           textStyle={{
             color: colors.white,
           }}
         />
       </View>
-      <CartModal
+      <EditCartModal
         visible={otpModalVisible}
         onClose={() => setOtpModalVisible(false)}
       />
     </View>
   );
 };
-export default CreateOrderScreen;
+export default EditOrderScreen;

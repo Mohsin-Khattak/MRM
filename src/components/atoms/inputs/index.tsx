@@ -475,8 +475,46 @@ export const SearchInput = (props: props) => {
         style={styles.searchIcon}
         onPress={() => {}}>
         <Entypo name={'circle-with-cross'} size={mvs(25)} color={colors.red} />
-        {/* <Image source={menue} style={{height: mvs(15), width: mvs(25)}} /> */}
       </TouchableOpacity>
+    </View>
+  );
+};
+export const SearchInputModal = (props: props) => {
+  const [secure, setSecure] = useState(true);
+  const {
+    onChangeText,
+    value,
+    style,
+    label,
+    placeholder = t('search here'),
+    labelStyle,
+    containerStyle,
+    secureTextEntry,
+    keyboardType,
+    error,
+    onBlur,
+    mtop,
+    editable,
+    disabledSearch = true,
+  } = props;
+  return (
+    <View style={[styles.searchContainer, containerStyle]}>
+      <TouchableOpacity
+        disabled={disabledSearch}
+        style={styles.searchIcon}
+        onPress={() => {}}>
+        <Feather size={mvs(22)} name={'search'} color={colors.red} />
+      </TouchableOpacity>
+      <TextInput
+        editable={editable}
+        onBlur={onBlur}
+        keyboardType={keyboardType}
+        value={value}
+        placeholder={placeholder}
+        placeholderTextColor={`${colors.primary}`}
+        onChangeText={onChangeText}
+        style={[styles.searchTextInput, style]}
+      />
     </View>
   );
 };

@@ -124,6 +124,42 @@ export const ORDER_ITEMS = [
     name: 'Ali Abdullah',
     price: '12,0000 Rs',
   },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
+  {
+    name: 'Ali Abdullah',
+    price: '12,0000 Rs',
+  },
 ];
 export const MY_ORDER_PROCESSING_LIST = [
   {

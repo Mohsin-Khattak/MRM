@@ -20,7 +20,7 @@ import {ORDER_ITEMS} from 'config/constants';
 // import DescriptionCard from '../description-card';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-const CartModal = ({
+const EditCartModal = ({
   style,
   value,
   visible = false,
@@ -109,7 +109,7 @@ const CartModal = ({
     </ModalWrapper>
   );
 };
-export default CartModal;
+export default EditCartModal;
 const styles = StyleSheet.create({
   contentContainerStyle: {
     width: '100%',

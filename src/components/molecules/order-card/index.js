@@ -48,6 +48,7 @@ const OrderCard = ({
   onPressAccept = () => {},
   onPressReject = () => {},
   onPressDetails = () => {},
+  onPressEdit = () => {},
   onPressCart = () => {},
 }) => {
   const [isLongPressed, setIsLongPressed] = React.useState(false);
@@ -66,12 +67,12 @@ const OrderCard = ({
 
   return (
     <TouchableOpacity
-      onLongPress={handleLongPress}
+      // onLongPress={handleLongPress}
       onPress={onPress}
       style={styles.contentContainerStyleNew1}>
       <TouchableOpacity
-        onLongPress={handleLongPress}
-        onPress={onPress}
+        // onLongPress={handleLongPress}
+        onPress={handleLongPress}
         style={styles.contentContainerStyleNew}>
         <Row
           style={{
@@ -165,20 +166,22 @@ const OrderCard = ({
       </TouchableOpacity>
       {isLongPressed && item?.status === 'processing' && (
         <Row style={{justifyContent: 'space-around', alignItems: 'center'}}>
-          <Row
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingVertical: mvs(10),
-            }}>
-            <Feather name="edit" color={colors.white} size={mvs(20)} />
-            <Medium
-              label={'Edit Order'}
-              color={colors.white}
-              fontSize={mvs(18)}
-              style={{marginLeft: mvs(10)}}
-            />
-          </Row>
+          <TouchableOpacity onPress={onPressEdit}>
+            <Row
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: mvs(10),
+              }}>
+              <Feather name="edit" color={colors.white} size={mvs(20)} />
+              <Medium
+                label={'Edit Order'}
+                color={colors.white}
+                fontSize={mvs(18)}
+                style={{marginLeft: mvs(10)}}
+              />
+            </Row>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => handleCloseEditOrder()}>
             <Entypo
               name="circle-with-cross"

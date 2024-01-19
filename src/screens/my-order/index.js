@@ -120,7 +120,12 @@ const MyOrderScreenScreen = props => {
       }
     />
   );
-  const renderAppointmentItem = ({item, index}) => <OrderCard item={item} />;
+  const renderAppointmentItem = ({item, index}) => (
+    <OrderCard
+      onPressEdit={() => props?.navigation?.navigate('EditOrderScreen')}
+      item={item}
+    />
+  );
 
   return (
     <View style={styles.container}>
