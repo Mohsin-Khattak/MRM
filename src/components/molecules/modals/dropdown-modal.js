@@ -1,4 +1,4 @@
-import {CrossModal} from 'assets/icons';
+import {CrossModal, CrossModalRed} from 'assets/icons';
 import {ModalWrapper} from 'components/atoms/modal-wrapper';
 import {colors} from 'config/colors';
 import {mvs} from 'config/metrices';
@@ -25,7 +25,7 @@ const DropdownModal = ({
       <View style={styles.container}>
         <View style={styles.header} />
         <TouchableOpacity onPress={() => onClose()} style={styles.cross}>
-          <CrossModal height={mvs(30)} width={mvs(30)} />
+          <CrossModalRed height={mvs(30)} width={mvs(30)} />
         </TouchableOpacity>
         <Medium
           numberOfLines={2}

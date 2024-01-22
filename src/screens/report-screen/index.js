@@ -152,29 +152,32 @@ const ReportScreen = props => {
             <View
               style={{
                 width: '35%',
+                alignItems: 'center',
                 // alignItems: 'center',
               }}>
-              <Medium label={'Items'} fontSize={mvs(18)} color={colors.red} />
+              <Medium label={'Items'} fontSize={mvs(16)} color={colors.red} />
             </View>
             <View
               style={{
                 width: '30%',
+                alignItems: 'center',
                 // alignItems: 'center',
               }}>
               <Medium
                 label={'Unit Sold'}
-                fontSize={mvs(18)}
+                fontSize={mvs(16)}
                 color={colors.red}
               />
             </View>
             <View
               style={{
                 width: '35%',
+                alignItems: 'center',
                 // alignItems: 'center',
               }}>
               <Medium
                 label={'Sales Amount'}
-                fontSize={mvs(18)}
+                fontSize={mvs(16)}
                 color={colors.red}
                 numberOfLines={2}
               />
@@ -252,6 +255,7 @@ const ReportScreen = props => {
                     style={{
                       width: '35%',
                       borderRightWidth: 2,
+                      alignItems: 'center',
                       borderColor: colors.red,
                       paddingHorizontal: mvs(4),
                       paddingVertical: mvs(4),
@@ -268,6 +272,7 @@ const ReportScreen = props => {
                       width: '30%',
                       borderRightWidth: 2,
                       paddingHorizontal: mvs(4),
+                      alignItems: 'center',
                       borderColor: colors.red,
                       paddingVertical: mvs(4),
                     }}>
@@ -284,6 +289,7 @@ const ReportScreen = props => {
                       // borderRightWidth: 2,
                       paddingHorizontal: mvs(4),
                       borderColor: colors.red,
+                      alignItems: 'center',
                       paddingVertical: mvs(4),
                     }}>
                     <Medium
@@ -310,7 +316,7 @@ const ReportScreen = props => {
                   }}>
                   <Medium
                     label={'Total'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -323,7 +329,7 @@ const ReportScreen = props => {
                   }}>
                   <Medium
                     label={'1000'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -336,7 +342,7 @@ const ReportScreen = props => {
                   }}>
                   <Medium
                     label={'500'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />

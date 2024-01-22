@@ -204,7 +204,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'Customer'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -217,7 +217,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'Sales'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -230,7 +230,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'Recovery'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -242,7 +242,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'Balance'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -268,6 +268,7 @@ const CustomerWiseRecoveryScreen = props => {
                       width: '30%',
                       borderRightWidth: 2,
                       borderColor: colors.red,
+                      alignItems: 'center',
                       paddingHorizontal: mvs(4),
                       paddingVertical: mvs(4),
                     }}>
@@ -283,6 +284,7 @@ const CustomerWiseRecoveryScreen = props => {
                       width: '25%',
                       borderRightWidth: 2,
                       paddingHorizontal: mvs(4),
+                      alignItems: 'center',
                       borderColor: colors.red,
                       paddingVertical: mvs(4),
                     }}>
@@ -299,6 +301,7 @@ const CustomerWiseRecoveryScreen = props => {
                       borderRightWidth: 2,
                       paddingHorizontal: mvs(4),
                       borderColor: colors.red,
+                      alignItems: 'center',
                       paddingVertical: mvs(4),
                     }}>
                     <Medium
@@ -311,6 +314,7 @@ const CustomerWiseRecoveryScreen = props => {
                   <View
                     style={{
                       width: '25%',
+                      alignItems: 'center',
                       paddingHorizontal: mvs(4),
                       paddingVertical: mvs(4),
                     }}>
@@ -338,7 +342,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'Total'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -351,7 +355,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'1000'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -364,7 +368,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'500'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
@@ -376,7 +380,7 @@ const CustomerWiseRecoveryScreen = props => {
                   }}>
                   <Medium
                     label={'500'}
-                    fontSize={mvs(18)}
+                    fontSize={mvs(16)}
                     color={colors.red}
                     numberOfLines={2}
                   />
