@@ -376,7 +376,7 @@ export const InputWithIcon = (props: props) => {
         }}
         style={[styles.dropDownContainer, containerStyle]}>
         <Medium
-          label={items?.find(x => x?.id == id)?.title || 'Select Customer'}
+          label={items?.find(x => x?.id == id)?.name || 'Select Customer'}
         />
         <Feather size={25} name={'chevron-down'} color={colors.black} />
       </TouchableOpacity>

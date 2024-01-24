@@ -25,8 +25,24 @@ const CartModal = ({
   value,
   visible = false,
   onClose = () => {},
+  onAddToOrder = () => {},
   onChangeText,
+  selectedItems,
 }) => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchList, setSearchList] = React.useState([]);
+
+  React.useEffect(() => {
+    if (searchTerm?.trim()?.length) {
+      const filtered = ORDER_ITEMS?.filter(item => {
+        const cond =
+          searchTerm === '' || item?.name?.match(new RegExp(searchTerm, 'i'));
+        return cond; // Return the item if the condition is met
+      });
+
+      setSearchList(filtered);
+    }
+  }, [searchTerm]);
   return (
     <ModalWrapper
       onBackdropPress={() => onClose()}
@@ -50,6 +66,10 @@ const CartModal = ({
             containerStyle={{
               backgroundColor: colors.white,
             }}
+            style={{
+              color: colors.primary,
+            }}
+            onChangeText={setSearchTerm}
           />
         </View>
         <ScrollView
@@ -57,18 +77,19 @@ const CartModal = ({
             flexGrow: 1,
             paddingHorizontal: mvs(10),
           }}>
-          {ORDER_ITEMS?.map((item, index) => (
-            <View>
-              <View style={styles.contentContainerStyleNew}>
-                <Row>
-                  <View style={{paddingHorizontal: mvs(10)}}>
-                    <Medium
-                      label={item?.name}
-                      color={colors.primary}
-                      fontSize={mvs(16)}
-                    />
-                  </View>
-                  {/* <Row
+          {searchTerm?.trim()?.length
+            ? searchList.map((item, index) => (
+                <View>
+                  <View key={index} style={styles.contentContainerStyleNew}>
+                    <Row>
+                      <View style={{paddingHorizontal: mvs(10)}}>
+                        <Medium
+                          label={item?.name}
+                          color={colors.primary}
+                          fontSize={mvs(16)}
+                        />
+                      </View>
+                      {/* <Row
                     style={{
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -77,33 +98,121 @@ const CartModal = ({
                       marginRight: mvs(10),
                       // paddingHorizontal: mvs(20),
                     }}> */}
-                  <TouchableOpacity
+                      <TouchableOpacity
+                        style={{
+                          // backgroundColor: 'green',
+                          width: '20%',
+                          alignItems: 'center',
+                          marginTop: mvs(10),
+                        }}
+                        onPress={() => onAddToOrder(item)}>
+                        {selectedItems.some(
+                          selectedItem => selectedItem.id === item.id,
+                        ) ? (
+                          <TouchableOpacity
+                            style={{
+                              marginVertical: mvs(5),
+                              borderRadius: mvs(5),
+                              paddingVertical: mvs(5),
+                              paddingHorizontal: mvs(10),
+                              backgroundColor: colors.primary,
+                            }}>
+                            <Medium
+                              label="Added"
+                              color={colors.white}
+                              fontSize={mvs(12)}
+                            />
+                          </TouchableOpacity>
+                        ) : (
+                          <Entypo
+                            name="circle-with-plus"
+                            size={mvs(22)}
+                            color={colors.red}
+                          />
+                        )}
+                      </TouchableOpacity>
+                      {/* </Row> */}
+                    </Row>
+                    <View style={{paddingHorizontal: mvs(10)}}>
+                      <Medium
+                        label={item?.price}
+                        color={colors.primary}
+                        fontSize={mvs(14)}
+                      />
+                    </View>
+                  </View>
+                </View>
+              ))
+            : ORDER_ITEMS?.map((item, index) => (
+                <View>
+                  <View key={index} style={styles.contentContainerStyleNew}>
+                    <Row>
+                      <View style={{paddingHorizontal: mvs(10)}}>
+                        <Medium
+                          label={item?.name}
+                          color={colors.primary}
+                          fontSize={mvs(16)}
+                        />
+                      </View>
+                      {/* <Row
                     style={{
-                      // backgroundColor: 'green',
-                      width: '20%',
                       alignItems: 'center',
+                      justifyContent: 'space-between',
+                      width: '25%',
                       marginTop: mvs(10),
-                    }}
-                    // onPress={() => handleIncrement()}
-                  >
-                    <Entypo
+                      marginRight: mvs(10),
+                      // paddingHorizontal: mvs(20),
+                    }}> */}
+                      <TouchableOpacity
+                        style={{
+                          // backgroundColor: 'green',
+                          width: '20%',
+                          alignItems: 'center',
+                          marginTop: mvs(10),
+                        }}
+                        onPress={() => onAddToOrder(item)}>
+                        {selectedItems.some(
+                          selectedItem => selectedItem.id === item.id,
+                        ) ? (
+                          <TouchableOpacity
+                            style={{
+                              marginVertical: mvs(5),
+                              borderRadius: mvs(5),
+                              paddingVertical: mvs(5),
+                              paddingHorizontal: mvs(10),
+                              backgroundColor: colors.primary,
+                            }}>
+                            <Medium
+                              label="Added"
+                              color={colors.white}
+                              fontSize={mvs(12)}
+                            />
+                          </TouchableOpacity>
+                        ) : (
+                          <Entypo
+                            name="circle-with-plus"
+                            size={mvs(22)}
+                            color={colors.red}
+                          />
+                        )}
+                        {/* <Entypo
                       name="circle-with-plus"
                       size={mvs(22)}
                       color={colors.red}
-                    />
-                  </TouchableOpacity>
-                  {/* </Row> */}
-                </Row>
-                <View style={{paddingHorizontal: mvs(10)}}>
-                  <Medium
-                    label={item?.price}
-                    color={colors.primary}
-                    fontSize={mvs(14)}
-                  />
+                    /> */}
+                      </TouchableOpacity>
+                      {/* </Row> */}
+                    </Row>
+                    <View style={{paddingHorizontal: mvs(10)}}>
+                      <Medium
+                        label={item?.price}
+                        color={colors.primary}
+                        fontSize={mvs(14)}
+                      />
+                    </View>
+                  </View>
                 </View>
-              </View>
-            </View>
-          ))}
+              ))}
         </ScrollView>
       </View>
     </ModalWrapper>

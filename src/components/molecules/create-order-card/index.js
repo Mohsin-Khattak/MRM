@@ -48,18 +48,35 @@ const CreateOrderCard = ({
   onPressReject = () => {},
   onPressDetails = () => {},
   onPressCart = () => {},
+  setSelectedItems,
 }) => {
   const {t} = i18n;
   const [quantity, setQuantity] = React.useState(1);
   const handleIncrement = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
-
+  // const handleDecrement = () => {
+  //   setQuantity(prevQuantity => prevQuantity - 1);
+  // };
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
+    } else {
+      // If quantity is 1, remove the item from the selectedItems array
+      setSelectedItems(prevItems =>
+        prevItems.filter(prevItem => prevItem.id !== item.id),
+      );
     }
   };
+
+  // const handleDecrement = () => {
+  //   if (quantity > 1) {
+  //     setQuantity(prevQuantity => prevQuantity - 1);
+  //   } else {
+  //     // If quantity is 1, remove the item from the cart
+  //     onAddToOrder({...item, quantity: 0}); // Assuming item is passed as a prop
+  //   }
+  // };
   return (
     <View>
       <View onPress={onPress} style={styles.contentContainerStyleNew}>

@@ -1,6 +1,7 @@
 import {CrossModal, CrossModalRed} from 'assets/icons';
 import {ModalWrapper} from 'components/atoms/modal-wrapper';
 import {colors} from 'config/colors';
+import {ORDER_ITEMS} from 'config/constants';
 import {mvs} from 'config/metrices';
 import {t} from 'i18next';
 import React from 'react';
@@ -38,7 +39,7 @@ const DropdownModal = ({
             paddingHorizontal: mvs(20),
             paddingTop: mvs(10),
           }}>
-          {items?.map((item, index) => {
+          {ORDER_ITEMS?.map((item, index) => {
             return (
               <TouchableOpacity
                 key={index}

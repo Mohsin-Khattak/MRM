@@ -63,12 +63,21 @@ const CreateOrderScreen = props => {
   const [homeBanner, setHomeBanner] = React.useState([]);
   const [order, setOrder] = React.useState([]);
   const [otpModalVisible, setOtpModalVisible] = React.useState(false);
+  const [selectedItems, setSelectedItems] = React.useState([]);
+
+  const handleAddToOrder = item => {
+    console.log('Item added to order:', item);
+    // Check if the item is already in the selectedItems array
+    if (!selectedItems.some(selectedItem => selectedItem.id === item.id)) {
+      setSelectedItems(prevItems => [...prevItems, item]);
+    }
+  };
   const itemSeparatorComponent = () => {
     return <View style={{paddingVertical: mvs(5)}}></View>;
   };
 
   const initialValues = {
-    first_name: '',
+    name: '',
     phone: '',
     email: '',
     address: '',
@@ -144,7 +153,7 @@ const CreateOrderScreen = props => {
     />
   );
   const renderAppointmentItem = ({item, index}) => (
-    <CreateOrderCard item={item} />
+    <CreateOrderCard item={item} setSelectedItems={setSelectedItems} />
   );
 
   return (
@@ -186,11 +195,11 @@ const CreateOrderScreen = props => {
                       placeholder={'Select Customer'}
                       isRequired
                       // error={touched?.vehicle_type ? t(errors.vehicle_type) : ''}
-                      onChangeText={id => setFieldValue('vehicle_type', id)}
+                      onChangeText={id => setFieldValue('name', id)}
                       // onBlur={handleChange('vehicle_make')}
-                      // value={values.vehicle_type}
-                      // id={values.vehicle_type}
-                      // items={vehicle_types}
+                      value={values.name}
+                      id={values.name}
+                      items={ORDER_ITEMS}
                     />
 
                     <Row
@@ -239,7 +248,8 @@ const CreateOrderScreen = props => {
                   // emptyList={<EmptyList label={t('no_notification')} />}
                   contentContainerStyle={styles.contentContainerStyleFlatlist}
                   showsVerticalScrollIndicator={false}
-                  data={ORDER_ITEMS || []}
+                  data={selectedItems || []}
+                  // data={ORDER_ITEMS || []}
                   renderItem={renderAppointmentItem}
                   ItemSeparatorComponent={itemSeparatorComponent()}
                   keyExtractor={(_, index) => index?.toString()}
@@ -303,6 +313,8 @@ const CreateOrderScreen = props => {
       <CartModal
         visible={otpModalVisible}
         onClose={() => setOtpModalVisible(false)}
+        onAddToOrder={handleAddToOrder}
+        selectedItems={selectedItems}
       />
     </View>
   );
