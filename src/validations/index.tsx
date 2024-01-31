@@ -74,6 +74,15 @@ export const signupDetailsFormValidation = yup.object().shape({
 });
 export const updatePasswordValidation = yup.object().shape({
   // email: yup.string().email('invalid_email').required('req_email'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(8, 'Weak Password'),
+  //   confirm_password: yup
+  //     .string()
+  //     .required('New Password is required')
+  //     .min(8, 'New weak_pass'),
+  // });
   confirm_password: yup
     .string()
     .required('New Password is required')

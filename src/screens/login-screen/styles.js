@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: mvs(20),
   },
   forgotpasswordview: {
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-end',
     marginBottom: mvs(15),
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20)},

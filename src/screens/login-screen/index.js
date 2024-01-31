@@ -121,7 +121,7 @@ const LoginScreen = props => {
 
               <Formik
                 initialValues={initialValues}
-                // validationSchema={signupFormValidation}
+                validationSchema={signinFormValidation}
                 onSubmit={handleFormSubmit}>
                 {({
                   handleChange,
@@ -157,6 +157,7 @@ const LoginScreen = props => {
 
                         elevation: 5,
                       }}
+                      errorStyle={{marginBottom: mvs(10)}}
                     />
                     <PrimaryInput
                       isPassword

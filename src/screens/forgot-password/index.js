@@ -93,7 +93,7 @@ const ForgotPasswordScreen = props => {
 
               <Formik
                 initialValues={initialValues}
-                // validationSchema={signupFormValidation}
+                validationSchema={forgotPasswordValidation}
                 onSubmit={handleFormSubmit}>
                 {({
                   handleChange,
