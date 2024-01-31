@@ -9,9 +9,12 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     // flexGrow: 1,
-    flex: 1,
-    paddingTop: mvs(10),
-    marginHorizontal: mvs(20),
+    // flex: 1,
+    // paddingTop: mvs(10),
+    // marginHorizontal: mvs(20),
+    // marginTop: '60%',
+    paddingHorizontal: mvs(20),
+
     // height: height - 300,
     // paddingHorizontal: mvs(20),
   },
@@ -26,10 +29,12 @@ const styles = StyleSheet.create({
   },
   contentContainerStyleNew: {
     flexGrow: 1,
+    height: '55%',
     paddingHorizontal: mvs(20),
     marginVertical: mvs(10),
     paddingVertical: mvs(20),
-    backgroundColor: colors.white,
+    backgroundColor: '#f6fafb',
+
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -40,7 +45,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-    borderRadius: mvs(6),
+    borderRadius: mvs(40),
   },
   googlebutton: {
     backgroundColor: colors.white,
@@ -68,7 +73,8 @@ const styles = StyleSheet.create({
   },
   keyboardcontentcontainer: {
     paddingHorizontal: mvs(0),
-    paddingBottom: mvs(20),
+    flexGrow: 0,
+    paddingBottom: mvs(60),
   },
   lottiview: {
     justifyContent: 'center',

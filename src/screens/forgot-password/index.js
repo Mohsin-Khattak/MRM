@@ -1,27 +1,29 @@
-import {
-  ForgotPasswordAnimation
-} from 'assets/icons';
+import {ForgotPasswordAnimation} from 'assets/icons';
 import * as IMG from 'assets/images';
-import { PrimaryButton } from 'components/atoms/buttons';
+import {PrimaryButton} from 'components/atoms/buttons';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
+import HeaderForgot1x2x from 'components/atoms/headers/header-forgot-1x-2x';
 import PrimaryInput from 'components/atoms/inputs';
-import { KeyboardAvoidScrollview } from 'components/atoms/keyboard-avoid-scrollview/index';
-import { colors } from 'config/colors';
-import { mvs } from 'config/metrices';
-import { Formik } from 'formik';
-import { useAppDispatch } from 'hooks/use-store';
+import {KeyboardAvoidScrollview} from 'components/atoms/keyboard-avoid-scrollview/index';
+import {colors} from 'config/colors';
+import {mvs} from 'config/metrices';
+import {Formik} from 'formik';
+import {useAppDispatch} from 'hooks/use-store';
 import LottieView from 'lottie-react-native';
-import { navigate } from 'navigation/navigation-ref';
+import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
 import {
   Alert,
   Image,
-  View
+  ImageBackground,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { onForgot } from 'services/api/auth-api-actions';
+import {onForgot} from 'services/api/auth-api-actions';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
-import { forgotPasswordValidation } from 'validations';
+import Medium from 'typography/medium-text';
+import {forgotPasswordValidation} from 'validations';
 import styles from './styles';
 const ForgotPasswordScreen = props => {
   const dispatch = useAppDispatch();
@@ -51,82 +53,105 @@ const ForgotPasswordScreen = props => {
 
   return (
     <View style={styles.container}>
-      <Image
-        resizeMode="cover"
-        source={IMG.signupheader}
-        style={styles.logobackground}
-      />
-      <Header1x2x style={{backgroundColor: colors.transparent}} />
-      <View style={styles.loginlogoview}>
-        <Image
-          source={IMG.forgotpasswordimg}
-          resizeMode="cover"
-          style={{width: mvs(280), height: mvs(160)}}
-        />
-      </View>
-
-      <View style={styles.contentContainerStyle}>
-        <View style={styles.contentContainerStyleNew}>
-          <KeyboardAvoidScrollview
-            contentContainerStyle={styles.keyboardcontentcontainer}>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={forgotPasswordValidation}
-              onSubmit={handleFormSubmit}>
-              {({
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                setFieldValue,
-                touched,
-                values,
-                errors,
-              }) => (
-                <>
-                  {console.log('errror2', errors)}
-                  <View style={styles.lottiview}>
-                    <LottieView
-                      source={ForgotPasswordAnimation}
-                      autoPlay={true}
-                      loop={true}
-                      style={{width: mvs(100), height: mvs(100)}}
-                    />
-                  </View>
-                  <Bold
-                    label={t('forgot_password')}
-                    color={colors.bluecolor}
-                    fontSize={mvs(16)}
-                    style={styles.forgottext}
-                  />
-
-                  <PrimaryInput
-                    keyboardType={'email-address'}
-                    error={touched?.email ? t(errors.email) : ''}
-                    placeholder={t('email')}
-                    onChangeText={handleChange('email')}
-                    onBlur={handleBlur('email')}
-                    value={values.email}
-                  />
-
-                  <PrimaryButton
-                    containerStyle={{
-                      borderRadius: mvs(10),
-                    }}
-                    // disabled={
-                    //   Object.keys(errors).length > 0 ||
-                    //   Object.keys(touched).length === 0
-                    // }
-                    loading={loading}
-                    // onPress={() => navigate('ResetPasswordScreen')}
-                    onPress={handleSubmit}
-                    title={t('send')}
-                  />
-                </>
-              )}
-            </Formik>
-          </KeyboardAvoidScrollview>
+      <ImageBackground
+        source={IMG.LoginBackgroundNew}
+        style={{
+          height: '100%',
+          width: '100%',
+        }}>
+        <HeaderForgot1x2x back={true} />
+        <View style={{alignSelf: 'center'}}>
+          <Image
+            source={IMG.LoginLogo}
+            resizeMode={'contain'}
+            style={{
+              width: mvs(160),
+              height: mvs(160),
+              // marginTop: '8%',
+            }}
+          />
         </View>
-      </View>
+
+        <View style={styles.contentContainerStyle}>
+          <View style={styles.contentContainerStyleNew}>
+            <KeyboardAvoidScrollview
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              contentContainerStyle={styles.keyboardcontentcontainer}>
+              <View style={styles.lottieview}>
+                <Image
+                  source={IMG.Logo}
+                  resizeMode={'contain'}
+                  style={{width: mvs(120), height: mvs(120)}}
+                />
+                <Bold
+                  label={'Forgot Password'}
+                  color={colors.primary}
+                  fontSize={mvs(22)}
+                  style={styles.loginmoverstext}
+                />
+              </View>
+
+              <Formik
+                initialValues={initialValues}
+                // validationSchema={signupFormValidation}
+                onSubmit={handleFormSubmit}>
+                {({
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                  setFieldValue,
+                  touched,
+                  values,
+                  errors,
+                  isValid,
+                }) => (
+                  <>
+                    {console.log(errors, isValid, touched)}
+                    <PrimaryInput
+                      keyboardType={'email-address'}
+                      error={touched?.email ? t(errors.email) : ''}
+                      placeholder={t('email')}
+                      onChangeText={handleChange('email')}
+                      onBlur={handleBlur('email')}
+                      value={values.email}
+                      containerStyle={{
+                        borderRadius: mvs(8),
+                        borderWidth: 1,
+                        borderColor: colors.gray,
+
+                        shadowColor: '#000',
+                        shadowOffset: {
+                          width: 0,
+                          height: 2,
+                        },
+                        shadowOpacity: 0.25,
+                        shadowRadius: 3.84,
+
+                        elevation: 5,
+                      }}
+                    />
+
+                    <View style={{paddingVertical: mvs(20)}}>
+                      <PrimaryButton
+                        containerStyle={{
+                          borderRadius: mvs(6),
+                          width: '90%',
+                          height: mvs(50),
+                          alignSelf: 'center',
+                        }}
+                        loading={loading}
+                        onPress={() => navigate('ResetPasswordScreen')}
+                        title={t('Send')}
+                        fontSize={mvs(18)}
+                      />
+                    </View>
+                  </>
+                )}
+              </Formik>
+            </KeyboardAvoidScrollview>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
   );
 };

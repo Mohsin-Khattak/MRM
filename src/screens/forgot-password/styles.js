@@ -8,13 +8,15 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.white,
   },
   contentContainerStyle: {
-    // flex: 1,
-    paddingTop: mvs(20),
-    // height: height - 400,
-    flex: 1,
+    // flexGrow: 1,
+    // paddingTop: '50%',
     // borderWidth: 1,
     // paddingBottom: mvs(200),
-    // paddingHorizontal: mvs(20),
+    paddingHorizontal: mvs(20),
+  },
+  forgotpasswordview: {
+    alignSelf: 'flex-start',
+    marginBottom: mvs(15),
   },
   txt: {marginBottom: mvs(10), fontSize: mvs(20)},
   button: {
@@ -24,12 +26,22 @@ const styles = StyleSheet.create({
     bottom: 0,
     paddingBottom: mvs(Platform?.OS === 'android' ? 20 : 40),
   },
+  lottieview: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loginmoverstext: {
+    marginTop: mvs(5),
+    marginBottom: mvs(20),
+  },
   contentContainerStyleNew: {
+    flexGrow: 1,
+    height: '55%',
     paddingHorizontal: mvs(20),
     marginVertical: mvs(10),
     paddingVertical: mvs(20),
-    marginHorizontal: mvs(20),
-    backgroundColor: colors.white,
+    backgroundColor: '#f6fafb',
+
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -40,7 +52,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-    borderRadius: mvs(6),
+    borderRadius: mvs(40),
   },
   googlebutton: {
     backgroundColor: colors.white,
@@ -61,26 +73,35 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   logobackground: {
-    height: mvs(110),
-
+    height: '70%',
+    // height: mvs(500),
+    borderBottomLeftRadius: mvs(40),
+    borderBottomRightRadius: mvs(40),
+    backgroundColor: colors.primary,
     width: width,
+
     position: 'absolute',
   },
   keyboardcontentcontainer: {
     paddingHorizontal: mvs(0),
-    paddingBottom: mvs(20),
+    flexGrow: 0,
+    paddingBottom: mvs(60),
   },
-  lottiview: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  forgottext: {
+  boldtext: {
     marginTop: mvs(10),
     marginBottom: mvs(20),
   },
-  loginlogoview: {
-    alignSelf: 'center',
-    marginTop: '15%',
+  IAgreeView: {
+    flex: 1,
+    paddingHorizontal: mvs(8),
+    textAlign: 'center',
+  },
+  genderbuttoncontainer: {
+    width: mvs(88),
+    height: mvs(39),
+
+    borderColor: colors.bluecolor,
+    borderWidth: 1,
   },
 });
 export default styles;
