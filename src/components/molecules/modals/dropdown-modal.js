@@ -24,7 +24,7 @@ const DropdownModal = ({
       visible={visible}
       style={[styles.contentContainerStyle, style]}>
       <View style={styles.container}>
-        <View style={styles.header} />
+        {/* <View style={styles.header} /> */}
         <TouchableOpacity onPress={() => onClose()} style={styles.cross}>
           <CrossModalRed height={mvs(30)} width={mvs(30)} />
         </TouchableOpacity>
@@ -103,5 +103,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomWidth: 0.7,
   },
-  cross: {padding: mvs(20), alignSelf: 'flex-end', position: 'absolute'},
+  cross: {
+    paddingHorizontal: mvs(12),
+    // marginTop: mvs(8),
+    paddingVertical: mvs(5),
+    alignSelf: 'flex-end',
+    // position: 'absolute',
+  },
 });
