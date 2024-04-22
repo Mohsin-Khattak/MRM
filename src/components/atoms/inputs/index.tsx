@@ -29,6 +29,7 @@ import DropdownModal from 'components/molecules/modals/dropdown-modal';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {t} from 'i18next';
 import {menue} from 'assets/images';
+import PaymentMethodModal from 'components/molecules/modals/payment-method-modal';
 type props = {
   isRequired?: boolean;
   onChangeText: (text: string) => void;
@@ -41,6 +42,8 @@ type props = {
   items?: any[];
   placeholder?: string;
   style?: StyleProp<ViewStyle>;
+  Mainstyle?: StyleProp<ViewStyle>;
+  styleInput?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   mainContainer?: StyleProp<ViewStyle>;
@@ -56,6 +59,7 @@ type props = {
   error?: string;
   id?: any;
   mtop?: number;
+  numberOfLines?: number;
   keyboardType?: KeyboardTypeOptions | undefined;
   onBlur?: (e?: NativeSyntheticEvent<TextInputFocusEventData>) => void;
 };
@@ -150,6 +154,161 @@ const PrimaryInput = (props: props) => {
   } = props;
   return (
     <View style={[mainContainer]}>
+      {/* <View style={[mainContainer]}> */}
+      {label && (
+        <Regular label={label} style={[styles.labelStyle, labelStyle]}>
+          {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
+        </Regular>
+      )}
+      <View style={[styles.Container, containerStyle]}>
+        <TextInput
+          editable={editable}
+          onBlur={onBlur}
+          onPressIn={onPressIn}
+          keyboardType={keyboardType}
+          secureTextEntry={isPassword && secure}
+          value={value}
+          placeholderTextColor={`${colors.placeholder}`}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          style={[
+            styles.textInput,
+            style,
+            {textAlign: I18nManager.isRTL ? 'right' : 'left'},
+          ]}
+        />
+        {isPassword && (
+          <TouchableOpacity
+            style={styles.PasswordIcon}
+            onPress={() => setSecure(!secure)}>
+            <Feather
+              size={25}
+              name={secure ? 'eye' : 'eye-off'}
+              color={colors.black}
+            />
+          </TouchableOpacity>
+        )}
+        {isCalendar && (
+          <TouchableOpacity
+            style={styles.PasswordIcon}
+            // onPress={() => setSecure(!secure)}
+          >
+            <FontAwesome size={20} name={'calendar'} color={colors.primary} />
+          </TouchableOpacity>
+        )}
+      </View>
+      <Regular
+        label={error ? error : ''}
+        style={[styles.errorLabel, errorStyle]}
+      />
+    </View>
+  );
+};
+export const PrimaryInputNote = (props: props) => {
+  const [secure, setSecure] = useState(true);
+  const {language} = useAppSelector(s => s.user);
+  const {
+    onChangeText,
+    value,
+    style,
+    label,
+    placeholder = 'type here',
+    labelStyle,
+    containerStyle,
+    numberOfLines,
+    errorStyle,
+    secureTextEntry,
+    isPassword,
+    isCalendar,
+    keyboardType,
+    styleInput,
+    error,
+    Mainstyle,
+    mainContainer,
+    editable = true,
+    onBlur = () => {},
+    onPressIn = () => {},
+    isRequired = false,
+  } = props;
+  return (
+    <View style={{width: '45%', ...Mainstyle}}>
+      {/* <View style={[mainContainer]}> */}
+      {label && (
+        <Regular label={label} style={[styles.labelStyle, labelStyle]}>
+          {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
+        </Regular>
+      )}
+      <View style={[styles.Container, containerStyle]}>
+        <TextInput
+          editable={editable}
+          onBlur={onBlur}
+          onPressIn={onPressIn}
+          keyboardType={keyboardType}
+          secureTextEntry={isPassword && secure}
+          value={value}
+          placeholderTextColor={`${colors.placeholder}`}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          numberOfLines={numberOfLines}
+          style={[
+            styles.textInput,
+            styleInput,
+            {textAlign: I18nManager.isRTL ? 'right' : 'left'},
+          ]}
+        />
+        {isPassword && (
+          <TouchableOpacity
+            style={styles.PasswordIcon}
+            onPress={() => setSecure(!secure)}>
+            <Feather
+              size={25}
+              name={secure ? 'eye' : 'eye-off'}
+              color={colors.black}
+            />
+          </TouchableOpacity>
+        )}
+        {isCalendar && (
+          <TouchableOpacity
+            style={styles.PasswordIcon}
+            // onPress={() => setSecure(!secure)}
+          >
+            <FontAwesome size={20} name={'calendar'} color={colors.primary} />
+          </TouchableOpacity>
+        )}
+      </View>
+      <Regular
+        label={error ? error : ''}
+        style={[styles.errorLabel, errorStyle]}
+      />
+    </View>
+  );
+};
+export const PrimaryInputCheckout = (props: props) => {
+  const [secure, setSecure] = useState(true);
+  const {language} = useAppSelector(s => s.user);
+  const {
+    onChangeText,
+    value,
+    style,
+    label,
+    placeholder = 'type here',
+    labelStyle,
+    containerStyle,
+    errorStyle,
+    secureTextEntry,
+    isPassword,
+    isCalendar,
+    keyboardType,
+    error,
+    mainContainer,
+    editable = true,
+    onBlur = () => {},
+    onPressIn = () => {},
+    isRequired = false,
+  } = props;
+  return (
+    <View style={{width: '45%', ...style}}>
+      {/* <View style={[mainContainer]}> */}
       {label && (
         <Regular label={label} style={[styles.labelStyle, labelStyle]}>
           {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
@@ -253,9 +412,10 @@ export const TextAreaInput = (props: props) => {
     onBlur = () => {},
     onPressIn = () => {},
     isRequired = false,
+    Mainstyle,
   } = props;
   return (
-    <View style={[mainContainer]}>
+    <View style={[mainContainer, Mainstyle]}>
       {label && (
         <Regular label={label} style={[styles.labelStyle, labelStyle]}>
           {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
@@ -388,6 +548,54 @@ export const InputWithIcon = (props: props) => {
         visible={visible}
         items={items}
       />
+    </>
+  );
+};
+export const InputWithIconCheckout = (props: props) => {
+  const [visible, setVisible] = React.useState(false);
+  const {
+    items = [],
+    onChangeText,
+    onBlur = () => {},
+    value,
+    style,
+    containerStyle,
+    id,
+    editable,
+    error,
+    label,
+    labelStyle,
+    isRequired = false,
+  } = props;
+  return (
+    <>
+      <View style={{width: '45%', ...style}}>
+        {label && (
+          <Regular label={label} style={[styles.labelStyle, labelStyle]}>
+            {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
+          </Regular>
+        )}
+        <TouchableOpacity
+          disabled={editable}
+          onPress={() => {
+            setVisible(true);
+            onBlur();
+          }}
+          style={[styles.dropDownContainer, containerStyle]}>
+          <Medium
+            label={items?.find(x => x?.id == id)?.type || 'Select Payment'}
+          />
+          <Feather size={22} name={'chevron-down'} color={colors.black} />
+        </TouchableOpacity>
+        <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
+        <PaymentMethodModal
+          onClose={() => setVisible(false)}
+          onChangeText={onChangeText}
+          value={id}
+          visible={visible}
+          items={items}
+        />
+      </View>
     </>
   );
 };

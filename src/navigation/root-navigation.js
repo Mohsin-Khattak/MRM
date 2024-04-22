@@ -7,6 +7,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import AddCustomerScreen from 'screens/add-customer';
 import AddRecoveryScreen from 'screens/add-recovery';
 import CategoriesScreen from 'screens/categories';
+import CheckoutScreen from 'screens/checkout-screen';
 import CreateOrderScreen from 'screens/create-order';
 import CustomerScreen from 'screens/customer';
 import CustomerWiseRecoveryScreen from 'screens/customer-wise-recovery';
@@ -132,6 +133,7 @@ export const RootNavigator = () => {
           <Stack.Screen name="ShoppingScreen" component={ShoppingScreen} />
           <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
           <Stack.Screen name="ReportScreen" component={ReportScreen} />
+          <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
           <Stack.Screen
             name="MyOrderScreenScreen"
             component={MyOrderScreenScreen}
