@@ -77,8 +77,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     borderRadius: mvs(20),
     paddingHorizontal: mvs(30),
-    marginVertical: mvs(10),
-    paddingVertical: mvs(50),
+    paddingTop: mvs(20),
     backgroundColor: colors.primary,
 
     justifyContent: 'center',
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
   keyboardcontentcontainer: {
     paddingHorizontal: mvs(0),
     flexGrow: 0,
-    paddingBottom: mvs(50),
+    paddingBottom: mvs(0),
   },
   backgroundimg: {
     width: '100%',

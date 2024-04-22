@@ -1,55 +1,27 @@
 import {useIsFocused} from '@react-navigation/native';
-import {RecentOrder} from 'assets/icons';
-import * as IMG from 'assets/images';
 import CustomFlatList from 'components/atoms/custom-flatlist';
 // import Header1x2x from 'components/atoms/headers/header-1x-2x';
+import {PrimaryButton} from 'components/atoms/buttons';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import {InputWithIcon, SearchInput} from 'components/atoms/inputs';
+import {InputWithIcon} from 'components/atoms/inputs';
 import {KeyboardAvoidScrollview} from 'components/atoms/keyboard-avoid-scrollview';
-import {Loader} from 'components/atoms/loader';
 import {Row} from 'components/atoms/row';
-import BookingCard from 'components/molecules/booking-card';
-import CustomerCard from 'components/molecules/customer-card';
-import HomeSwiper from 'components/molecules/home-swiper';
-import MyOrderCard from 'components/molecules/my-order-card';
-import OrderDetailsCard from 'components/molecules/order-details-card';
+import CreateOrderCard from 'components/molecules/create-order-card';
+import CartModal from 'components/molecules/modals/cart-modal';
 import ServiceCard from 'components/molecules/service-card';
 import {colors} from 'config/colors';
-import {PrimaryButton} from 'components/atoms/buttons';
-import PrimaryInput from 'components/atoms/inputs';
-import {
-  BOOKING_LIST,
-  CUSTOMER_LIST,
-  ORDER_ITEMS,
-  SALES_ACTIVITY_LIST,
-  SLIDES_LIST,
-} from 'config/constants';
+import {ORDER_ITEMS} from 'config/constants';
 import {mvs} from 'config/metrices';
 import {Formik} from 'formik';
 import {useAppDispatch, useAppSelector} from 'hooks/use-store';
 import {navigate} from 'navigation/navigation-ref';
-import Entypo from 'react-native-vector-icons/Entypo';
 import React from 'react';
-import {
-  Alert,
-  ImageBackground,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {
-  getDashbaord,
-  getHomeBanner,
-  getNotifications,
-  getOrderList,
-} from 'services/api/auth-api-actions';
+import {ScrollView, TouchableOpacity, View} from 'react-native';
+import Entypo from 'react-native-vector-icons/Entypo';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
-import {UTILS} from 'utils';
 import styles from './styles';
-import CreateOrderCard from 'components/molecules/create-order-card';
-import CartModal from 'components/molecules/modals/cart-modal';
 const CreateOrderScreen = props => {
   const user = useAppSelector(s => s?.user);
   const isFocus = useIsFocused();
@@ -255,49 +227,34 @@ const CreateOrderScreen = props => {
                   keyExtractor={(_, index) => index?.toString()}
                 />
               </View>
-              <View style={styles.cardStyle}>
-                <Row style={{alignItems: 'center', paddingHorizontal: mvs(5)}}>
-                  <Medium
-                    label={'Total Price'}
-                    color={colors.primary}
-                    fontSize={mvs(16)}
-                  />
-                  <Medium
-                    label={'25,000 Rs.'}
-                    color={colors.primary}
-                    fontSize={mvs(16)}
-                  />
-                </Row>
-              </View>
             </View>
-            {/* <View style={{paddingVertical: mvs(30)}}>
-            <PrimaryButton
-              containerStyle={{
-                borderRadius: mvs(14),
-
-                backgroundColor: colors.primary,
-                width: '70%',
-
-                height: '35%',
-                alignSelf: 'center',
-              }}
-              loading={loading}
-              // onPress={handleSubmit}
-              title={'Add Order'}
-              fontSize={mvs(22)}
-              textStyle={{
-                color: colors.white,
-              }}
-            />
-          </View> */}
           </KeyboardAvoidScrollview>
         </View>
       </ScrollView>
+      <View style={{...styles.cardStyle, marginHorizontal: mvs(20)}}>
+        <Row
+          style={{
+            alignItems: 'center',
+            paddingHorizontal: mvs(5),
+          }}>
+          <Medium
+            label={'Total Price'}
+            color={colors.primary}
+            fontSize={mvs(16)}
+          />
+          <Medium
+            label={'25,000 Rs.'}
+            color={colors.primary}
+            fontSize={mvs(16)}
+          />
+        </Row>
+      </View>
+
       <View style={{paddingVertical: mvs(10)}}>
         <PrimaryButton
           containerStyle={{
             borderRadius: mvs(14),
-            width: '80%',
+            width: '90%',
             backgroundColor: colors.primary,
             alignSelf: 'center',
           }}

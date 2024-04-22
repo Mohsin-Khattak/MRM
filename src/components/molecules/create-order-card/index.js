@@ -1,26 +1,13 @@
-import * as IMG from 'assets/images';
-import {PrimaryButton} from 'components/atoms/buttons';
 import {Row} from 'components/atoms/row';
 import React from 'react';
-import {
-  Image,
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/AntDesign';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import i18n from 'translation';
 import Medium from 'typography/medium-text';
 import Regular from 'typography/regular-text';
 import {colors} from '../../../config/colors';
-import {mvs, width} from '../../../config/metrices';
-import {SpecialistLocation} from 'assets/icons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {ColorSpace} from 'react-native-reanimated';
-import Bold from 'typography/bold-text';
+import {mvs} from '../../../config/metrices';
 const LabelValue = ({label, value, containerStyle, labelStyle, valueStyle}) => (
   <Row style={containerStyle}>
     <Medium
@@ -69,14 +56,6 @@ const CreateOrderCard = ({
     }
   };
 
-  // const handleDecrement = () => {
-  //   if (quantity > 1) {
-  //     setQuantity(prevQuantity => prevQuantity - 1);
-  //   } else {
-  //     // If quantity is 1, remove the item from the cart
-  //     onAddToOrder({...item, quantity: 0}); // Assuming item is passed as a prop
-  //   }
-  // };
   return (
     <View>
       <View onPress={onPress} style={styles.contentContainerStyleNew}>
@@ -118,13 +97,23 @@ const CreateOrderCard = ({
             </TouchableOpacity>
           </Row>
         </Row>
-        <View style={{paddingHorizontal: mvs(10)}}>
-          <Medium
-            label={item?.price}
-            color={colors.primary}
-            fontSize={mvs(16)}
-          />
-        </View>
+        <Row style={styles.priceContainer}>
+          <View style={{width: '50%'}}>
+            <Medium
+              label={item?.price}
+              color={colors.primary}
+              fontSize={mvs(16)}
+            />
+          </View>
+          <Row style={{flex: 1}}>
+            <TouchableOpacity>
+              <Entypo color={colors.black} name={'edit'} size={mvs(20)} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <AntDesign color={colors.black} name={'delete'} size={mvs(20)} />
+            </TouchableOpacity>
+          </Row>
+        </Row>
       </View>
     </View>
   );
@@ -143,14 +132,10 @@ const styles = StyleSheet.create({
     // ...colors.shadow,
   },
   contentContainerStyleNew: {
-    marginVertical: mvs(5),
     paddingVertical: mvs(10),
-    overflow: 'hidden',
-    // paddingVertical: mvs(8),
-    // borderColor: colors.primary,
+
     paddingHorizontal: mvs(5),
     backgroundColor: colors.white,
-    justifyContent: 'space-between',
     borderWidth: 1,
     borderColor: colors.primary,
     shadowColor: '#000',
@@ -195,5 +180,12 @@ const styles = StyleSheet.create({
     width: mvs(30),
     borderRadius: mvs(15),
     backgroundColor: colors.red,
+  },
+  priceContainer: {
+    paddingHorizontal: mvs(10),
+    justifyContent: 'flex-start',
+    gap: mvs(50),
+    alignItems: 'center',
+    marginTop: mvs(5),
   },
 });
