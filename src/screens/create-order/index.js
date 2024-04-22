@@ -184,7 +184,7 @@ const CreateOrderScreen = props => {
             alignSelf: 'center',
           }}
           loading={loading}
-          // onPress={handleSubmit}
+          onPress={() => navigate('CheckoutScreen')}
           title={'Add Order'}
           fontSize={mvs(22)}
           textStyle={{
