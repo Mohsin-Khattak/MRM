@@ -8,33 +8,17 @@ import Medium from 'typography/medium-text';
 import Regular from 'typography/regular-text';
 import {colors} from '../../../config/colors';
 import {mvs} from '../../../config/metrices';
-const LabelValue = ({label, value, containerStyle, labelStyle, valueStyle}) => (
-  <Row style={containerStyle}>
-    <Medium
-      style={labelStyle}
-      label={label}
-      fontSize={mvs(12)}
-      color={colors.black}
-    />
-    <Regular
-      style={valueStyle}
-      label={value}
-      fontSize={mvs(12)}
-      numberOfLines={5}
-      // color={colors.gray}
-    />
-  </Row>
-);
+import PrimaryInput from 'components/atoms/inputs';
+import Bold from 'typography/bold-text';
+
 const CreateOrderCard = ({
   item,
   backgroundColor,
   index,
   style,
   onPress = () => {},
-  onPressAccept = () => {},
-  onPressReject = () => {},
-  onPressDetails = () => {},
-  onPressCart = () => {},
+  itemEditPress,
+  setItemEditPress,
   setSelectedItems,
 }) => {
   const {t} = i18n;
@@ -42,9 +26,7 @@ const CreateOrderCard = ({
   const handleIncrement = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
-  // const handleDecrement = () => {
-  //   setQuantity(prevQuantity => prevQuantity - 1);
-  // };
+
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
@@ -80,7 +62,7 @@ const CreateOrderCard = ({
               <Entypo
                 name="circle-with-minus"
                 size={mvs(16)}
-                color={colors.red}
+                color={colors.green}
               />
             </TouchableOpacity>
             <Medium
@@ -92,13 +74,13 @@ const CreateOrderCard = ({
               <Entypo
                 name="circle-with-plus"
                 size={mvs(16)}
-                color={colors.red}
+                color={colors.green}
               />
             </TouchableOpacity>
           </Row>
         </Row>
         <Row style={styles.priceContainer}>
-          <View style={{width: '50%'}}>
+          <View style={{width: '55%'}}>
             <Medium
               label={item?.price}
               color={colors.primary}
@@ -106,14 +88,40 @@ const CreateOrderCard = ({
             />
           </View>
           <Row style={{flex: 1}}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                itemEditPress == true
+                  ? setItemEditPress(false)
+                  : setItemEditPress(true);
+              }}>
               <Entypo color={colors.black} name={'edit'} size={mvs(20)} />
             </TouchableOpacity>
             <TouchableOpacity>
-              <AntDesign color={colors.black} name={'delete'} size={mvs(20)} />
+              <AntDesign color={colors.red} name={'delete'} size={mvs(20)} />
             </TouchableOpacity>
           </Row>
         </Row>
+        {itemEditPress && (
+          <View style={styles.discountContainer}>
+            <Row>
+              <View style={{width: '48%'}}>
+                <Bold label={'Unit Price :'} />
+                <PrimaryInput
+                  editable={false}
+                  placeholder="$ 12,000"
+                  containerStyle={{borderRadius: mvs(5), marginTop: mvs(5)}}
+                />
+              </View>
+              <View style={{width: '48%'}}>
+                <Bold label={'Discount Amount :'} />
+                <PrimaryInput
+                  placeholder="$ 0.0"
+                  containerStyle={{borderRadius: mvs(5), marginTop: mvs(5)}}
+                />
+              </View>
+            </Row>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -187,5 +195,12 @@ const styles = StyleSheet.create({
     gap: mvs(50),
     alignItems: 'center',
     marginTop: mvs(5),
+  },
+  discountContainer: {
+    marginTop: mvs(10),
+    paddingVertical: mvs(10),
+    backgroundColor: 'white',
+    width: '100%',
+    paddingHorizontal: mvs(10),
   },
 });

@@ -1,4 +1,3 @@
-import {useIsFocused} from '@react-navigation/native';
 import CustomFlatList from 'components/atoms/custom-flatlist';
 // import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import {PrimaryButton} from 'components/atoms/buttons';
@@ -13,29 +12,20 @@ import {colors} from 'config/colors';
 import {ORDER_ITEMS} from 'config/constants';
 import {mvs} from 'config/metrices';
 import {Formik} from 'formik';
-import {useAppDispatch, useAppSelector} from 'hooks/use-store';
+import {useAppSelector} from 'hooks/use-store';
 import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import i18n from 'translation';
 import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
 import styles from './styles';
 const CreateOrderScreen = props => {
   const user = useAppSelector(s => s?.user);
-  const isFocus = useIsFocused();
-  const unreadNotification = user?.unreadNotification;
-  const userInfo = user?.userInfo;
-  const language = user?.language;
-  const dispatch = useAppDispatch();
-  const {t} = i18n;
   const [loading, setLoading] = React.useState(false);
-  const [dashboardDetails, setDashboardDetails] = React.useState([]);
-  const [homeBanner, setHomeBanner] = React.useState([]);
-  const [order, setOrder] = React.useState([]);
   const [otpModalVisible, setOtpModalVisible] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState([]);
+  const [itemEditPress, setItemEditPress] = React.useState(false);
 
   const handleAddToOrder = item => {
     console.log('Item added to order:', item);
@@ -50,13 +40,9 @@ const CreateOrderScreen = props => {
 
   const initialValues = {
     name: '',
-    phone: '',
-    email: '',
-    address: '',
   };
 
   const handleFormSubmit = async values => {
-    // dispatch(onSignup(values, setLoading));
     navigate('SignupNext', {
       ...values,
       country_code: countries?.find(x => x?.selected)?.code || 'PK',
@@ -66,79 +52,23 @@ const CreateOrderScreen = props => {
     }
   };
 
-  // const loadNotifications = async () => {
-  //   try {
-  //     if (!userInfo?.id) return;
-  //     dispatch(getNotifications(setLoading));
-  //   } catch (error) {
-  //     console.log('error=>', error);
-  //   }
-  // };
-  // React.useEffect(() => {
-  //   loadNotifications();
-  // }, [isFocus]);
-
-  // const getList = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const res = await getDashbaord();
-  //     setDashboardDetails(res?.data || []);
-  //     const banner = await getHomeBanner();
-  //     setHomeBanner(banner?.data || []);
-  //   } catch (error) {
-  //     console.log('dashboard and homebanners get error', error);
-  //     Alert.alert('Error', UTILS?.returnError(error));
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  // React.useEffect(() => {
-  //   getList();
-  // }, []);
-  // const fetchPending = async () => {
-  //   try {
-  //     if(userInfo?.id){
-
-  //       const status = 'pending';
-  //       const result = await getOrderList(status);
-  //       setOrder(result?.data);
-  //     }
-  //   } catch (error) {
-  //     console.log('pending order get error', error);
-  //     Alert.alert('Error', UTILS?.returnError(error));
-  //   }
-  // };
-  // React.useEffect(() => {
-  //     fetchPending();
-  // }, [isFocus]);
-  const renderServiceList = ({item, index}) => (
-    <ServiceCard
-      backgroundColor={
-        index % 4 === 0 || index % 4 === 3 ? colors.homecard2 : colors.homecard1
+  const renderOrderItem = ({item, index}) => (
+    <CreateOrderCard
+      itemEditPress={itemEditPress[item.id]} // Pass editPress state for this item
+      setItemEditPress={value =>
+        setItemEditPress(prevState => ({...prevState, [item.id]: value}))
       }
       item={item}
-      onPress={() =>
-        props?.navigation?.navigate('WhereToMoveScreen', {
-          service_id: item?.id,
-        })
-      }
+      setSelectedItems={setSelectedItems}
     />
-  );
-  const renderAppointmentItem = ({item, index}) => (
-    <CreateOrderCard item={item} setSelectedItems={setSelectedItems} />
   );
 
   return (
     <View style={styles.container}>
-      {/* <ImageBackground
-        source={IMG.HomeBackground2}
-        resizeMode="stretch"
-        style={styles.backgroundimg}> */}
       <Header1x2x
         add={false}
         back={true}
         title={'Create Order'}
-        unreadNotification={unreadNotification}
         style={{backgroundColor: colors.transparent}}
       />
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -199,10 +129,9 @@ const CreateOrderScreen = props => {
                           }}>
                           <Entypo
                             name="circle-with-plus"
-                            color={colors.red}
+                            color={colors.green}
                             size={mvs(18)}
                           />
-
                           <Medium
                             label={'Add item'}
                             color={colors.primary}
@@ -222,7 +151,7 @@ const CreateOrderScreen = props => {
                   showsVerticalScrollIndicator={false}
                   data={selectedItems || []}
                   // data={ORDER_ITEMS || []}
-                  renderItem={renderAppointmentItem}
+                  renderItem={renderOrderItem}
                   ItemSeparatorComponent={itemSeparatorComponent()}
                   keyExtractor={(_, index) => index?.toString()}
                 />
