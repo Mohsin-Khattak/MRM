@@ -100,5 +100,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  addButton: {
+    backgroundColor: colors.white,
+    paddingVertical: mvs(8),
+    paddingHorizontal: mvs(10),
+    borderRadius: mvs(10),
+  },
 });
 export default styles;

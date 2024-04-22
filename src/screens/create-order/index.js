@@ -116,12 +116,7 @@ const CreateOrderScreen = props => {
                       />
                       <TouchableOpacity
                         onPress={() => setOtpModalVisible(true)}
-                        style={{
-                          backgroundColor: colors.white,
-                          paddingVertical: mvs(8),
-                          paddingHorizontal: mvs(10),
-                          borderRadius: mvs(10),
-                        }}>
+                        style={styles.addButton}>
                         <Row
                           style={{
                             alignItems: 'center',
@@ -132,6 +127,7 @@ const CreateOrderScreen = props => {
                             color={colors.green}
                             size={mvs(18)}
                           />
+
                           <Medium
                             label={'Add item'}
                             color={colors.primary}
