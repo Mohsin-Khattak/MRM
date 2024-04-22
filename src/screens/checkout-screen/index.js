@@ -55,8 +55,29 @@ const CheckoutScreen = props => {
   const [showInputs, setShowInputs] = React.useState(false);
   const [showDeleteButtons, setShowDeleteButtons] = React.useState(false);
 
+  // React.useEffect(() => {
+  //   setInputList([initialValues]); // Initialize inputList with initial values when component mounts
+  //   setShowInputs(true); // Show inputs when component mounts
+  // }, []);
+
+  // const handleInputChange = (index, field, value) => {
+  //   const updatedList = inputList.map((item, i) =>
+  //     i === index ? {...item, [field]: value} : item,
+  //   );
+  //   setInputList(updatedList);
+  // };
+
+  // const handleAddPayment = () => {
+  //   setInputList([...inputList, initialValues]);
+  //   setShowDeleteButtons(true); // Add more inputs to the list
+  // };
+
+  // const handleDeleteInput = index => {
+  //   const updatedList = inputList.filter((item, i) => i !== index);
+  //   setInputList(updatedList);
+  // };
   React.useEffect(() => {
-    setInputList([initialValues]); // Initialize inputList with initial values when component mounts
+    setInputList([{...initialValues, paymentMethod: ''}]); // Initialize inputList with initial values when component mounts
     setShowInputs(true); // Show inputs when component mounts
   }, []);
 
@@ -68,7 +89,7 @@ const CheckoutScreen = props => {
   };
 
   const handleAddPayment = () => {
-    setInputList([...inputList, initialValues]);
+    setInputList([...inputList, {...initialValues, paymentMethod: ''}]);
     setShowDeleteButtons(true); // Add more inputs to the list
   };
 
@@ -148,11 +169,15 @@ const CheckoutScreen = props => {
                         // error={touched?.vehicle_type ? t(errors.vehicle_type) : ''}
                         // onChangeText={id => setFieldValue('type', id)}
                         // onBlur={handleChange('vehicle_make')}
-                        // value={values.type}
-                        value={item.paymentMethod}
-                        onChangeText={value =>
-                          handleInputChange(index, 'paymentMethod', value)
-                        }
+                        value={values.type}
+                        // value={item.paymentMethod}
+                        // onChangeText={value =>
+                        //   handleInputChange(index, 'paymentMethod', value)
+                        // }
+                        onChangeText={id => {
+                          setFieldValue('type', id); // Update the formik field value
+                          handleInputChange(index, 'paymentMethod', id); // Update the input list
+                        }}
                         id={values.type}
                         items={PAYMENT_METHODS}
                       />
