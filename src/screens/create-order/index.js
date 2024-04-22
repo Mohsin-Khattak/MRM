@@ -146,7 +146,6 @@ const CreateOrderScreen = props => {
                   contentContainerStyle={styles.contentContainerStyleFlatlist}
                   showsVerticalScrollIndicator={false}
                   data={selectedItems || []}
-                  // data={ORDER_ITEMS || []}
                   renderItem={renderOrderItem}
                   ItemSeparatorComponent={itemSeparatorComponent()}
                   keyExtractor={(_, index) => index?.toString()}

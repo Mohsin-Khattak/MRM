@@ -127,7 +127,7 @@ const CartModal = ({
                           <Entypo
                             name="circle-with-plus"
                             size={mvs(22)}
-                            color={colors.red}
+                            color={colors.green}
                           />
                         )}
                       </TouchableOpacity>
@@ -144,8 +144,8 @@ const CartModal = ({
                 </View>
               ))
             : ORDER_ITEMS?.map((item, index) => (
-                <View>
-                  <View key={index} style={styles.contentContainerStyleNew}>
+                <View key={index}>
+                  <View style={styles.contentContainerStyleNew}>
                     <Row>
                       <View style={{paddingHorizontal: mvs(10)}}>
                         <Medium
@@ -192,7 +192,7 @@ const CartModal = ({
                           <Entypo
                             name="circle-with-plus"
                             size={mvs(22)}
-                            color={colors.red}
+                            color={colors.green}
                           />
                         )}
                         {/* <Entypo

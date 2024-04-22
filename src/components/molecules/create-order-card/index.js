@@ -94,7 +94,7 @@ const CreateOrderCard = ({
                   ? setItemEditPress(false)
                   : setItemEditPress(true);
               }}>
-              <Entypo color={colors.black} name={'edit'} size={mvs(20)} />
+              <Entypo color={colors.primary} name={'edit'} size={mvs(20)} />
             </TouchableOpacity>
             <TouchableOpacity>
               <AntDesign color={colors.red} name={'delete'} size={mvs(20)} />
