@@ -125,11 +125,8 @@ export const ORDER_ITEMS = [
   {id: 7, name: 'Kashif Abdullah', price: '12,0000 Rs'},
 ];
 export const PAYMENT_METHODS = [
-  {
-    id: 1,
-    type: 'Cash',
-  },
-  {id: 2, type: 'Card'},
+  {id: 1, type: 'Cash', disabled: false},
+  {id: 2, type: 'Card', disabled: false},
 ];
 export const MY_ORDER_PROCESSING_LIST = [
   {

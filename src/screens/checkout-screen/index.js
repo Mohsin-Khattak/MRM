@@ -51,7 +51,7 @@ const CheckoutScreen = props => {
     shipping_note: '',
     staff_note: '',
   };
-  const [inputList, setInputList] = React.useState([]);
+  const [inputList, setInputList] = React.useState([{...initialValues, id: 0}]);
   const [showInputs, setShowInputs] = React.useState(false);
   const [showDeleteButtons, setShowDeleteButtons] = React.useState(false);
 
@@ -89,9 +89,23 @@ const CheckoutScreen = props => {
   };
 
   const handleAddPayment = () => {
-    setInputList([...inputList, {...initialValues, paymentMethod: ''}]);
+    const newId =
+      inputList.length > 0 ? inputList[inputList.length - 1].id + 1 : 0;
+    setInputList([...inputList, {...initialValues, id: newId}]);
     setShowDeleteButtons(true); // Add more inputs to the list
   };
+  // const handleAddPayment = formikValues => {
+  //   const selectedMethods = inputList.map(item => item.paymentMethod);
+  //   if (selectedMethods.includes(formikValues.paymentMethod)) {
+  //     // Value already selected, show alert or handle as needed
+  //     Alert.alert('Duplicate Selection', 'Payment method already selected.');
+  //     return;
+  //   }
+  //   const newId =
+  //     inputList.length > 0 ? inputList[inputList.length - 1].id + 1 : 0;
+  //   setInputList([...inputList, {...initialValues, id: newId}]);
+  //   setShowDeleteButtons(true); // Add more inputs to the list
+  // };
 
   const handleDeleteInput = index => {
     const updatedList = inputList.filter((item, i) => i !== index);
@@ -169,17 +183,23 @@ const CheckoutScreen = props => {
                         // error={touched?.vehicle_type ? t(errors.vehicle_type) : ''}
                         // onChangeText={id => setFieldValue('type', id)}
                         // onBlur={handleChange('vehicle_make')}
-                        value={values.type}
-                        // value={item.paymentMethod}
+                        // value={values.type}
+                        value={values[`paymentMethod_${item.id}`] || ''}
                         // onChangeText={value =>
                         //   handleInputChange(index, 'paymentMethod', value)
                         // }
                         onChangeText={id => {
-                          setFieldValue('type', id); // Update the formik field value
+                          setFieldValue(`paymentMethod${item.id}`, id); // Update the formik field value with a unique key
                           handleInputChange(index, 'paymentMethod', id); // Update the input list
                         }}
-                        id={values.type}
+                        id={values[`paymentMethod${item.id}`]} // Use a unique key for each input
                         items={PAYMENT_METHODS}
+                        // disabled={inputList.some(
+                        //   item =>
+                        //     item.paymentMethod ===
+                        //       values[`paymentMethod${item.id}`] &&
+                        //     item.id !== item.id,
+                        // )}
                       />
                     </Row>
                     <Row>
@@ -339,7 +359,7 @@ const CheckoutScreen = props => {
         <PrimaryButton
           containerStyle={styles.buttonStyle}
           loading={loading}
-          onPress={() => navigate('Drawer')}
+          // onPress={() => navigate('Drawer')}
           title={'Finalize Payment'}
           fontSize={mvs(18)}
         />

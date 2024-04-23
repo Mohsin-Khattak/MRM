@@ -55,6 +55,7 @@ type props = {
   isPassword?: boolean;
   isCalendar?: boolean;
   editable?: boolean;
+  disabled?: boolean;
   disabledSearch?: boolean;
   error?: string;
   id?: any;
@@ -565,6 +566,7 @@ export const InputWithIconCheckout = (props: props) => {
     error,
     label,
     labelStyle,
+    disabled,
     isRequired = false,
   } = props;
   return (
@@ -594,6 +596,7 @@ export const InputWithIconCheckout = (props: props) => {
           value={id}
           visible={visible}
           items={items}
+          disabled={disabled}
         />
       </View>
     </>
