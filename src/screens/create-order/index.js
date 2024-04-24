@@ -121,7 +121,7 @@ const CreateOrderScreen = props => {
             alignSelf: 'center',
           }}
           loading={loading}
-          onPress={() => navigate('CustomerScreen')}
+          onPress={() => navigate('CustomerScreen', {screen: 'createOrder'})}
           title={'Continue'}
           fontSize={mvs(22)}
           textStyle={{

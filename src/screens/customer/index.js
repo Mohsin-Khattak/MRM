@@ -12,11 +12,16 @@ import {View} from 'react-native';
 import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
 import styles from './styles';
+import {ScreenStackHeaderLeftView} from 'react-native-screens';
 const CustomerScreen = props => {
+  const screen = props?.route?.params?.screen;
+
   const [loading, setLoading] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  console.log('selected customer show====>', selectedCustomer);
+  const [disabledScreen, setDisabledScreen] = React.useState(screen);
+  console.log('disabledScreen screen show====>', disabledScreen);
+
   const filteredCustomers = CUSTOMER_LIST.filter(customer =>
     customer.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
@@ -29,6 +34,7 @@ const CustomerScreen = props => {
       item={item}
       onPress={() => setSelectedCustomer(item)} // Set selected customer
       selected={item === selectedCustomer} // Highlight selected customer
+      screen={disabledScreen}
     />
   );
 
@@ -41,18 +47,20 @@ const CustomerScreen = props => {
         title={'Customer'}
         style={{backgroundColor: colors.transparent}}
       />
-      <View style={{paddingHorizontal: mvs(20)}}>
-        <SearchInput
-          placeholder="Search Customer"
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-          clearText={() => setSearchQuery('')}
-        />
-        <Bold style={styles.customerText} label={'Selected Customer :'} />
-        <View style={styles.selectedCustomerContainer}>
-          <Medium color={colors.white} label={selectedCustomer?.name} />
+      {screen && (
+        <View style={{paddingHorizontal: mvs(20)}}>
+          <SearchInput
+            placeholder="Search Customer"
+            onChangeText={setSearchQuery}
+            value={searchQuery}
+            clearText={() => setSearchQuery('')}
+          />
+          <Bold style={styles.customerText} label={'Selected Customer :'} />
+          <View style={styles.selectedCustomerContainer}>
+            <Medium color={colors.white} label={selectedCustomer?.name} />
+          </View>
         </View>
-      </View>
+      )}
 
       <CustomFlatList
         // emptyList={<EmptyList label={t('no_notification')} />}
@@ -63,14 +71,15 @@ const CustomerScreen = props => {
         ItemSeparatorComponent={itemSeparatorComponent()}
         keyExtractor={(_, index) => index?.toString()}
       />
-
-      <View style={{marginVertical: 10, paddingHorizontal: mvs(20)}}>
-        <PrimaryButton
-          containerStyle={{height: mvs(40)}}
-          onPress={() => navigate('CheckoutScreen')}
-          title="Continue"
-        />
-      </View>
+      {screen && (
+        <View style={{marginVertical: 10, paddingHorizontal: mvs(20)}}>
+          <PrimaryButton
+            containerStyle={{height: mvs(40)}}
+            onPress={() => navigate('CheckoutScreen')}
+            title="Continue"
+          />
+        </View>
+      )}
     </View>
   );
 };
