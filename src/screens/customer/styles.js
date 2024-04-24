@@ -39,12 +39,21 @@ const styles = StyleSheet.create({
   contentContainerStyleFlatlist: {
     paddingVertical: mvs(10),
     flexGrow: 1,
-    // paddingHorizontal: mvs(20),
-    paddingBottom: mvs(100),
+    paddingHorizontal: mvs(20),
   },
   backgroundimg: {
     width: '100%',
     height: '100%',
   },
+  selectedCustomerContainer: {
+    width: '100%',
+    height: mvs(45),
+    backgroundColor: colors.primary,
+    borderRadius: mvs(10),
+    marginTop: mvs(6),
+    justifyContent: 'center',
+    paddingHorizontal: mvs(15),
+  },
+  customerText: {marginTop: mvs(10), color: colors.primary, fontSize: mvs(18)},
 });
 export default styles;

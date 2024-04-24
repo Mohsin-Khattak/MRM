@@ -1,15 +1,14 @@
+import PrimaryInput from 'components/atoms/inputs';
 import {Row} from 'components/atoms/row';
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import i18n from 'translation';
+import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
-import Regular from 'typography/regular-text';
 import {colors} from '../../../config/colors';
 import {mvs} from '../../../config/metrices';
-import PrimaryInput from 'components/atoms/inputs';
-import Bold from 'typography/bold-text';
 
 const CreateOrderCard = ({
   item,
@@ -56,7 +55,6 @@ const CreateOrderCard = ({
               width: '25%',
               marginTop: mvs(10),
               marginRight: mvs(10),
-              // paddingHorizontal: mvs(20),
             }}>
             <TouchableOpacity onPress={() => handleDecrement()}>
               <Entypo

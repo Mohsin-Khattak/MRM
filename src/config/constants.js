@@ -91,22 +91,22 @@ export const CUSTOMER_LIST = [
     address: 'address asahn kajs ausiu askla, ',
   },
   {
-    name: 'Ali Abdullah',
+    name: 'Kamran',
     phone: '12345678910',
     address: 'address asahn kajs ausiu askla ',
   },
   {
-    name: 'Ali Abdullah',
+    name: 'Ahmed',
     phone: '12345678910',
     address: 'address asahn kajs ausiu askla ',
   },
   {
-    name: 'Ali Abdullah',
+    name: 'Gujar khan',
     phone: '12345678910',
     address: 'address asahn kajs ausiu askla ',
   },
   {
-    name: 'Ali Abdullah',
+    name: 'Aqib khan',
     phone: '12345678910',
     address: 'address asahn kajs ausiu askla ',
   },

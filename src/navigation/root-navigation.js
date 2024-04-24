@@ -134,6 +134,7 @@ export const RootNavigator = () => {
           <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
           <Stack.Screen name="ReportScreen" component={ReportScreen} />
           <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
+
           <Stack.Screen
             name="MyOrderScreenScreen"
             component={MyOrderScreenScreen}

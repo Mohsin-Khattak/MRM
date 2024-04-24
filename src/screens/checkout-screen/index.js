@@ -1,45 +1,30 @@
 import {useIsFocused} from '@react-navigation/native';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import {
-  CommentInput,
-  InputWithIcon,
+import PrimaryInput, {
   InputWithIconCheckout,
-  MessageInput,
   PrimaryInputCheckout,
-  PrimaryInputNote,
-  SearchInput,
   TextAreaInput,
 } from 'components/atoms/inputs';
 import {KeyboardAvoidScrollview} from 'components/atoms/keyboard-avoid-scrollview';
-import PrimaryInput from 'components/atoms/inputs';
-import CustomerCard from 'components/molecules/customer-card';
 
-import ServiceCard from 'components/molecules/service-card';
 import {colors} from 'config/colors';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {mvs} from 'config/metrices';
 import {useAppDispatch, useAppSelector} from 'hooks/use-store';
 import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
-import {
-  Alert,
-  ImageBackground,
-  Platform,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Platform, TouchableOpacity, View} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import i18n from 'translation';
 
 import Medium from 'typography/medium-text';
 
-import styles from './styles';
-import {Formik} from 'formik';
+import {PrimaryButton} from 'components/atoms/buttons';
 import {Row} from 'components/atoms/row';
 import {PAYMENT_METHODS} from 'config/constants';
-import {PrimaryButton} from 'components/atoms/buttons';
+import {Formik} from 'formik';
 import Bold from 'typography/bold-text';
+import styles from './styles';
 const CheckoutScreen = props => {
   const initialValues = {
     amount: '',

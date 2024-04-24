@@ -1,7 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, { useRef, useState } from 'react';
 import {
   I18nManager,
-  Image,
   KeyboardTypeOptions,
   NativeSyntheticEvent,
   StyleProp,
@@ -10,30 +9,28 @@ import {
   TextInputFocusEventData,
   TouchableOpacity,
   View,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import PhoneInput from 'react-native-phone-number-input';
-import Regular from 'typography/regular-text';
-import {mvs} from 'config/metrices';
-import {colors} from 'config/colors';
-import Medium from 'typography/medium-text';
-import {Row} from '../row';
-import {useAppSelector} from 'hooks/use-store';
-import CartModal from 'components/molecules/modals/cart-modal';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {t} from 'i18next';
-import {menue} from 'assets/images';
 import PaymentMethodModal from 'components/molecules/modals/payment-method-modal';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { useAppSelector } from 'hooks/use-store';
+import { t } from 'i18next';
+import PhoneInput from 'react-native-phone-number-input';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Medium from 'typography/medium-text';
+import Regular from 'typography/regular-text';
+import { Row } from '../row';
 type props = {
   isRequired?: boolean;
   onChangeText: (text: string) => void;
   onPress?: () => void;
+  clearText?:()=> void;
   onPressMinus?: () => void;
   onPressIn?: () => void;
   getCallingCode?: (text: string) => void | undefined;
@@ -612,7 +609,7 @@ export const PrimaryPhoneInput = (props: props) => {
     labelStyle,
     containerStyle,
     secureTextEntry,
-    isPassword,
+    
     keyboardType,
     error,
     ref,
@@ -654,6 +651,7 @@ export const SearchInput = (props: props) => {
     containerStyle,
     secureTextEntry,
     keyboardType,
+    clearText = () => {},
     error,
     onBlur,
     mtop,
@@ -679,9 +677,8 @@ export const SearchInput = (props: props) => {
         style={[styles.searchTextInput, style]}
       />
       <TouchableOpacity
-        disabled={disabledSearch}
         style={styles.searchIcon}
-        onPress={() => {}}>
+        onPress={clearText}>
         <Entypo name={'circle-with-cross'} size={mvs(25)} color={colors.red} />
       </TouchableOpacity>
     </View>
