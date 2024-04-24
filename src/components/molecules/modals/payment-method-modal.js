@@ -15,6 +15,7 @@ const PaymentMethodModal = ({
   visible = false,
   onClose = item => {},
   onChangeText,
+  disabled,
   items = [],
 }) => {
   return (
@@ -42,6 +43,7 @@ const PaymentMethodModal = ({
           {PAYMENT_METHODS?.map((item, index) => {
             return (
               <TouchableOpacity
+                disabled={disabled}
                 key={index}
                 onPress={() => onChangeText(item?.id, onClose())}
                 style={styles.button}>
