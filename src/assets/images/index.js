@@ -32,7 +32,7 @@ export {default as drawerDriverLoginIcon} from './driver.png';
 export {default as drawerLogoutIcon} from './logout.png';
 export {default as drawerUserIcon} from './userimg.jpg';
 export {default as SplashIcon} from './splashImage.png';
-// export {default as Logo} from './logo.png';
+export {default as Logo} from './logo.png';
 export {default as LogoLogin} from './logologin.png';
 export {default as LogoText} from './LogoText.png';
 export {default as LoginBackground} from './LoginBackground.png';

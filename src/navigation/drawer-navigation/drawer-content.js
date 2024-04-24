@@ -118,7 +118,7 @@ const CustomDrawerContent = props => {
           onPress={() => handleCardPress('CustomerWiseRecoveryScreen')}
           activeIcon={IMG.ReportActive}
           inactiveIcon={IMG.Report}
-          label1={'Custoemrwise recovery'}
+          label1={'Customerwise recovery'}
           screenName={'CustomerWiseRecoveryScreen'}
           isActive={activeScreen === 'CustomerWiseRecoveryScreen'}
           containerStyle={styles.helpStyle}
