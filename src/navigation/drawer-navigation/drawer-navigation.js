@@ -5,6 +5,7 @@ import {mvs, width} from 'config/metrices';
 import CustomDrawerContent from './drawer-content';
 import HomeTab from 'screens/home-tab';
 import {colors} from 'config/colors';
+import TabNavigator from 'navigation/tab-navigation';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
@@ -21,7 +22,8 @@ const DrawerNavigation = () => {
         headerShown: false,
       }}
       drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="HomeTab" component={HomeTab} />
+      {/* <Drawer.Screen name="HomeTab" component={HomeTab} /> */}
+      <Drawer.Screen name="TabNavigator" component={TabNavigator} />
       {/* <Drawer.Screen name="TabBar" component={TabBar} /> */}
     </Drawer.Navigator>
   );
