@@ -17,7 +17,7 @@ import Medium from 'typography/medium-text';
 import {Row} from '../row';
 import {SearchInput} from '../inputs';
 import Bold from 'typography/bold-text';
-const HeaderX = ({
+const HeaderXNot = ({
   style = {},
   mtop = 0,
   onPressadd = () => {},
@@ -41,7 +41,7 @@ const HeaderX = ({
             <AntDesign
               name={I18nManager.isRTL ? 'arrowright' : 'arrowleft'}
               size={mvs(20)}
-              color={colors.primary}
+              color={colors.white}
             />
           </TouchableOpacity>
         ) : (
@@ -64,7 +64,7 @@ const HeaderX = ({
             fontSize={mvs(20)}
             label={title}
             style={[styles.title]}
-            color={color}
+            color={colors.white}
           />
         ) : (
           <Image
@@ -125,7 +125,7 @@ const HeaderX = ({
     </View>
   );
 };
-export default React.memo(HeaderX);
+export default React.memo(HeaderXNot);
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.primary,
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: mvs(20),
-    color: colors.primary,
+    color: colors.white,
   },
   back: {},
 });

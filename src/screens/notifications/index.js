@@ -1,19 +1,20 @@
 import CustomFlatList from 'components/atoms/custom-flatlist';
-import { EmptyList } from 'components/atoms/empty-list';
+import {EmptyList} from 'components/atoms/empty-list';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import { Loader } from 'components/atoms/loader';
-import { Row } from 'components/atoms/row';
-import { colors } from 'config/colors';
-import { mvs } from 'config/metrices';
-import { useAppDispatch, useAppSelector } from 'hooks/use-store';
+import Header1x2xNot from 'components/atoms/headers/header-1x-2x-not';
+import {Loader} from 'components/atoms/loader';
+import {Row} from 'components/atoms/row';
+import {colors} from 'config/colors';
+import {mvs} from 'config/metrices';
+import {useAppDispatch, useAppSelector} from 'hooks/use-store';
 import moment from 'moment';
-import React, { useEffect } from 'react';
-import { Alert, View } from 'react-native';
-import { onReadNotification } from 'services/api/auth-api-actions';
+import React, {useEffect} from 'react';
+import {Alert, View} from 'react-native';
+import {onReadNotification} from 'services/api/auth-api-actions';
 import i18n from 'translation';
 import Medium from 'typography/medium-text';
 import Regular from 'typography/regular-text';
-import { UTILS } from 'utils';
+import {UTILS} from 'utils';
 import styles from './styles';
 
 const Notifications = props => {
@@ -72,7 +73,7 @@ const Notifications = props => {
   };
   return (
     <View style={styles.container}>
-      <Header1x2x title={t('Notifications')} />
+      <Header1x2xNot title={t('Notifications')} />
       {loading ? (
         <Loader />
       ) : (
